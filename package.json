@@ -17,6 +17,6 @@
   "devDependencies": {
     "@tailwindcss/vite": "^4.2.4",
     "@types/alpinejs": "^3.13.11",
-    "tailwindcss": "^4.2.4"
+    "tailwindcss": "^4.3.3"
   }
 }

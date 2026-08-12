@@ -1,0 +1,65 @@
+---
+---
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css"/>
+
+<script type="module">
+import * as CookieConsent from 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.esm.js';
+
+window.addEventListener('load', () => {
+  CookieConsent.run({
+    guiOptions: {
+      consentModal: {
+        layout: 'box',
+        position: 'bottom left',
+        equalWeightButtons: false,
+        flipButtons: false,
+      },
+      preferencesModal: {
+        layout: 'box',
+        position: 'right',
+        equalWeightButtons: true,
+        flipButtons: false,
+      },
+    },
+    categories: {
+      necessary: {
+        readOnly: true,
+      },
+      analytics: {},
+    },
+    language: {
+      default: 'pl',
+      translations: {
+        pl: {
+          consentModal: {
+            title: 'Używamy plików cookies',
+            description: 'Ta strona używa plików cookies w celu analizy ruchu i poprawy działania serwisu. Możesz zaakceptować wszystkie lub wybrać które kategorie akceptujesz.',
+            acceptAllBtn: 'Akceptuj wszystkie',
+            acceptNecessaryBtn: 'Tylko niezbędne',
+            showPreferencesBtn: 'Zarządzaj preferencjami',
+          },
+          preferencesModal: {
+            title: 'Preferencje cookies',
+            acceptAllBtn: 'Akceptuj wszystkie',
+            acceptNecessaryBtn: 'Tylko niezbędne',
+            savePreferencesBtn: 'Zapisz preferencje',
+            closeIconLabel: 'Zamknij',
+            sections: [
+              {
+                title: 'Niezbędne cookies',
+                description: 'Wymagane do prawidłowego działania strony. Nie można ich wyłączyć.',
+                linkedCategory: 'necessary',
+              },
+              {
+                title: 'Analityczne cookies',
+                description: 'Pomagają nam zrozumieć jak użytkownicy korzystają ze strony (Google Analytics).',
+                linkedCategory: 'analytics',
+              },
+            ],
+          },
+        },
+      },
+    },
+  });
+});
+</script>

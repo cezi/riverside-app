@@ -1,0 +1,420 @@
+---
+import { CONTACT } from '../config/site';
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionCta from '../components/ui/SectionCta.astro';
+import { cloudinaryUrl, cloudinarySrcset } from '../utils/cloudinary';
+import SectionVideoWorkshops from '../components/ui/SectionVideoWorkshops.astro';
+
+const allWorkshops = await getCollection('workshops');
+const workshops = allWorkshops
+  .filter(w => w.data.active)
+  .sort((a, b) => a.data.order - b.data.order);
+
+const allTestimonials = await getCollection('testimonials');
+const testimonials = allTestimonials
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
+
+const FOTO_HERO    = 'maciej-rafalski-glass-project-warszawa-warsztaty-szklo-dmuchane';
+const FOTO_VOUCHER = 'maciej-rafalski-glass-project-warszawa-voucher-podarunkowy-reklama';
+
+const skills = [
+  'Projektować własną pracę ze szkła - od pomysłu po finalny kształt.',
+  'Wycinać, szlifować i przygotowywać szkło do dalszej obróbki.',
+  'Formować szkło na gorąco: dmuchać bańkę, tworzyć bąble i nadawać unikatowe kształty.',
+  'Samodzielnie odbić swój wyrób z piszczeli i umieścić go w odprężarce.',
+  'Wypalać prace w piecu oraz rozumieć procesy termiczne.',
+  'Zdobienia szkła oraz techniki tworzenia pęcherzy powietrza.',
+];
+
+const testimonialsData = testimonials.map(t => ({
+  name:    t.data.name,
+  content: t.data.content,
+  rating:  t.data.rating,
+  source:  t.data.source ?? 'Google',
+}));
+---
+
+<BaseLayout
+  title="Warsztaty szkła artystycznego w Warszawie"
+  description="Warsztaty szkła artystycznego w Warszawie: dmuchanie szkła i fusing w małych grupach. Poznaj terminy, program i zarezerwuj miejsce w pracowni."
+>
+
+  {/* ── Sekcja 1 — Hero ─────────────────────────────────────────── */}
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+      <div class="flex flex-wrap items-center -mx-4">
+
+        <div class="w-full lg:w-1/2 px-4 mb-16 lg:mb-0 lg:order-last">
+          <div class="p-1 border border-glass-border rounded-2xl">
+            <picture>
+              <source
+                media="(max-width: 640px)"
+                srcset={cloudinarySrcset(FOTO_HERO, [400, 640], { aspectRatio: '1:1', crop: 'fill' })}
+                sizes="100vw"
+              />
+              <source
+                media="(min-width: 641px)"
+                srcset={cloudinarySrcset(FOTO_HERO, [400, 640, 900], { aspectRatio: '16:9', crop: 'fill' })}
+                sizes="50vw"
+              />
+              <img
+                src={cloudinaryUrl(FOTO_HERO, { width: 900, aspectRatio: '16:9', crop: 'fill' })}
+                alt="Maciej Rafalski prowadzi warsztaty szkła artystycznego w pracowni w Warszawie"
+                width="900" height="506"
+                class="w-full h-auto object-cover rounded-xl"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-1/2 px-4 lg:pr-16">
+          <h1 class="section-heading">Warsztaty. Dla kogo?</h1>
+          <p class="prose-p">
+            Zapraszam Cię na warsztaty, które nie są pokazem ani kursem „krok po kroku", lecz prawdziwym spotkaniem z żywym, wymagającym materiałem. Ze szkłem pracuje się tu i teraz - z pełnym skupieniem, uważnością i odwagą podejmowania decyzji w danej chwili. Jeśli masz ukończone 18 lat i chcesz doświadczyć, jak to jest tworzyć własny obiekt ze szkła, te zajęcia są dla Ciebie.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {/* ── Sekcja 2 — Czego się nauczysz ──────────────────────────── */}
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+      <h2 class="section-heading mb-16">Czego nauczysz się na warsztatach?</h2>
+      <div class="flex flex-wrap -mx-4">
+        {skills.map((skill, i) => (
+          <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-10 flex items-start gap-4">
+            <span class="flex-shrink-0 inline-flex items-center justify-center w-12 h-12 bg-glass-white text-glass-black rounded-full font-medium text-xl">
+              {i + 1}
+            </span>
+            <p class="prose-p mb-0">{skill}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <SectionVideoWorkshops publicId="Warsztaty-Mr-Glass-Project-Compressed" />
+
+  {/* ── Sekcja 3 — Opinie ───────────────────────────────────────── */}
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+      <div class="max-w-4xl mx-auto text-center mb-16">
+        <h2 class="section-heading">Opinie uczestników warsztatów</h2>
+        <p class="prose-p">
+          Wszystkie opinie pochodzą z naszego Profilu Firmy w Google. Możesz zapoznać się ze wszystkimi opiniami
+          <a
+            href="https://maps.app.goo.gl/vXUA1MQB47HWjrjP9"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline hover:text-glass-accent-amber transition-colors duration-200"
+          >pod tym odnośnikiem.</a>
+        </p>
+      </div>
+
+      <div
+        x-data={`{
+          visible: 9,
+          step: 6,
+          testimonials: ${JSON.stringify(testimonialsData)},
+          get shown() { return this.testimonials.slice(0, this.visible); },
+          get hasMore() { return this.visible < this.testimonials.length; },
+          loadMore() { this.visible += this.step; }
+        }`}
+      >
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <template x-for="(t, i) in shown" x-bind:key="i">
+            <div class="relative p-1 border border-white/20 hover:border-white/30 rounded-2xl transition-all duration-200 h-full">
+              <div class="absolute inset-0 bg-glass-accent-fire opacity-10 rounded-2xl blur-3xl pointer-events-none" aria-hidden="true"></div>
+              <div class="relative bg-gradient-to-t from-glass-anthracite to-glass-accent-fire/10 border border-white/10 p-6 rounded-xl h-full flex flex-col">
+                <div class="flex gap-1 mb-4">
+                  <template x-for="s in t.rating">
+                    <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" class="text-glass-accent-amber">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                  </template>
+                </div>
+                <p class="mb-8 text-base lg:text-lg leading-relaxed text-glass-muted flex-1" x-text="t.content"></p>
+                <div class="mt-auto flex items-center justify-between">
+                  <p class="text-lg font-medium italic text-gradient px-1" x-text="t.name"></p>
+                  <span class="text-xs text-glass-smoke" x-text="t.source"></span>
+                </div>
+              </div>
+            </div>
+          </template>
+        </div>
+
+        <div x-show="hasMore" class="mt-12 text-center">
+          <button
+            x-on:click="loadMore()"
+            class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-glass-white border border-glass-border hover:border-white/50 rounded-full transition-all duration-200"
+          >
+            Pokaż więcej opinii
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Sekcja 4 — Oferta warsztatów ────────────────────────────── */}
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+      <h2 class="mb-16 text-center section-heading">Oferta warsztatów</h2>
+
+      <div class="space-y-8">
+        {workshops.map(w => {
+          const featured = w.data.featured === true;
+          const tiers = w.data.pricingTiers ?? [];
+          return (
+            <div class:list={[
+              'relative flex flex-wrap p-1 rounded-2xl border',
+              featured ? 'border-glass-accent-amber/50' : 'border-white/20'
+            ]}>
+              <div class:list={[
+                'absolute inset-0 rounded-2xl blur-3xl opacity-20 pointer-events-none',
+                featured ? 'bg-glass-accent-amber' : 'bg-glass-accent-fire'
+              ]} aria-hidden="true"></div>
+
+              {featured && (
+                <div class="absolute -top-4 left-6 z-10 px-3 py-1 bg-glass-accent-amber text-glass-black text-xs font-semibold rounded-full">
+                  Polecany
+                </div>
+              )}
+
+              <div class:list={[
+                'relative w-full lg:w-2/3 p-8 lg:p-12 rounded-t-xl lg:rounded-t-none lg:rounded-l-xl',
+                featured
+                  ? 'bg-gradient-to-br from-glass-black via-glass-anthracite to-glass-accent-amber/10'
+                  : 'bg-gradient-to-br from-glass-black via-glass-anthracite to-glass-black'
+              ]}>
+                <div class="max-w-md mb-8">
+                  <h3 class="mb-4 text-2xl md:text-3xl font-medium text-gradient font-heading">{w.data.title}</h3>
+                  <p class="prose-p">{w.data.description}</p>
+                </div>
+                <ul class="flex flex-wrap gap-x-8 gap-y-2">
+                  <li class="flex items-center gap-2">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="text-glass-white flex-shrink-0" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span class="text-glass-muted">Czas trwania: {w.data.duration}</span>
+                  </li>
+                  <li class="flex items-center gap-2">
+                    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" class="text-glass-white flex-shrink-0" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                    </svg>
+                    <span class="text-glass-muted">Maks. osób: {w.data.maxPersons}</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div class:list={[
+                'relative w-full lg:w-1/3 p-8 text-center flex flex-col justify-center',
+                'border-t lg:border-t-0 lg:border-l border-white/10',
+                'rounded-b-xl lg:rounded-bl-none lg:rounded-r-xl',
+                featured
+                  ? 'bg-gradient-to-br from-glass-accent-amber/20 to-glass-accent-fire/10'
+                  : 'bg-gradient-to-br from-glass-anthracite to-glass-black'
+              ]}>
+
+                {tiers.length > 0 ? (
+                  <div
+                    class="relative w-full"
+                    x-data={`{
+                      open: false,
+                      tiers: ${JSON.stringify(tiers)},
+                      selected: null,
+                      select(tier) { this.selected = tier; this.open = false; }
+                    }`}
+                    x-on:click.outside="open = false"
+                  >
+                    {/* Cena */}
+                    <template x-if="selected">
+                      <div class="mb-4">
+                        <span class="block text-4xl md:text-5xl font-medium text-gradient" x-text="selected.price + ' zł'"></span>
+                        <p class="mt-1 text-sm text-glass-muted">
+                          <span x-text="'Cena za ' + selected.persons"></span>
+                          <span x-text="selected.persons === 1 ? ' osobę' : (selected.persons >= 2 && selected.persons <= 4 ? ' osoby' : ' osób')"></span>
+                        </p>
+                      </div>
+                    </template>
+                    <template x-if="!selected">
+                      <div class="mb-4">
+                        <span class="block text-4xl md:text-5xl font-medium text-gradient">
+                          {w.data.price} zł
+                        </span>
+                        <p class="mt-1 text-sm text-glass-muted">Cena za 1 osobę</p>
+                      </div>
+                    </template>
+
+                    {/* Selektor liczby osób */}
+                    <button
+                      type="button"
+                      x-on:click="open = !open"
+                      x-bind:aria-expanded="open.toString()"
+                      class="relative w-full inline-flex items-center justify-between gap-2 px-5 py-3 mb-3 text-sm font-medium rounded-full border border-white/50 hover:border-white text-glass-white transition-all duration-200"
+                    >
+                      <template x-if="!selected">
+                        <span class="text-glass-muted">Wybierz ilość osób</span>
+                      </template>
+                      <template x-if="selected">
+                        <span class="flex items-center gap-2">
+                          <span x-text="selected.persons"></span>
+                          <span x-text="selected.persons === 1 ? 'osoba' : (selected.persons >= 2 && selected.persons <= 4 ? 'osoby' : 'osób')"></span>
+                          <span class="text-glass-accent-amber font-semibold" x-text="'- ' + selected.price + ' zł'"></span>
+                        </span>
+                      </template>
+                      <svg
+                        class="w-4 h-4 flex-shrink-0 transition-transform duration-200"
+                        x-bind:class="open ? 'rotate-180' : 'rotate-0'"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"
+                      >
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                      </svg>
+                    </button>
+
+                    <div
+                      x-show="open"
+                      x-transition:enter="transition ease-out duration-150"
+                      x-transition:enter-start="opacity-0 -translate-y-2"
+                      x-transition:enter-end="opacity-100 translate-y-0"
+                      x-transition:leave="transition ease-in duration-100"
+                      x-transition:leave-start="opacity-100 translate-y-0"
+                      x-transition:leave-end="opacity-0 -translate-y-2"
+                      class="absolute z-20 left-0 right-0 -mt-1 py-2 bg-glass-anthracite border border-glass-border rounded-xl shadow-xl text-left max-h-64 overflow-y-auto"
+                      style="display: none;"
+                    >
+                      <template x-for="tier in tiers" x-bind:key="tier.persons">
+                        <button
+                          type="button"
+                          x-on:click="select(tier)"
+                          class="flex items-center justify-between gap-3 w-full px-4 py-2.5 text-sm hover:bg-glass-black transition-colors duration-150"
+                        >
+                          <span class="text-glass-white">
+                            <span x-text="tier.persons"></span>
+                            <span x-text="tier.persons === 1 ? ' osoba' : (tier.persons >= 2 && tier.persons <= 4 ? ' osoby' : ' osób')"></span>
+                          </span>
+                          <span class="flex flex-col items-end">
+                            <span class="text-glass-accent-amber font-semibold" x-text="tier.price + ' zł'"></span>
+                            <span x-show="tier.label" class="text-xs text-cool" x-text="tier.label"></span>
+                          </span>
+                        </button>
+                      </template>
+                    </div>
+
+                    {/* Przycisk Zarezerwuj miejsce */}
+                    <a
+                      x-bind:href="selected ? selected.setmoreUrl : '#'"
+                      x-bind:class="!selected && 'opacity-40 pointer-events-none cursor-not-allowed'"
+                      x-bind:aria-disabled="(!selected).toString()"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class:list={[
+                        'inline-flex items-center justify-center w-full px-6 py-3 text-sm font-semibold rounded-full transition-all duration-200 group',
+                        featured
+                          ? 'text-glass-black bg-glass-accent-amber hover:bg-glass-accent-glow hover:shadow-lg'
+                          : 'text-glass-white border border-glass-border hover:border-white/50'
+                      ]}
+                    >
+                      Zarezerwuj miejsce
+                      <svg class="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                      </svg>
+                    </a>
+                  </div>
+                ) : (
+                  <>
+                    <span class="block mb-6 text-4xl md:text-5xl font-medium text-gradient">
+                      {w.data.price} zł
+                    </span>
+                    <p class="mb-6 text-sm text-glass-muted">Cena za 1 osobę</p>
+                    <a
+                      href={w.data.setmoreUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class:list={[
+                        'inline-flex items-center justify-center w-full px-6 py-3 text-sm font-semibold rounded-full transition-all duration-200 group',
+                        featured
+                          ? 'text-glass-black bg-glass-accent-amber hover:bg-glass-accent-glow hover:shadow-lg'
+                          : 'text-glass-white border border-glass-border hover:border-white/50'
+                      ]}
+                    >
+                      Zarezerwuj miejsce
+                      <svg class="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                      </svg>
+                    </a>
+                  </>
+                )}
+
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  {/* ── Sekcja 5 — Voucher ──────────────────────────────────────── */}
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+      <div class="flex flex-wrap items-center -mx-4">
+
+        <div class="w-full lg:w-1/2 px-4 mb-16 lg:mb-0">
+          <div class="p-1 border border-glass-border rounded-2xl">
+            <picture>
+              <source
+                media="(max-width: 640px)"
+                srcset={cloudinarySrcset(FOTO_VOUCHER, [400, 640], { aspectRatio: '7:3', crop: 'fill' })}
+                sizes="100vw"
+              />
+              <source
+                media="(min-width: 641px)"
+                srcset={cloudinarySrcset(FOTO_VOUCHER, [400, 640, 900], { aspectRatio: '7:3', crop: 'fill' })}
+                sizes="50vw"
+              />
+              <img
+                src={cloudinaryUrl(FOTO_VOUCHER, { width: 900, aspectRatio: '7:3', crop: 'fill' })}
+                alt="Voucher na warsztaty szkła artystycznego Glass Project — oryginalny prezent"
+                width="900" height="386"
+                class="w-full h-auto object-cover rounded-xl"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-1/2 px-4 lg:pl-16">
+          <h2 class="section-heading">
+            Szukasz oryginalnego prezentu?
+            <span class="block mt-2">Kup voucher na wybrane warsztaty</span>
+          </h2>
+          <a
+            href="/vouchers"
+            class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-glass-black bg-glass-white hover:bg-glass-white/90 rounded-full transition-all duration-200 hover:shadow-lg group"
+          >
+            Poznaj ofertę voucherów
+            <svg class="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <SectionCta
+    title="Masz pytania o warsztaty?"
+    description="Chętnie odpowiemy na wszystkie pytania dotyczące organizacji, grup zorganizowanych lub indywidualnych terminów. Napisz do nas."
+    ctaLabel="Napisz do nas"
+    ctaHref="/contact"
+    ctaPhone={CONTACT.phoneWork}
+    ctaPhoneHref={CONTACT.phoneWorkHref}
+  />
+
+</BaseLayout>

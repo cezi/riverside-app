@@ -1,0 +1,271 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionWorkshop from '../components/ui/SectionWorkshop.astro';
+import { cloudinaryUrl, cloudinarySrcset } from '../utils/cloudinary';
+
+const photos = {
+  piec:        'maciej-rafalski-glass-project-warszawa-page-pracownia-piec-hutniczy',
+  piszczel:    'maciej-rafalski-glass-project-warszawa-page-pracownia-piszczel-szklarska',
+  wspolpraca2: 'maciej-rafalski-glass-project-warszawa-page-pracownia-przestrzen-wspolpracy-fot-1',
+  wspolpraca1: 'maciej-rafalski-glass-project-warszawa-page-pracownia-przestrzen-wspolpracy-fot-2',
+  narzedzia:   [1,2,3,4,5,6].map(n => `maciej-rafalski-glass-project-warszawa-page-pracownia-narzedzia-do-pracy-fot-${n}`),
+  etapy: {
+    piec:       'maciej-rafalski-glass-project-warszawa-fot-section-home-pracownia-piec-hutniczy-etap-1',
+    nabieranie: 'maciej-rafalski-glass-project-warszawa-fot-section-home-pracownia-nabieranie-formowanie-szkla-etap-2',
+    ksztalt:    'maciej-rafalski-glass-project-warszawa-fot-section-home-pracownia-ksztaltowanie-szkla-etap-3',
+    chlodzenie: 'maciej-rafalski-glass-project-warszawa-fot-section-home-pracownia-chlodzenie-wykonczenie-szkla-etap-4',
+  }
+};
+
+const etapy = [
+  {
+    nr: 1,
+    title: 'Piec hutniczy',
+    desc: 'W piecu szkło osiąga temperaturę, w której można je formować. To tutaj materiał zmienia stan i zaczyna reagować na ruch, powietrze oraz czas.',
+    photo: photos.etapy.piec,
+    reverse: false,
+  },
+  {
+    nr: 2,
+    title: 'Nabieranie i formowanie',
+    desc: 'Rozgrzana masa szkła jest nabierana na piszczel i stopniowo formowana. Każdy ruch wpływa na kształt, proporcje i grubość przyszłej formy.',
+    photo: photos.etapy.nabieranie,
+    reverse: true,
+  },
+  {
+    nr: 3,
+    title: 'Kształtowanie',
+    desc: 'Na tym etapie powstaje właściwa forma obiektu. Praca z narzędziami i powietrzem pozwala nadać szkłu ostateczny charakter.',
+    photo: photos.etapy.ksztalt,
+    reverse: false,
+  },
+  {
+    nr: 4,
+    title: 'Chłodzenie i wykończenie',
+    desc: 'Gotowy obiekt musi stygnąć w kontrolowanych warunkach. Dopiero po chłodzeniu szkło osiąga trwałość i może być dalej wykończone.',
+    photo: photos.etapy.chlodzenie,
+    reverse: true,
+  },
+];
+---
+
+<BaseLayout
+  title="Pracownia szkła artystycznego"
+  description="Zobacz pracownię szkła artystycznego MR Glass Project w Warszawie: piece hutnicze, narzędzia i proces ręcznego formowania szkła."
+>
+
+  {/* ── Sekcja 1 — Hero ─────────────────────────────────────────── */}
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+      <div class="flex flex-wrap items-center -mx-4">
+
+        <div class="w-full lg:w-1/2 px-4 mb-16 lg:mb-0 lg:order-1">
+          <div class="p-1 border border-glass-border rounded-2xl">
+            <picture>
+              <source
+                media="(max-width: 640px)"
+                srcset={cloudinarySrcset(photos.piec, [400, 640], { aspectRatio: '4:3', crop: 'fill' })}
+                sizes="100vw"
+              />
+              <source
+                media="(min-width: 641px)"
+                srcset={cloudinarySrcset(photos.piec, [400, 640, 900], { aspectRatio: '4:3', crop: 'fill' })}
+                sizes="50vw"
+              />
+              <img
+                src={cloudinaryUrl(photos.piec, { width: 900, aspectRatio: '4:3', crop: 'fill' })}
+                alt="Piec hutniczy w pracowni Glass Project Warszawa"
+                width="900" height="675"
+                class="w-full h-auto object-cover rounded-xl"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-1/2 px-4">
+          <h1 class="mb-8 text-3xl md:text-4xl lg:text-5xl font-medium text-gradient font-heading leading-tight">
+            Każdy dzień w pracowni wygląda inaczej, choć rytm pracy wyznacza 
+            <span class="text-gradient-amber"> piec hutniczy</span>
+          </h1>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {/* ── Sekcja 2 — Piszczel ─────────────────────────────────────── */}
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+      <div class="flex flex-wrap items-center -mx-4">
+
+        <div class="w-full lg:w-1/2 px-4 mb-16 lg:mb-0">
+          <div class="p-1 border border-glass-border rounded-2xl">
+            <picture>
+              <source
+                media="(max-width: 640px)"
+                srcset={cloudinarySrcset(photos.piszczel, [400, 640], { aspectRatio: '1:1', crop: 'fill' })}
+                sizes="100vw"
+              />
+              <source
+                media="(min-width: 641px)"
+                srcset={cloudinarySrcset(photos.piszczel, [400, 640, 900], { aspectRatio: '4:3', crop: 'fill' })}
+                sizes="50vw"
+              />
+              <img
+                src={cloudinaryUrl(photos.piszczel, { width: 900, aspectRatio: '4:3', crop: 'fill' })}
+                alt="Piszczel szklarska w pracowni Macieja Rafalskiego"
+                width="900" height="675"
+                class="w-full h-auto object-cover rounded-xl"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-1/2 px-4">
+          <div class="max-w-lg lg:mx-auto">
+            <h2 class="section-heading">Towarzysz Piszczel</h2>
+            <p class="prose-p">
+              W mojej pracy jest wiele narzędzi, ale jedno z nich ma status niemal królewski. To
+              <span class="text-mono-highlight">piszczel szklarska</span>.
+              To długa, solidna metalowa rurka z ustnikiem po jednej stronie i żaroodporną stalową końcówką po drugiej. I to właśnie na tę końcówkę nabieram rozgrzaną masę szklaną prosto z pieca. Gdy tylko szkło się do niej przyklei, zaczyna się cała zabawa: dmuchanie, formowanie, pierwsza bańka — początek każdego szklanego dzieła.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {/* ── Sekcja 3 — Współpraca ───────────────────────────────────── */}
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="section-heading">Współpraca przy piecu</h2>
+        <p class="prose-p">
+          Pan <span class="text-mono-highlight">Józef</span> towarzyszył mi w pracy od wielu lat. Był dla mnie nie tylko wsparciem, lecz przede wszystkim mistrzem. Ta relacja, oparta na zaufaniu, współpracy i międzypokoleniowym przekazywaniu wiedzy, była jednym z najcenniejszych elementów mojej pracy.
+        </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-10">
+        {[photos.wspolpraca1, photos.wspolpraca2].map((id, i) => (
+          <div class="p-1 border border-glass-border rounded-2xl">
+            <picture>
+              <source
+                media="(max-width: 640px)"
+                srcset={cloudinarySrcset(id, [400, 640], { aspectRatio: '1:1', crop: 'fill' })}
+                sizes="100vw"
+              />
+              <source
+                media="(min-width: 641px)"
+                srcset={cloudinarySrcset(id, [400, 600], { aspectRatio: '1:1', crop: 'fill' })}
+                sizes="50vw"
+              />
+              <img
+                src={cloudinaryUrl(id, { width: 600, aspectRatio: '1:1', crop: 'fill' })}
+                alt={`Współpraca w pracowni Glass Project — zdjęcie ${i + 1}`}
+                width="600" height="600"
+                class="w-full h-auto object-cover rounded-xl"
+                loading="lazy"
+                decoding="async"
+              />
+            </picture>
+          </div>
+        ))}
+      </div>
+
+        <p class="prose-p">
+          <span class="text-mono-highlight">Ewa</span> jest nie tylko moją partnerką, ale też absolutnie kluczową osobą w pracowni. Wspiera mnie przy realizacjach, ogarnia to, czego często nie widać na pierwszy rzut oka, a jednocześnie prowadzi PR, marketing i sprzedaż. To ona dba o komunikację, o relacje z klientami, o to, by nasze działania miały sens i kierunek. Bez jej organizacji, energii i umiejętności łączenia wielu wątków naraz ta pracownia po prostu by nie działała.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* ── Sekcja 4 — Narzędzia (galeria) ─────────────────────────── */}
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+
+        <h2 class="section-heading">Narzędzia hutnika</h2>
+        <p class="prose-p">
+          Większość urządzeń i narzędzi jakie potrzebne są w pracowni, w tym także piece i formy, wykonałem osobiście. Kilka z nich możecie zobaczyć na zdjęciach.
+        </p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {photos.narzedzia.map((id, i) => (
+          <div class="group overflow-hidden rounded-xl border border-glass-border">
+            <img
+              src={cloudinaryUrl(id, { width: 600, aspectRatio: '4:3', crop: 'fill' })}
+              srcset={cloudinarySrcset(id, [400, 600], { aspectRatio: '4:3', crop: 'fill' })}
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              alt={`Narzędzie hutnicze ${i + 1} — pracownia Glass Project`}
+              width="600" height="450"
+              class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ── Sekcja 5 — Od ognia do formy ────────────────────────────── */}
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+      <div class="max-w-2xl mb-12">
+        <h2 class="section-heading">Od ognia do formy</h2>
+      </div>
+
+      <div class="space-y-16 lg:space-y-24">
+        {etapy.map(({ nr, title, desc, photo, reverse }) => (
+          <div class:list={['flex flex-wrap items-center -mx-4', reverse ? '' : '']}>
+
+            <div class:list={['w-full lg:w-3/5 px-4 mb-8 lg:mb-0', reverse ? '' : 'order-first lg:order-last']}>
+              <div class="p-1 border border-glass-border rounded-2xl">
+                <picture>
+                  <source
+                    media="(max-width: 640px)"
+                    srcset={cloudinarySrcset(photo, [400, 640], { aspectRatio: '4:3', crop: 'fill' })}
+                    sizes="100vw"
+                  />
+                  <source
+                    media="(min-width: 641px)"
+                    srcset={cloudinarySrcset(photo, [600, 900], { aspectRatio: '16:9', crop: 'fill' })}
+                    sizes="60vw"
+                  />
+                  <img
+                    src={cloudinaryUrl(photo, { width: 900, aspectRatio: '16:9', crop: 'fill' })}
+                    alt={title}
+                    width="900" height="506"
+                    class="w-full h-auto object-cover rounded-xl"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+              </div>
+            </div>
+
+            <div class:list={['w-full lg:w-2/5 px-4', reverse ? '' : '']}>
+              <div class:list={['text-left lg:max-w-md', reverse ? 'lg:ml-auto' : '']}>
+                <h3 class="flex items-center gap-4 text-2xl lg:text-3xl font-medium font-heading mb-4">
+                  <span class="flex-shrink-0 inline-flex items-center justify-center w-12 h-12 bg-glass-white text-glass-black rounded-full font-medium text-xl">
+                    {nr}
+                  </span>
+                  {title}
+                </h3>
+                <p class="prose-p">{desc}</p>
+              </div>
+            </div>
+
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ── Warsztaty ────────────────────────────────────────────────── */}
+  <SectionWorkshop />
+
+</BaseLayout>

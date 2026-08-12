@@ -1,0 +1,217 @@
+---
+import { FORMSPARK, CONTACT, SITE } from '../../config/site';
+
+const siteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY ?? '';
+const formUrl = `${FORMSPARK.url}/${FORMSPARK.formId}`;
+---
+
+<!-- Turnstile script — ładuj tylko na stronach z formularzem -->
+<script
+  src="https://challenges.cloudflare.com/turnstile/v0/api.js"
+  async
+  defer
+></script>
+
+<div
+  x-data="{
+    name:    '',
+    email:   '',
+    company: '',
+    message: '',
+    status:  'idle',
+    turnstileToken: '',
+    async submit() {
+      if (!this.turnstileToken) {
+        this.status = 'no-token';
+        return;
+      }
+      this.status = 'sending';
+      try {
+        const res = await fetch(formAction, {
+          method:  'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept':       'application/json',
+          },
+          body: JSON.stringify({
+            name:                    this.name,
+            email:                   this.email,
+            company:                 this.company,
+            message:                 this.message,
+            'cf-turnstile-response': this.turnstileToken,
+          }),
+        });
+        this.status = res.ok ? 'success' : 'error';
+      } catch {
+        this.status = 'error';
+      }
+    }
+  }"
+  x-init="
+    formAction = $el.dataset.action;
+    // Turnstile callback — wywoływany gdy widget zatwierdzi użytkownika
+    window.onTurnstileSuccess = (token) => { turnstileToken = token; };
+    window.onTurnstileExpire  = ()      => { turnstileToken = ''; };
+  "
+  data-action={formUrl}
+>
+  <!-- Sukces -->
+  <div x-show="status === 'success'" role="alert" style="padding: 2rem; text-align: center;">
+    <p style="color: var(--color-text-primary); font-size: 1.125rem; font-weight: 500;">
+      Wiadomość wysłana!
+    </p>
+    <p style="color: var(--color-text-secondary); margin-top: 0.5rem;">
+      Odpowiemy w ciągu 24 godzin w dni robocze.
+    </p>
+  </div>
+
+  <!-- Formularz -->
+  <form
+    x-show="status !== 'success'"
+    x-on:submit.prevent="submit()"
+    novalidate
+  >
+    <div class="form-group">
+      <label for="contact-name" class="form-label">Imię *</label>
+      <input
+        id="contact-name"
+        type="text"
+        name="name"
+        x-model="name"
+        required
+        autocomplete="given-name"
+        class="form-input"
+        placeholder="Twoje imię"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="contact-email" class="form-label">E-mail *</label>
+      <input
+        id="contact-email"
+        type="email"
+        name="email"
+        x-model="email"
+        required
+        autocomplete="email"
+        class="form-input"
+        placeholder="twoj@email.pl"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="contact-company" class="form-label">
+        Firma / instytucja
+        <span style="color: var(--color-text-muted); font-size: 0.75rem;">(opcjonalnie)</span>
+      </label>
+      <input
+        id="contact-company"
+        type="text"
+        name="company"
+        x-model="company"
+        autocomplete="organization"
+        class="form-input"
+        placeholder="Nazwa firmy"
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="contact-message" class="form-label">Wiadomość *</label>
+      <textarea
+        id="contact-message"
+        name="message"
+        x-model="message"
+        required
+        rows="8"
+        class="form-input"
+        placeholder="Opisz swój projekt lub zadaj pytanie..."
+      ></textarea>
+    </div>
+
+    <!-- Cloudflare Turnstile widget -->
+    <div
+      class="cf-turnstile"
+      data-sitekey={siteKey}
+      data-callback="onTurnstileSuccess"
+      data-expired-callback="onTurnstileExpire"
+      data-theme="dark"
+      style="margin-bottom: 1rem;"
+    ></div>
+
+    <!-- Komunikaty błędów -->
+    <p
+      x-show="status === 'no-token'"
+      role="alert"
+      style="color: #f87171; font-size: 0.875rem; margin-bottom: 1rem;"
+    >
+      Potwierdź że nie jesteś robotem.
+    </p>
+    <p
+      x-show="status === 'error'"
+      role="alert"
+      style="color: #f87171; font-size: 0.875rem; margin-bottom: 1rem;"
+    >
+      Coś poszło nie tak. Spróbuj ponownie lub napisz bezpośrednio na
+      <a href={CONTACT.emailHref} style="color: var(--color-accent);">{CONTACT.email}</a>.
+    </p>
+
+    <button
+      type="submit"
+      class="btn-primary"
+      x-bind:disabled="status === 'sending'"
+    >
+      <span x-show="status !== 'sending'">Wyślij wiadomość</span>
+      <span x-show="status === 'sending'" aria-live="polite">Wysyłanie...</span>
+    </button>
+  </form>
+</div>
+
+<style>
+  .form-group { margin-bottom: 1rem; }
+
+  .form-label {
+    display: block;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 0.375rem;
+  }
+
+  .form-input {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: #171717;
+    border: 1px solid var(--color-border);
+    border-radius: 0.5rem;
+    color: var(--color-text-primary);
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+  .form-input::placeholder { color: var(--color-text-muted); }
+  .form-input:hover  { border-color: rgba(255,255,255,0.3); }
+  .form-input:focus  { outline: none; border-color: rgba(255,255,255,0.5); }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-text-primary);
+    color: var(--color-bg);
+    font-size: 0.875rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  .btn-primary:hover    { background-color: #e4e4e7; }
+  .btn-primary:disabled { opacity: 0.6; cursor: not-allowed; }
+
+  /* Turnstile — dopasowanie do ciemnego motywu */
+  .cf-turnstile {
+    border-radius: 0.5rem;
+    overflow: hidden;
+  }
+</style>

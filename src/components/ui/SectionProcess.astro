@@ -1,0 +1,87 @@
+---
+import { cloudinaryUrl, cloudinarySrcset } from '../../utils/cloudinary';
+
+const etapy = [
+  {
+    nr: 1,
+    title: 'Piec hutniczy',
+    desc: 'W piecu szkło osiąga temperaturę, w której można je formować. To tutaj materiał zmienia stan i zaczyna reagować na ruch, powietrze oraz czas.',
+    photo: 'maciej-rafalski-glass-project-warszawa-fot-section-home-pracownia-piec-hutniczy-etap-1',
+    reverse: false,
+  },
+  {
+    nr: 2,
+    title: 'Nabieranie i formowanie',
+    desc: 'Rozgrzana masa szkła jest nabierana na piszczel i stopniowo formowana. Każdy ruch wpływa na kształt, proporcje i grubość przyszłej formy.',
+    photo: 'maciej-rafalski-glass-project-warszawa-fot-section-home-pracownia-nabieranie-formowanie-szkla-etap-2',
+    reverse: true,
+  },
+  {
+    nr: 3,
+    title: 'Kształtowanie',
+    desc: 'Na tym etapie powstaje właściwa forma obiektu. Praca z narzędziami i powietrzem pozwala nadać szkłu ostateczny charakter.',
+    photo: 'maciej-rafalski-glass-project-warszawa-fot-section-home-pracownia-ksztaltowanie-szkla-etap-3',
+    reverse: false,
+  },
+  {
+    nr: 4,
+    title: 'Chłodzenie i wykończenie',
+    desc: 'Gotowy obiekt musi stygnąć w kontrolowanych warunkach. Dopiero po chłodzeniu szkło osiąga trwałość i może być dalej wykończone.',
+    photo: 'maciej-rafalski-glass-project-warszawa-fot-section-home-pracownia-chlodzenie-wykonczenie-szkla-etap-4',
+    reverse: true,
+  },
+];
+---
+
+<section class="section-py">
+  <div class="container px-4 mx-auto">
+    <div class="max-w-2xl mb-12">
+      <h2 class="section-heading">Jak rodzi się forma?</h2>
+    </div>
+
+    <div class="space-y-16 lg:space-y-24">
+      {etapy.map(({ nr, title, desc, photo, reverse }) => (
+        <div class:list={['flex flex-wrap items-center -mx-4', reverse ? 'flex-row-reverse' : '']}>
+
+          <div class="w-full lg:w-3/5 px-4 mb-8 lg:mb-0">
+            <div class="p-1 border border-glass-border rounded-2xl">
+              <picture>
+                <source
+                  media="(max-width: 640px)"
+                  srcset={cloudinarySrcset(photo, [400, 640], { aspectRatio: '4:3', crop: 'fill' })}
+                  sizes="100vw"
+                />
+                <source
+                  media="(min-width: 641px)"
+                  srcset={cloudinarySrcset(photo, [600, 900], { aspectRatio: '16:9', crop: 'fill' })}
+                  sizes="60vw"
+                />
+                <img
+                  src={cloudinaryUrl(photo, { width: 900, aspectRatio: '16:9', crop: 'fill' })}
+                  alt={title}
+                  width="900" height="506"
+                  class="w-full h-auto object-cover rounded-xl"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+            </div>
+          </div>
+
+          <div class="w-full lg:w-2/5 px-4">
+            <div class:list={['text-left lg:max-w-md', reverse ? '' : 'lg:ml-auto']}>
+              <h3 class="flex items-center gap-4 text-2xl lg:text-3xl font-medium font-heading mb-4">
+                <span class="flex-shrink-0 inline-flex items-center justify-center w-12 h-12 bg-glass-white text-glass-black rounded-full font-medium text-xl">
+                  {nr}
+                </span>
+                <span class="text-gradient">{title}</span>
+              </h3>
+              <p class="prose-p">{desc}</p>
+            </div>
+          </div>
+
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

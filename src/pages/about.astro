@@ -1,0 +1,192 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionCta from '../components/ui/SectionCta.astro';
+import { cloudinaryUrl, cloudinarySrcset } from '../utils/cloudinary';
+
+const foto1 = 'maciej-rafalski-glass-project-warszawa-about-page-section-fot-1';
+const foto2 = 'maciej-rafalski-glass-project-warszawa-about-page-section-fot-2';
+
+const filozofia = [
+  'Szkła nie da się zmusić do określonego zachowania.',
+  'Można jedynie nauczyć się czytać jego reakcje.',
+  'Nie ma pełnej kontroli nad efektem końcowym.',
+];
+---
+
+<BaseLayout
+  title="Maciej Rafalski — artysta i hutnik szkła"
+  description="Poznaj Macieja Rafalskiego — artystę i hutnika szkła, twórcę warszawskiej pracowni MR Glass Project oraz autorskich realizacji ze szkła."
+>
+
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+      <div class="flex flex-wrap items-center -mx-4">
+
+        <div class="w-full lg:w-1/2 px-4 mb-16 lg:mb-0">
+          <div class="p-1 border border-glass-border rounded-2xl">
+            <picture>
+              <source
+                media="(max-width: 640px)"
+                srcset={cloudinarySrcset(foto1, [400, 640], { aspectRatio: '1:1', crop: 'fill' })}
+                sizes="100vw"
+              />
+              <source
+                media="(min-width: 641px)"
+                srcset={cloudinarySrcset(foto1, [400, 640, 900], { aspectRatio: '3:4', crop: 'fill', gravity: 'face' })}
+                sizes="50vw"
+              />
+              <img
+                src={cloudinaryUrl(foto1, { width: 900, aspectRatio: '3:4', crop: 'fill', gravity: 'face' })}
+                alt="Maciej Rafalski — hutnik szkła, założyciel Glass Project"
+                width="900"
+                height="1200"
+                class="w-full h-auto object-cover rounded-xl"
+                loading="eager"
+                decoding="async"
+              />
+            </picture>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-1/2 px-4">
+          <div class="max-w-lg lg:mx-auto">
+            <h1 class="mb-8 mt-4 text-3xl md:text-4xl lg:text-5xl font-heading font-medium text-gradient leading-tight">
+            Nazywam się Maciej Rafalski
+            <span class="block mt-2 md:mt-3">Jestem artystą szkła</span>
+            </h1>
+            <p class="prose-p">
+              Praca ze szkłem to dla mnie nie zawód. To praktyka. Codzienna, fizyczna, wymagająca. Opiera się na powtarzalności, doświadczeniu i zrozumieniu procesu.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+      <div class="max-w-2xl mx-auto">
+        <h2 class="section-heading">
+          Droga do własnej pracowni szkła
+        </h2>
+        <p class="prose-p">
+          Już jako 5-latek miałem do czynienia ze sztuką a dokładniej z tworzywem jakim jest szkło i jego obróbka. Aż do wieku dorosłego tajników obróbki szkła uczyli mnie hutnicy pracujący w rodzinnej hucie szkła.
+        </p>
+        <p class="prose-p">
+          W 2005 roku postanowiłem zająć się tworzeniem swoich własnych dzieł ze szkła we własnej pracowni.
+        </p>
+        <p class="prose-p">
+          Wybrałem technikę Fusing-u gdyż daje możliwości, których nie sposób uzyskać techniką ręcznego formowania, dmuchania szkła. Dzięki tej technice powstają często bardzo duże obiekty, rzeźby, elementy użytkowe.
+        </p>
+        <p class="prose-p">
+          Moja droga do hutnictwa nie była oczywista ani szybka. Zaczynałem od fascynacji samym procesem – ogniem, temperaturą, ruchem. Od momentu, w którym zrozumiałem, że szkło „żyje" tylko przez chwilę. Jeśli ten moment przegapisz, forma znika bezpowrotnie.
+        </p>
+        <p class="prose-p">
+          Hutnictwo nauczyło mnie koncentracji. Przy piecu nie ma miejsca na rozproszenie ani improwizację bez przygotowania. Każdy obrót piszczeli, każdy ruch dłoni ma znaczenie. To rzemiosło, które nie wybacza pośpiechu.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+      <div class="max-w-2xl mx-auto">
+        <div class="relative p-1 border border-glass-border rounded-2xl overflow-hidden">
+          <div class="absolute inset-0 bg-glass-accent-fire opacity-20 rounded-2xl blur-3xl"></div>
+          <blockquote class="relative py-12 px-8 lg:px-24 rounded-xl">
+            <span class="absolute top-6 left-8 lg:top-4 lg:left-24 text-glass-white" aria-hidden="true">
+              <svg width="30" height="25" viewBox="0 0 30 25" fill="none">
+                <path d="M7.24 24.544C4.97867 24.544 3.272 23.7333 2.12 22.112C1.01067 20.448 0.456 18.144 0.456 15.2C0.456 12 1.26667 9.184 2.888 6.752C4.50933 4.27733 7.02667 2.22933 10.44 0.607998L12.744 5.344C10.696 6.24 9.16 7.34933 8.136 8.672C7.112 9.952 6.6 11.552 6.6 13.472C6.728 13.4293 6.94133 13.408 7.24 13.408C8.776 13.408 10.0773 13.8773 11.144 14.816C12.2107 15.7547 12.744 17.0347 12.744 18.656C12.744 20.448 12.232 21.8773 11.208 22.944C10.184 24.0107 8.86133 24.544 7.24 24.544ZM23.88 24.544C21.6187 24.544 19.912 23.7333 18.76 22.112C17.6507 20.448 17.096 18.144 17.096 15.2C17.096 12 17.9067 9.184 19.528 6.752C21.1493 4.27733 23.6667 2.22933 27.08 0.607998L29.384 5.344C27.336 6.24 25.8 7.34933 24.776 8.672C23.752 9.952 23.24 11.552 23.24 13.472C23.368 13.4293 23.5813 13.408 23.88 13.408C25.416 13.408 26.7173 13.8773 27.784 14.816C28.8507 15.7547 29.384 17.0347 29.384 18.656C29.384 20.448 28.872 21.8773 27.848 22.944C26.824 24.0107 25.5013 24.544 23.88 24.544Z" fill="currentColor"/>
+              </svg>
+            </span>
+            <p class="prose-p">
+              Fusing polega na stapianiu kawałków szkła w piecu hutniczym, tak aby po połączeniu tworzyły jeden obiekt.
+            </p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+      <div class="max-w-2xl mx-auto">
+        <h2 class="section-heading">
+          Moja filozofia pracy ze szkłem
+        </h2>
+        <p class="prose-p">
+          Nauczyłem się już, że szkło stawia warunki. Zawsze.
+        </p>
+        <ol class="mb-8 space-y-4 list-none">
+          {filozofia.map((item, i) => (
+            <li class="flex items-center gap-4">
+              <span class="flex-shrink-0 w-9 h-9 flex items-center justify-center rounded-full border border-glass-border bg-glass-white text-glass-black font-semibold text-sm">
+                {i + 1}
+              </span>
+              <p class="prose-p">{item}</p>
+            </li>
+          ))}
+        </ol>
+        <p class="prose-p">
+          W swojej pracy wykorzystuję surowce recyklingowe - głównie stłuczkę szklaną.
+        </p>
+        <p class="prose-p">
+          Finalna forma jest zapisem konkretnego dnia, warunków i decyzji. Nie ma dwóch takich samych obiektów, nawet jeśli punkt wyjścia był identyczny.
+        </p>
+        <p class="prose-p">
+          Ta forma jest tylko śladem procesu, który ją poprzedził. Sam proces to napięcie między kontrolą a przypadkiem, między doświadczeniem a niepewnością. Każda praca to kolejna próba zrozumienia materiału, nigdy jej ostateczne opanowanie.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+      <div class="max-w-2xl mx-auto">
+        <h2 class="section-heading">
+          Warsztaty i działalność edukacyjna
+        </h2>
+        <p class="prose-p">
+          Poza twórczością artystyczną i rzemieślniczą prowadzę także warsztaty edukacyjne, w których popularyzuję tradycyjne techniki obróbki szkła.
+        </p>
+
+        <div class="p-1 border border-glass-border rounded-2xl mb-10">
+          <picture>
+            <source
+              media="(max-width: 640px)"
+              srcset={cloudinarySrcset(foto2, [400, 640], { aspectRatio: '4:3', crop: 'fill' })}
+              sizes="100vw"
+            />
+            <source
+              media="(min-width: 641px)"
+              srcset={cloudinarySrcset(foto2, [640, 900], { aspectRatio: '16:9', crop: 'fill' })}
+              sizes="(max-width: 1024px) 100vw, 672px"
+            />
+            <img
+              src={cloudinaryUrl(foto2, { width: 900, aspectRatio: '16:9', crop: 'fill' })}
+              alt="Maciej Rafalski prowadzi warsztaty szkła artystycznego w pracowni w Warszawie"
+              width="900"
+              height="506"
+              class="w-full h-auto object-cover rounded-xl"
+              loading="lazy"
+              decoding="async"
+            />
+          </picture>
+        </div>
+
+        <p class="prose-p">
+          Pracownia jest dla mnie również miejscem spotkań miłośników rzemiosła artystycznego i designu.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <SectionCta
+    title="Zapraszam do mojej pracowni"
+    description="Pracownia nie pełni funkcji dekoracyjnej ani pokazowej. To przestrzeń pracy, ognia i rytmu. Każdy dzień wygląda inaczej, choć zaczyna się podobnie."
+    ctaLabel="Odwiedź pracownię"
+    ctaHref="/workshop"
+  />
+
+</BaseLayout>

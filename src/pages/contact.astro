@@ -1,0 +1,198 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CONTACT, FORMSPARK, TURNSTILE, SITE } from '../config/site';
+
+const formAction = `${FORMSPARK.url}/${FORMSPARK.formId}`;
+---
+
+<BaseLayout
+  title="Kontakt — pracownia szkła artystycznego"
+  description="Skontaktuj się z pracownią szkła artystycznego MR Glass Project w Warszawie. Sprawdź adres, dane kontaktowe, mapę dojazdu i formularz."
+>
+
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+      <div class="flex flex-wrap items-start -mx-4">
+
+        <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0">
+          <h1 class="mb-8 section-heading">Gdzie nas znajdziesz?</h1>
+          <p class="prose-p">
+            Pracownia jest na warszawskiej Ochocie. Kliknij <em>Zobacz trasę</em> aby sprawdzić jak do nas dojechać.
+          </p>
+
+          <div class="mt-10 flex flex-wrap -mx-4">
+            <div class="w-full md:w-1/2 px-4 mb-10 md:mb-0">
+              <div class="flex items-center justify-center w-12 h-12 mb-4 rounded-full border border-glass-border text-glass-white">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/>
+                </svg>
+              </div>
+              <h2 class="mb-2 text-xl font-medium text-gradient font-heading">Adres pracowni</h2>
+              <p class="text-glass-muted leading-loose">{CONTACT.address}</p>
+              <p class="text-glass-muted leading-loose">{CONTACT.city}</p>
+              <a
+                href={CONTACT.mapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center mt-2 text-sm text-glass-accent-amber hover:text-glass-accent-glow transition-colors duration-200"
+              >
+                Zobacz trasę →
+              </a>
+            </div>
+
+            <div class="w-full md:w-1/2 px-4">
+              <div class="flex items-center justify-center w-12 h-12 mb-4 rounded-full border border-glass-border text-glass-white">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/>
+                </svg>
+              </div>
+              <h2 class="mb-2 text-xl font-medium text-gradient font-heading">Kontakt</h2>
+              <a href="#"
+              x-data
+              x-on:click="window.location.href = 'mai' + 'lto:' + 'mrglassproject' + '@' + 'gmail.com'"
+              class="block text-glass-muted hover:text-glass-white leading-loose transition-colors duration-200">
+                {CONTACT.email}
+              </a>
+              <a href={CONTACT.phoneHref}
+              class="block text-glass-muted hover:text-glass-white leading-loose transition-colors duration-200"
+              >
+                {CONTACT.phone}
+              </a>
+              <p class="mt-2 text-sm text-glass-muted">{CONTACT.hours}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-1/2 px-4">
+          <div class="p-1 border border-glass-border rounded-2xl overflow-hidden">
+            <iframe
+              src={CONTACT.mapsEmbed}
+              width="100%"
+              height="380"
+              style="filter: grayscale(1) contrast(1) opacity(0.85); border:0; display:block;"
+              allowfullscreen
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              title={`Mapa dojazdu do pracowni ${SITE.name}`}
+            ></iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+      <div class="flex flex-wrap -mx-4">
+
+        <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0">
+          <h2 class="section-heading">Dane firmowe</h2>
+
+          <h3 class="mb-1 text-xl font-medium text-gradient font-heading">{SITE.fullName}</h3>
+          <p class="prose-p">
+            {CONTACT.address}, {CONTACT.city}<br/>
+            NIP: {CONTACT.nip}<br/>
+            REGON: {CONTACT.regon}
+          </p>
+
+          <h3 class="mb-1 text-xl font-medium text-gradient font-heading">Godziny pracy</h3>
+          <p class="text-glass-muted leading-loose">{CONTACT.hours}</p>
+        </div>
+
+        <div class="w-full lg:w-1/2 px-4">
+          <form
+            action={formAction}
+            method="POST"
+            x-data="{ sending: false, sent: false, error: false }"
+            x-on:submit.prevent="
+            sending = true;
+            fetch($el.action, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+            },
+            body: JSON.stringify(Object.fromEntries(new FormData($el)))
+            })
+            .then(r => { sent = r.ok; error = !r.ok; })
+            .catch(() => { error = true; })
+            .finally(() => { sending = false; })
+            "
+          >
+
+            <input type="hidden" name="_redirect" value="false" />
+            <div style="display:none" aria-hidden="true">
+              <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <label for="name" class="sr-only">Imię</label>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              placeholder="Imię"
+              required
+              class="form-input mb-4"
+            />
+
+            <label for="business" class="sr-only">Firma</label>
+            <input
+              id="business"
+              type="text"
+              name="business"
+              placeholder="Firma (opcjonalnie)"
+              class="form-input mb-4"
+            />
+
+            <label for="email" class="sr-only">E-mail</label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="E-mail"
+              required
+              class="form-input mb-4"
+            />
+
+            <label for="message" class="sr-only">Wiadomość</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Wiadomość"
+              required
+              rows="6"
+              class="form-input mb-4"
+            ></textarea>
+
+            <div class="cf-turnstile mb-6" data-sitekey={TURNSTILE.siteKey}></div>
+
+            <div x-show="sent" class="mb-4 p-4 rounded-lg border border-glass-accent-cool/30 bg-glass-accent-cool/10 text-glass-accent-cool text-sm">
+              Dziękujemy. Wiadomość została poprawnie wysłana! Odpowiemy w ciągu 24h w dni robocze.
+            </div>
+            <div x-show="error" class="mb-4 p-4 rounded-lg border border-glass-accent-fire/30 bg-glass-accent-fire/10 text-glass-accent-fire text-sm">
+              Coś poszło nie tak. Spróbuj ponownie lub napisz bezpośrednio na {CONTACT.email}.
+            </div>
+
+            <button
+              type="submit"
+              class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-glass-black bg-glass-white hover:bg-glass-white/90 rounded-full transition-all duration-200 hover:shadow-lg group disabled:opacity-50"
+              x-bind:disabled="sending || sent"
+            >
+              <span x-text="sending ? 'Wysyłanie…' : 'Wyślij wiadomość'">Wyślij wiadomość</span>
+              <svg class="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>

@@ -1,0 +1,31 @@
+# Build
+dist/
+.astro/
+
+# Dependencies
+node_modules/
+cloudflare-worker/node_modules/
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Logi setupu
+setup.log
+
+# Cloudflare Worker
+cloudflare-worker/.wrangler/
+cloudflare-worker/.env
+cloudflare-worker/.dev.vars
+
+# Fonty Worker
+!cloudflare-worker/assets/.gitkeep
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/settings.json
+.idea/

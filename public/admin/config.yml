@@ -1,0 +1,199 @@
+backend:
+  name: github
+  repo: mrglassproject/mrglassproject.github.io
+  branch: main
+
+media_libraries:
+  cloudinary:
+    config:
+      cloud_name: "mrglassproject"
+      api_key: "822727937946891"
+      default_transformations:
+        - - quality: auto
+            fetch_format: auto
+    output_filename_only: false
+    use_transformations: false
+
+media_folder: /public/uploads
+public_folder: /uploads
+#locale: pl
+
+collections:
+
+  - name: posts
+    label: Posty
+    label_singular: Post
+    folder: src/content/posts
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title,     label: Tytuł,        widget: string }
+      - { name: author, label: Autor, widget: string, default: MR Glass Project, required: false }
+      - { name: date,      label: Data,          widget: datetime, format: "YYYY-MM-DD" }
+      - { name: excerpt,   label: Zajawka,       widget: text }
+      - name: cover
+        label: Zdjęcie główne
+        widget: image
+      - { name: published, label: Opublikowany,  widget: boolean, default: false }
+      - { name: body,      label: Treść,         widget: markdown }
+
+  - name: projects
+    label: Realizacje
+    label_singular: Realizacja
+    folder: src/content/projects
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title, label: Tytuł, widget: string }
+      - name: category
+        label: Kategoria
+        widget: select
+        options:
+          - { label: "Dla domu", value: dla-domu }
+          - { label: "Dla firm", value: dla-firm }
+      - name: images
+        label: Zdjęcia
+        widget: list
+        label_singular: Zdjęcie
+        thumbnail: image
+        collapsed: true
+        fields:
+          - name: image
+            label: Zdjęcie
+            widget: image
+            required: true
+          - name: alt
+            label: Tekst ALT
+            widget: string
+            required: false
+
+      - { name: description, label: Opis,             widget: text,    required: false }
+      - { name: year,        label: Rok,              widget: number,  required: false }
+      - { name: dimensions,  label: Wymiary,          widget: text,    required: false }
+      - { name: order, label: Kolejność, widget: number, default: 0, required: false, value_type: int }
+      - { name: published,   label: Opublikowana,     widget: boolean, default: true }
+
+  - name: workshops
+    label: Warsztaty
+    label_singular: Warsztat
+    folder: src/content/workshops
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: title,          label: Tytuł,               widget: string }
+      - { name: description,    label: Opis,                widget: text }
+      - { name: duration,       label: Czas trwania,        widget: string }
+      - { name: maxPersons,     label: Maks. osób,          widget: number }
+      - { name: price,          label: Cena (zł),           widget: number }
+      - { name: pricePair,      label: Cena dla 2 osób,     widget: number,  required: false }
+      - { name: pricePairLabel, label: Etykieta pary,       widget: string,  required: false }
+      - { name: voucherPair,    label: Voucher dla pary,    widget: boolean, default: true }
+      - name: level
+        label: Poziom
+        widget: select
+        options:
+          - { label: Fusing,       value: fusing }
+          - { label: Podstawowy,   value: podstawowy }
+          - { label: Zaawansowany, value: zaawansowany }
+          - { label: Indywidualny, value: indywidualny }
+      - { name: setmoreUrl,  label: Link Setmore,        widget: string }
+      - { name: stripeUrl1,  label: Stripe link 1 osoba, widget: string, required: false }
+      - { name: stripeUrl2,  label: Stripe link 2 osoby, widget: string, required: false }
+      - { name: active,      label: Aktywny,             widget: boolean, default: true }
+      - { name: featured,    label: Wyróżniony,          widget: boolean, default: false }
+      - { name: order,       label: Kolejność,           widget: number,  default: 0 }
+      - name: pricingTiers
+        label: Cennik (tiery)
+        widget: list
+        required: false
+        fields:
+          - { name: persons,    label: Liczba osób,  widget: number }
+          - { name: price,      label: Cena (zł),    widget: number }
+          - { name: label,      label: Etykieta,     widget: string,  required: false }
+          - { name: setmoreUrl, label: Link Setmore, widget: string }
+          - { name: stripeUrl,  label: Link Stripe,  widget: string,  required: false }
+      - { name: body, label: Opis rozszerzony, widget: markdown, required: false }
+
+  - name: testimonials
+    label: Opinie
+    label_singular: Opinia
+    folder: src/content/testimonials
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: name,    label: Imię i nazwisko, widget: string }
+      - { name: content, label: Treść opinii,    widget: text }
+      - { name: rating,  label: Ocena (1-5),     widget: number, min: 1, max: 5, default: 5 }
+      - { name: source,  label: Źródło,          widget: string, default: Google, required: false }
+
+  - name: faq
+    label: FAQ
+    label_singular: Pytanie FAQ
+    folder: src/content/faq
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: question, label: Pytanie,   widget: string }
+      - { name: answer,   label: Odpowiedź, widget: text }
+      - { name: order,    label: Kolejność, widget: number, default: 0 }
+
+  - name: voucherfaq
+    label: FAQ Vouchery
+    label_singular: Pytanie FAQ Vouchery
+    folder: src/content/voucherfaq
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - { name: question, label: Pytanie,   widget: string }
+      - { name: answer,   label: Odpowiedź, widget: text }
+      - { name: order,    label: Kolejność, widget: number, default: 0 }
+
+  - name: pages
+    label: Strony prawne
+    files:
+      - name: privacy
+        label: Polityka prywatności
+        file: src/content/pages/privacy.md
+        fields:
+          - { name: title,     label: Tytuł,             widget: string }
+          - { name: updatedAt, label: Data aktualizacji,  widget: datetime, required: true, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+          - { name: body,      label: Treść,              widget: markdown }
+      - name: terms
+        label: Regulamin
+        file: src/content/pages/terms.md
+        fields:
+          - { name: title,     label: Tytuł,             widget: string }
+          - { name: updatedAt, label: Data aktualizacji,  widget: datetime, required: true, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+          - { name: body,      label: Treść,              widget: markdown }
+
+  - name: settings
+    label: Ustawienia
+    files:
+      - name: site
+        label: Dane strony i social media
+        file: src/data/settings.json
+        fields:
+          - { name: phone,   label: Telefon, widget: string }
+          - { name: email,   label: Email,   widget: string }
+          - { name: address, label: Adres,   widget: string }
+          - { name: hours,   label: Godziny, widget: string }
+          - name: social
+            label: Social media
+            widget: object
+            fields:
+              - { name: facebook,   label: Facebook URL,    widget: string, required: false }
+              - { name: instagram,  label: Instagram URL,   widget: string, required: false }
+              - { name: tiktok,     label: TikTok URL,      widget: string, required: false }
+              - { name: googlemaps, label: Google Maps URL, widget: string, required: false }
+          - name: clients
+            label: Klienci (lista nazw)
+            widget: list
+            field: { name: name, label: Nazwa firmy, widget: string }
+          - name: ofertaFirmy
+            label: Oferta — realizacje dla firm (5 slugów)
+            widget: list
+            field: { name: item, label: Slug projektu, widget: string }
+          - name: ofertaDom
+            label: Oferta — realizacje dla domu (5 slugów)
+            widget: list
+            field: { name: item, label: Slug projektu, widget: string }

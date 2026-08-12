@@ -1,0 +1,38 @@
+---
+import PostLayout from '../../layouts/PostLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { withBase } from '../../config/site';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => data.published);
+  const sorted = posts.sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  return sorted.map((post, i) => ({
+    params: { slug: post.id },
+    props: {
+      prev: sorted[i + 1] ?? null,
+      next: sorted[i - 1] ?? null,
+    },
+  }));
+}
+
+const { slug } = Astro.params;
+const { prev, next } = Astro.props;
+
+const posts = await getCollection('posts', ({ data }) => data.published);
+const post = posts.find(p => p.id === slug);
+if (!post) return Astro.redirect('/404');
+
+const { Content } = await render(post);
+---
+
+<PostLayout
+  title={post.data.title}
+  date={post.data.date}
+  excerpt={post.data.excerpt}
+  cover={post.data.cover}
+  author={post.data.author}
+  prev={prev ? { title: prev.data.title, href: withBase(`/posts/${prev.id}`) } : null}
+  next={next ? { title: next.data.title, href: withBase(`/posts/${next.id}`) } : null}
+>
+  <Content />
+</PostLayout>

@@ -1,0 +1,160 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import { cloudinaryUrl, cloudinarySrcset } from '../utils/cloudinary';
+import { SITE } from '../config/site';
+
+interface NavPost {
+  title: string;
+  href:  string;
+}
+
+interface Props {
+  title:          string;
+  date:           Date;
+  dateModified?:  Date;
+  excerpt:        string;
+  cover:          string;
+  author?:        string;
+  prev?:          NavPost | null;
+  next?:          NavPost | null;
+}
+
+const {
+  title,
+  date,
+  dateModified,
+  excerpt,
+  cover,
+  author = 'MR Glass Project',
+  prev = null,
+  next = null,
+} = Astro.props;
+
+const dateStr = date.toLocaleDateString('pl-PL', {
+  day: 'numeric', month: 'long', year: 'numeric',
+});
+
+const jsonLd = {
+  '@context':    'https://schema.org',
+  '@type':       'BlogPosting',
+  headline:      title,
+  description:   excerpt,
+  image:         cloudinaryUrl(cover, { width: 1200, height: 630, crop: 'fill' }),
+  datePublished: date.toISOString(),
+  dateModified:  (dateModified ?? date).toISOString(),
+  author: {
+    '@type': 'Person',
+    name:    author,
+    url:     `${SITE.finalUrl}/about`,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name:    SITE.name,
+    logo: {
+      '@type': 'ImageObject',
+      url:     `${SITE.finalUrl}/favicons/web-app-manifest-512x512.png`,
+    },
+  },
+};
+---
+
+<BaseLayout
+  title={`${title} — ${SITE.name}`}
+  description={excerpt}
+  ogImage={cloudinaryUrl(cover, { width: 1200, height: 630, crop: 'fill' })}
+  ogType="article"
+  jsonLd={jsonLd}
+>
+
+  <article class="section-py">
+    <div class="container px-4 mx-auto">
+
+      {/* ── Cover ─────────────────────────────────────────────── */}
+      <div class="relative h-64 md:h-96 mb-16">
+        <div class="absolute inset-0 bg-glass-accent-fire opacity-10 rounded-2xl blur-3xl pointer-events-none" aria-hidden="true"></div>
+        <div class="relative p-1 border border-white/20 rounded-2xl h-full">
+          <picture>
+            <source
+              media="(max-width: 640px)"
+              srcset={cloudinarySrcset(cover, [400, 640], { aspectRatio: '4:3', crop: 'fill' })}
+              sizes="100vw"
+            />
+            <source
+              media="(min-width: 641px)"
+              srcset={cloudinarySrcset(cover, [768, 1200], { aspectRatio: '16:9', crop: 'fill' })}
+              sizes="100vw"
+            />
+            <img
+              src={cloudinaryUrl(cover, { width: 1200, aspectRatio: '16:9', crop: 'fill' })}
+              alt={title}
+              class="relative w-full h-full object-cover rounded-xl border border-glass-border"
+              loading="eager"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </picture>
+        </div>
+      </div>
+
+      {/* ── Nagłówek ──────────────────────────────────────────── */}
+      <header class="max-w-2xl mx-auto text-center mb-12">
+        <h1 class="mb-6 text-3xl md:text-4xl lg:text-5xl leading-tight font-medium text-gradient font-heading">
+          {title}
+        </h1>
+        <div class="flex items-center justify-center gap-3">
+          <div class="text-left">
+            <p class="text-base font-medium text-gradient">{author}</p>
+            <time datetime={date.toISOString()} class="text-sm text-glass-muted">
+              {dateStr}
+            </time>
+          </div>
+        </div>
+      </header>
+
+      {/* ── Treść ─────────────────────────────────────────────── */}
+      <div class="max-w-2xl mx-auto prose-content">
+        <slot />
+      </div>
+
+      {/* ── Nawigacja prev/next ────────────────────────────────── */}
+      {(prev || next) && (
+        <nav
+          class="max-w-2xl mx-auto mt-16 pt-8 border-t border-glass-border flex flex-col sm:flex-row justify-between gap-6"
+          aria-label="Nawigacja między postami"
+        >
+          {prev ? (
+            <a href={prev.href} class="group flex-1 max-w-xs">
+              <p class="text-xs text-glass-muted mb-1 flex items-center gap-1 group-hover:text-glass-white transition-colors duration-200">
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+                </svg>
+                Poprzedni
+              </p>
+              <p class="text-sm font-medium text-gradient font-heading leading-snug group-hover:opacity-80 transition-opacity duration-200 line-clamp-2">
+                {prev.title}
+              </p>
+            </a>
+          ) : (
+            <div class="flex-1 max-w-xs"></div>
+          )}
+
+          {next && (
+            <a href={next.href} class="group flex-1 max-w-xs sm:ml-auto">
+              <p class="text-xs text-glass-muted mb-1 flex items-center justify-end gap-1 group-hover:text-glass-white transition-colors duration-200">
+                Następny
+                <svg width="14" height="14" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                </svg>
+              </p>
+              <p class="text-sm font-medium text-gradient font-heading leading-snug group-hover:opacity-80 transition-opacity duration-200 line-clamp-2 text-right">
+                {next.title}
+              </p>
+            </a>
+          )}
+        </nav>
+      )}
+
+    </div>
+  </article>
+
+</BaseLayout>

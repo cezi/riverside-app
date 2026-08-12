@@ -1,0 +1,46 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="404 — Nie znaleziono strony"
+  description="Nie możemy znaleźć tej strony."
+  noindex={true}
+>
+
+  <section class="section-py min-h-[70vh] flex items-center">
+    <div class="container px-4 mx-auto">
+      <div class="max-w-3xl">
+
+        <p class="mb-6 text-sm font-medium tracking-widest uppercase text-glass-muted">
+          Błąd 404
+        </p>
+
+        <h1 class="mb-12 font-heading font-medium leading-tight">
+          <span class="block text-4xl sm:text-6xl lg:text-8xl text-gradient border-b border-glass-border pb-4 mb-4">
+            Coś poszło
+          </span>
+          <span class="block text-4xl sm:text-6xl lg:text-8xl text-gradient border-b border-glass-border pb-4">
+            nie tak.
+          </span>
+        </h1>
+
+        <p class="prose-p mb-12">
+          Nie możemy znaleźć tej strony. Wróć na stronę główną.
+        </p>
+
+        <a
+          href="/"
+          class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-glass-black bg-glass-white hover:bg-glass-white/90 rounded-full transition-all duration-200 hover:shadow-lg group"
+        >
+          Strona główna
+          <svg class="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+          </svg>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

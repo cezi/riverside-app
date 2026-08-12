@@ -1,0 +1,128 @@
+---
+import '../styles/global.css';
+import BaseHead  from '../components/BaseHead.astro';
+import Header    from '../components/Header.astro';
+import Footer    from '../components/Footer.astro';
+import GTranslate from '../components/GTranslate.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+import { ANALYTICS } from '../config/site';
+
+const isProd = import.meta.env.PROD;
+
+interface Props {
+  title?:       string;
+  description?: string;
+  ogImage?:     string;
+  ogType?:      'website' | 'article';
+  canonical?:   string;
+  noindex?:     boolean;
+  jsonLd?:      object | object[];
+}
+
+const props = Astro.props;
+
+const pathname = Astro.url.pathname;
+
+const isLegalPage =
+  pathname.endsWith('/terms/') ||
+  pathname.endsWith('/privacy/') ||
+  pathname.endsWith('/terms') ||
+  pathname.endsWith('/privacy');
+
+---
+
+<!doctype html>
+<html lang="pl">
+  <head>
+    <BaseHead
+    {...props}
+    noindex={props.noindex ?? isLegalPage}
+/>
+
+{isProd && (
+  <script is:inline define:vars={{ gtmId: ANALYTICS.gtmId }}>
+    let gtmLoaded = false;
+
+    function loadGTM(id) {
+      if (gtmLoaded || document.querySelector(`script[src*="${id}"]`)) {
+        return;
+      }
+
+      gtmLoaded = true;
+
+      (function(w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({
+          'gtm.start': new Date().getTime(),
+          event: 'gtm.js'
+        });
+
+        const firstScript = d.getElementsByTagName(s)[0];
+        const script = d.createElement(s);
+        const dataLayerParam = l !== 'dataLayer' ? '&l=' + l : '';
+
+        script.async = true;
+        script.src =
+          'https://www.googletagmanager.com/gtm.js?id=' +
+          i +
+          dataLayerParam;
+
+        firstScript.parentNode.insertBefore(script, firstScript);
+      })(window, document, 'script', 'dataLayer', id);
+    }
+
+    function analyticsAccepted(event) {
+      return event.detail?.cookie?.categories?.includes('analytics');
+    }
+
+    window.addEventListener('cc:onConsent', function(event) {
+      if (analyticsAccepted(event)) {
+        loadGTM(gtmId);
+      }
+    });
+
+    window.addEventListener('cc:onChange', function(event) {
+      if (analyticsAccepted(event)) {
+        loadGTM(gtmId);
+     } else {
+      window.location.reload();
+    }
+    });
+  </script>
+)}
+  </head>
+  <body class="antialiased min-h-screen flex flex-col">
+
+{isProd && (
+<!-- Google Tag Manager (noscript) -->
+<noscript>
+  <iframe
+    src={`https://www.googletagmanager.com/ns.html?id=${ANALYTICS.gtmId}`}
+    height="0" width="0"
+    style="display:none;visibility:hidden"
+  ></iframe>
+</noscript>
+)}
+
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-glass-accent-amber focus:text-glass-black focus:rounded-lg focus:font-semibold">
+      Przejdź do treści
+    </a>
+
+    <Header />
+
+<main
+  id="main-content"
+  class:list={[
+    'flex-1',
+    { 'legal-content': isLegalPage },
+  ]}
+>
+ <slot />
+</main>
+
+    <Footer />
+    <CookieConsent />
+    <GTranslate />
+
+  </body>
+</html>

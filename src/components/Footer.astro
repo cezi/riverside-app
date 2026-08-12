@@ -1,0 +1,91 @@
+---
+import { SITE, CONTACT, SOCIAL, FOOTER_NAV } from '../config/site';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="py-20 lg:py-28">
+  <div class="container px-4 mx-auto text-center">
+
+    <hr class="border-t border-glass-border" />
+
+    <ul class="my-8 flex flex-wrap items-center justify-center list-none p-0 gap-y-2">
+      {FOOTER_NAV.map(({ label, href }) => (
+        <li class="mb-2 md:mb-0 mx-4">
+          <a
+            href={href}
+            class="text-sm font-light text-glass-muted hover:text-glass-white transition-colors duration-200"
+          >
+            {label}
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <div class="flex items-center justify-center space-x-6">
+      {SOCIAL.facebook && (
+        <a
+          href={SOCIAL.facebook}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Facebook"
+          class="inline-flex items-center justify-center p-3 rounded-full border border-glass-border hover:border-white/50 text-glass-muted hover:text-glass-white transition-all duration-200 group"
+        >
+          <svg width="20" height="20" fill="currentColor" aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </a>
+      )}
+      {SOCIAL.instagram && (
+        <a
+          href={SOCIAL.instagram}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+          class="inline-flex items-center justify-center p-3 rounded-full border border-glass-border hover:border-white/50 text-glass-muted hover:text-glass-white transition-all duration-200 group"
+        >
+          <svg width="20" height="20" fill="currentColor" aria-hidden="true" viewBox="0 0 24 24">
+            <path fill-rule="evenodd" d="M3 8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8Zm5-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm7.597 2.214a1 1 0 0 1 1-1h.01a1 1 0 1 1 0 2h-.01a1 1 0 0 1-1-1ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm-5 3a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z" clip-rule="evenodd"/>
+          </svg>
+        </a>
+      )}
+      {SOCIAL.tiktok && (
+        <a
+          href={SOCIAL.tiktok}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="TikTok"
+          class="inline-flex items-center justify-center p-3 rounded-full border border-glass-border hover:border-white/50 text-glass-muted hover:text-glass-white transition-all duration-200 group"
+        >
+          <svg width="20" height="20" fill="currentColor" aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M12.4381 2.01667C13.5298 2 14.6131 2.00833 15.6964 2C15.7631 3.27498 16.2214 4.57497 17.1548 5.47496C18.0881 6.39995 19.4047 6.82494 20.688 6.9666V10.3249C19.488 10.2832 18.2797 10.0332 17.1881 9.51656C16.7131 9.29991 16.2714 9.02491 15.8381 8.74157C15.8298 11.1749 15.8464 13.6082 15.8214 16.0332C15.7548 17.1998 15.3714 18.3581 14.6964 19.3164C13.6048 20.9164 11.7131 21.9581 9.7715 21.9914C8.57986 22.0581 7.38819 21.7331 6.37154 21.1331C4.68823 20.1414 3.50492 18.3248 3.32992 16.3748C3.31325 15.9582 3.30492 15.5415 3.32158 15.1332C3.47158 13.5499 4.25491 12.0332 5.47156 10.9999C6.85488 9.7999 8.78817 9.22491 10.5965 9.56656C10.6131 10.7999 10.5631 12.0332 10.5631 13.2665C9.73816 12.9999 8.77151 13.0749 8.04652 13.5749C7.52153 13.9165 7.12154 14.4415 6.91319 15.0332C6.7382 15.4582 6.7882 15.9248 6.79654 16.3748C6.99654 17.7415 8.31318 18.8914 9.71316 18.7665C10.6465 18.7581 11.5381 18.2165 12.0215 17.4248C12.1798 17.1498 12.3548 16.8665 12.3631 16.5415C12.4465 15.0498 12.4131 13.5665 12.4215 12.0749C12.4298 8.71657 12.4131 5.36661 12.4381 2.01667Z"/>
+          </svg>
+        </a>
+      )}
+      {SOCIAL.googleMaps && (
+        <a
+          href={SOCIAL.googleMaps}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Znajdź nas na mapie"
+          class="inline-flex items-center justify-center p-3 rounded-full border border-glass-border hover:border-white/50 text-glass-muted hover:text-glass-white transition-all duration-200 group"
+        >
+          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+          </svg>
+        </a>
+      )}
+    </div>
+
+  </div>
+
+  <div class="mt-12 mb-8 border-t border-glass-border"></div>
+
+  <div class="container px-4 mx-auto">
+    <p class="text-center text-sm text-glass-muted">
+      Wszelkie prawa zastrzeżone © {year} Maciej Rafalski
+    </p>
+  </div>
+
+</footer>

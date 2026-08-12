@@ -1,0 +1,50 @@
+{
+  "phone": "+48 667 947 576",
+  "phone_workshops": "+48 500 603 151",
+  "email": "mrglassproject@gmail.com",
+  "address": "ul. Grójecka 79 lok. 7",
+  "city": "02-094 Warszawa",
+  "hours": "Poniedziałek - Piątek 8:00-16:00",
+  "social": {
+    "facebook": "https://www.facebook.com/p/Mrglassproject-100063557379907/",
+    "instagram": "https://www.instagram.com/maciejrafalski_glassproject/",
+    "tiktok": "https://www.tiktok.com/@mr_glassproject",
+    "googlemaps": "https://maps.app.goo.gl/vXUA1MQB47HWjrjP9"
+  },
+  "clients": [
+  "Obi",
+  "Wasalaa",
+  "Le Collet",
+  "MedEstelle",
+  "LUX MED",
+  "Miasto Warszawa",
+  "MOSiR",
+  "Dior",
+  "Sephora",
+  "Krosno Glass",
+  "PISF",
+  "Castorama",
+  "TVN Style",
+  "La Marquese",
+  "Radio Kolor",
+  "Polsat",
+  "Desa Unicum",
+  "Dresscode",
+  "PGE Narodowy",
+  "Twój Styl"
+  ],
+  "ofertaFirmy": [
+    "mr-glass-projekt-firmy-32",
+    "mr-glass-projekt-firmy-2",
+    "mr-glass-projekt-firmy-1",
+    "mr-glass-projekt-firmy-26",
+    "mr-glass-projekt-firmy-15"
+  ],
+  "ofertaDom": [
+    "mr-glass-projekt-domu-64",
+    "mr-glass-projekt-domu-11",
+    "mr-glass-projekt-domu-13",
+    "mr-glass-projekt-domu-37",
+    "mr-glass-projekt-domu-55"
+  ]
+}

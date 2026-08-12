@@ -1,0 +1,46 @@
+---
+import { cloudinaryUrl, cloudinarySrcset } from '../../utils/cloudinary';
+
+interface Props {
+  publicId:    string;
+  alt:         string;
+  width?:      number;
+  height?:     number;
+  aspectRatio?: string;
+  crop?:       'fill' | 'fit' | 'scale' | 'crop' | 'thumb';
+  sizes?:      string;
+  loading?:    'lazy' | 'eager';
+  decoding?:   'async' | 'sync' | 'auto';
+  class?:      string;
+  widths?:     number[];
+}
+
+const {
+  publicId,
+  alt,
+  width,
+  height,
+  aspectRatio,
+  crop      = 'fill',
+  sizes     = '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 800px',
+  loading   = 'lazy',
+  decoding  = 'async',
+  class:    className,
+  widths    = [400, 800, 1200],
+} = Astro.props;
+
+const src    = cloudinaryUrl(publicId, { width: width ?? 800, height, aspectRatio, crop });
+const srcset = cloudinarySrcset(publicId, widths, { height, aspectRatio, crop });
+---
+
+<img
+  src={src}
+  srcset={srcset}
+  sizes={sizes}
+  alt={alt}
+  width={width}
+  height={height}
+  loading={loading}
+  decoding={decoding}
+  class={className}
+>

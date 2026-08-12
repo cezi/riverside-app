@@ -1,0 +1,416 @@
+/* ============================================
+   Glass Project — Global Styles
+   Tailwind CSS v4
+   ============================================ */
+
+/* ── Fonty Google ────────────────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Libre+Baskerville:wght@400;700&display=swap');
+
+@import "tailwindcss";
+
+/* ── Tailwind v4: konfiguracja przez @theme ─────────────────────────────── */
+@theme {
+  /* Kolory marki */
+  --color-glass-black:      #0A0A0B;
+  --color-glass-anthracite: #161618;
+  --color-glass-border:     #26262B;
+  --color-glass-smoke:      #3E3E42;
+  --color-glass-white:      #F4F4F5;
+  --color-glass-muted:      #A1A1AA;
+
+  /* Akcenty */
+  --color-glass-accent-amber: #FF8C00;
+  --color-glass-accent-glow:  #FFC24A;
+  --color-glass-accent-fire:  #E25822;
+  --color-glass-accent-cool:  #7FD1C7;
+
+  /* Fonty */
+  --font-sans:    'Inter', system-ui, sans-serif;
+  --font-serif:   'Libre Baskerville', Georgia, serif;
+  --font-heading: 'Libre Baskerville', Georgia, serif;
+  --font-body:    'Inter', system-ui, sans-serif;
+  --font-mono:    'JetBrains Mono', 'Fira Code', monospace;
+
+  /* Breakpointy — standardowe Tailwind */
+  --breakpoint-sm:  640px;
+  --breakpoint-md:  768px;
+  --breakpoint-lg:  1024px;
+  --breakpoint-xl:  1280px;
+  --breakpoint-2xl: 1536px;
+}
+
+/* ── Reset i base ────────────────────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-glass-black);
+    color: var(--color-glass-white);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: 500;
+    line-height: 1.2;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-glass-accent-amber);
+    outline-offset: 2px;
+  }
+
+  /* Scrollbar — dark style */
+  ::-webkit-scrollbar        { width: 6px; }
+  ::-webkit-scrollbar-track  { background: var(--color-glass-black); }
+  ::-webkit-scrollbar-thumb  { background: var(--color-glass-border); border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: var(--color-glass-smoke); }
+}
+
+/* ── Komponenty ──────────────────────────────────────────────────────────── */
+@layer components {
+
+  /* Gradient tekstu — nagłówki */
+  .text-gradient {
+    background: linear-gradient(to right, #f3f4f6, #e5e7eb, #d1d5db);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Gradient tekstu — akcent amber */
+  .text-gradient-amber {
+    background: linear-gradient(to right, #FF8C00, #FFC24A);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Padding sekcji — spójny rytm pionowy */
+  .section-py {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+    @media (min-width: 768px) {
+      padding-top: 5rem;
+      padding-bottom: 5rem;
+    }
+    @media (min-width: 1024px) {
+      padding-top: 7rem;
+      padding-bottom: 7rem;
+    }
+  }
+
+    /* tag h2 unifikacja */
+  .section-heading {
+  font-size: clamp(1.875rem, 4vw, 3rem);
+  font-weight: 500;
+  font-family: var(--font-heading);
+  margin-bottom: 2rem;
+  background: linear-gradient(to right, #f3f4f6, #e5e7eb, #d1d5db);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  }
+
+  /* Akapit — standard dla treści narracyjnych */
+  .prose-p {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-glass-muted);
+    margin-bottom: 1.5rem;
+  }
+
+  .prose-p:last-child {
+  margin-bottom: 0;
+  }
+
+  @media (min-width: 1024px) {
+    .prose-p {
+      font-size: 1.25rem;
+    }
+  }
+
+  .prose-content h2 {
+  font-size: clamp(1.25rem, 2vw, 1.875rem);
+  font-weight: 500;
+  font-family: var(--font-heading);
+  color: var(--color-glass-muted);
+  background: linear-gradient(to right, #f3f4f6, #e5e7eb, #d1d5db);
+  -webkit-background-clip: text;
+  background-clip: text;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+}
+
+.prose-content p {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: var(--color-glass-muted);
+  margin-bottom: 1.5rem;
+}
+
+.prose-content ul {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 1.5rem;
+}
+
+.prose-content ul li, 
+.prose-content ol li
+{
+  display: flex;
+  gap: 0.75rem;
+  color: var(--color-glass-muted);
+  margin-bottom: 0.5rem;
+}
+
+.prose-content ul li::before {
+  content: '-';
+  color: var(--color-glass-muted);
+  flex-shrink: 0;
+}
+
+  /* Wrapper zdjęcia — standard dla całego serwisu */
+  .img-wrapper {
+    padding: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 1rem;
+  }
+
+  .img-wrapper img {
+    width: 100%;
+    display: block;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-glass-border);
+  }
+
+  /* Przycisk główny — amber CTA */
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-glass-accent-amber);
+    color: var(--color-glass-black);
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s, box-shadow 0.2s;
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-glass-accent-glow);
+    box-shadow: 0 0 24px rgba(255, 140, 0, 0.2);
+  }
+
+  /* Przycisk drugorzędny — outline */
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: transparent;
+    color: var(--color-glass-white);
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    border: 1px solid var(--color-glass-border);
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.2s, color 0.2s;
+  }
+
+  .btn-secondary:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    color: var(--color-glass-white);
+  }
+
+  /* Przycisk biały — dla ciemnych sekcji CTA */
+  .btn-white {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    background-color: var(--color-glass-white);
+    color: var(--color-glass-black);
+    font-size: 0.875rem;
+    font-weight: 600;
+    border-radius: 9999px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+
+  .btn-white:hover {
+    background-color: color-mix(in srgb, var(--color-glass-white) 90%, black);
+  }
+
+  /* Karta — surface z borderem */
+  .card {
+    background-color: var(--color-glass-anthracite);
+    border: 1px solid var(--color-glass-border);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+
+  /* Karta z gradientem tła — opinie, FAQ */
+  .card-warm {
+    background: linear-gradient(
+      to top,
+      rgb(23 23 23),
+      rgb(69 26 3 / 0.6)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+
+  /* Divider */
+  .divider {
+    border: none;
+    border-top: 1px solid var(--color-glass-border);
+  }
+
+  /* Formularz — input */
+  .form-input {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: var(--color-glass-anthracite);
+    border: 1px solid var(--color-glass-border);
+    border-radius: 0.5rem;
+    color: var(--color-glass-white);
+    font-size: 1rem;
+    font-family: var(--font-sans);
+    transition: border-color 0.2s;
+    resize: vertical;
+  }
+
+  .form-input::placeholder {
+    color: var(--color-glass-muted);
+  }
+
+  .form-input:hover  { border-color: rgba(255, 255, 255, 0.3); }
+  .form-input:focus  { outline: none; border-color: rgba(255, 255, 255, 0.5); }
+
+  /* Badge — label kategorii */
+  .badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 9999px;
+    border: 1px solid var(--color-glass-border);
+    color: var(--color-glass-muted);
+  }
+
+  .badge-amber {
+    border-color: rgba(255, 140, 0, 0.3);
+    color: var(--color-glass-accent-amber);
+    background: rgba(255, 140, 0, 0.08);
+  }
+
+  .legal-content ol {
+    @apply list-decimal pl-6 my-4;
+  }
+
+  .legal-content ul {
+    @apply list-disc pl-6 my-4;
+  }
+
+  .legal-content li {
+    @apply mb-2 leading-7;
+  }
+
+  .legal-content h2 {
+    @apply mt-10 mb-4 text-2xl font-semibold;
+  }
+
+  .legal-content p {
+    @apply my-4 leading-7;
+  }
+}
+
+/* ── Utilities custom ────────────────────────────────────────────────────── */
+@layer utilities {
+
+  /* Tło sekcji — ciemniejszy gradient */
+  .bg-section-dark {
+    background: linear-gradient(
+      to right,
+      var(--color-glass-black),
+      #0f0f10,
+      var(--color-glass-black)
+    );
+  }
+
+  /* Blur dekoracyjny — amber glow */
+  .glow-amber {
+    position: relative;
+  }
+
+  .glow-amber::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 140, 0, 0.15);
+    filter: blur(48px);
+    border-radius: inherit;
+    z-index: -1;
+  }
+
+  .glow-fire {
+  position: relative;
+  }
+.glow-fire::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(226, 88, 34, 0.15);
+  filter: blur(48px);
+  border-radius: inherit;
+  z-index: -1;
+  }
+
+  /* Tekst accent */
+  .text-amber { color: var(--color-glass-accent-amber); }
+  .text-cool  { color: var(--color-glass-accent-cool); }
+  .text-fire  { color: var(--color-glass-accent-fire); }
+  .text-muted { color: var(--color-glass-muted); }
+
+  .text-mono-highlight {
+  color: var(--color-glass-accent-amber);
+  font-family: var(--font-mono);
+  }
+
+  /* GTranslate widget — custom style */
+.gt_float_switcher {
+  font-family: var(--font-sans) !important;
+  font-size: 0.875rem !important;
+  border-radius: 25px !important;
+  color: var(--color-glass-muted) !important;
+  box-shadow: none !important;
+  border: 1px solid var(--color-glass-border) !important;
+  transition: border-color 0.2s !important;
+}
+
+}

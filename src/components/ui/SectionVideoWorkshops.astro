@@ -1,0 +1,49 @@
+---
+import { CLOUDINARY } from '../../config/site';
+
+interface Props {
+  publicId: string;
+  title?:   string;
+  desc?:    string;
+}
+
+const {
+  publicId,
+  title = 'Tak wyglądają nasze warsztaty',
+  desc  = 'Kilkadziesiąt sekund z moich warsztatów. Obejrzyj jak wygląda praca przy piecu hutniczym podczas warsztatów dmuchania szkła.',
+} = Astro.props;
+
+const base = `${CLOUDINARY.baseUrl}/${CLOUDINARY.cloudName}/video/upload`;
+
+const src = {
+  webm: `${base}/f_webm,q_auto,vc_vp9/${publicId}.webm`,
+  mp4:  `${base}/f_mp4,q_auto,vc_h264/${publicId}.mp4`,
+};
+
+const poster = `${CLOUDINARY.baseUrl}/${CLOUDINARY.cloudName}/video/upload/f_auto,q_auto,so_13/${publicId}.jpg`;
+---
+
+<section class="section-py">
+  <div class="container px-4 mx-auto">
+    <div class="max-w-4xl mx-auto">
+
+      <h2 class="section-heading mb-6">{title}</h2>
+      <p class="prose-p mb-10">{desc}</p>
+
+      <div class="relative p-1 border border-glass-border rounded-2xl overflow-hidden">
+        <video
+          class="w-full h-auto rounded-xl"
+          controls
+          preload="metadata"
+          poster={poster}
+          playsinline
+        >
+          <source src={src.webm} type="video/webm" />
+          <source src={src.mp4}  type="video/mp4" />
+          Twoja przeglądarka nie obsługuje odtwarzania wideo.
+        </video>
+      </div>
+
+    </div>
+  </div>
+</section>

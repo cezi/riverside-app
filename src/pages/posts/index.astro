@@ -1,0 +1,117 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { cloudinaryUrl, cloudinarySrcset } from '../../utils/cloudinary';
+import { withBase } from '../../config/site';
+
+const allPosts = await getCollection('posts', ({ data }) => data.published);
+const posts = allPosts
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .map(post => ({
+    id:      post.id,
+    title:   post.data.title,
+    excerpt: post.data.excerpt,
+    date:    post.data.date.toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric' }),
+    href:    withBase(`/posts/${post.id}`),
+    thumb:   cloudinaryUrl(post.data.cover, { width: 600, aspectRatio: '16:9', crop: 'fill' }),
+    thumbSm: cloudinaryUrl(post.data.cover, { width: 400, aspectRatio: '16:9', crop: 'fill' }),
+  }));
+---
+
+<BaseLayout
+  title="Blog — MR Glass Project"
+  description="Artykuły o szkle artystycznym, technikach hutniczych i pracy w pracowni Glass Project Warszawa."
+>
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+
+      <div class="max-w-2xl mx-auto text-center mb-16">
+        <h1 class="section-heading">Blog</h1>
+      </div>
+
+      <div
+        x-data={`{
+          visible: 6,
+          step: 6,
+          posts: ${JSON.stringify(posts)},
+          get shown() { return this.posts.slice(0, this.visible); },
+          get hasMore() { return this.visible < this.posts.length; },
+          loadMore() { this.visible += this.step; }
+        }`}
+      >
+
+        {posts.length === 0 && (
+          <p class="prose-p text-center">Brak opublikowanych wpisów.</p>
+        )}
+
+        <div class="relative flex flex-wrap -mx-4 -mb-8">
+
+          {/* Glow */}
+          <div class="absolute inset-0 bg-glass-accent-fire opacity-10 rounded-2xl blur-3xl pointer-events-none" aria-hidden="true"></div>
+
+          <template x-for="post in shown" x-bind:key="post.id">
+            <div class="relative w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
+              <a
+                x-bind:href="post.href"
+                class="block p-1 border border-white/20 hover:border-white/30 rounded-2xl transition-all duration-200 group h-full"
+              >
+                <div class="bg-gradient-to-t from-glass-anthracite to-glass-accent-fire/10 border border-white/10 p-6 pb-8 rounded-xl h-full flex flex-col">
+
+                  {/* Zdjęcie */}
+                  <div class="relative overflow-hidden rounded-lg border border-glass-border mb-6 h-40">
+                    <img
+                      x-bind:src="post.thumb"
+                      x-bind:alt="post.title"
+                      class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+
+                  {/* Data */}
+                  <span class="inline-block text-xs font-medium text-glass-muted mb-2" x-text="post.date"></span>
+
+                  {/* Tytuł */}
+                  <h2
+                    class="mb-3 text-xl md:text-2xl font-medium text-gradient font-heading group-hover:opacity-80 transition-opacity duration-200"
+                    x-text="post.title"
+                  ></h2>
+
+                  {/* Excerpt */}
+                  <p
+                    class="mb-6 text-base text-glass-muted leading-relaxed flex-1"
+                    x-text="post.excerpt"
+                  ></p>
+
+                  {/* Link */}
+                  <div class="flex items-center text-sm font-semibold text-glass-white group-hover:text-glass-accent-amber transition-colors duration-200">
+                    <span>Czytaj dalej</span>
+                    <svg class="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                    </svg>
+                  </div>
+
+                </div>
+              </a>
+            </div>
+          </template>
+
+        </div>
+
+        {/* Pokaż więcej */}
+        <div x-show="hasMore" class="mt-16 text-center">
+          <button
+            x-on:click="loadMore()"
+            class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-glass-white border border-glass-border hover:border-white/50 rounded-full transition-all duration-200 group"
+          >
+            Pokaż więcej wpisów
+            <svg class="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</BaseLayout>

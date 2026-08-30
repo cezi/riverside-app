@@ -1,0 +1,194 @@
+---
+import { getCollection } from 'astro:content';
+import { cloudinaryUrl } from '../utils/cloudinary';
+import { withBase } from '../config/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Props {
+  menuPdf?: string;
+}
+
+const { menuPdf = '/uploads/menu-riverside-dym-ogien-wiosna-lato-2026.pdf' } = Astro.props;
+
+const TAG_CLASS: Record<string, string> = {
+  Pikantne: 'badge badge-chili',
+  Wegetariańskie: 'badge badge-cool',
+  Polecane: 'badge badge-amber',
+};
+
+const dishes = (await getCollection('menu', (e) => e.data.published))
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+
+// Kolejność kategorii wynika z kolejności dań (pole "order" w CMS) — pierwsze wystąpienie
+// nazwy kategorii w posortowanej liście dań decyduje, gdzie ta kategoria pojawi się na stronie.
+const categoryNames: string[] = [];
+const dishesByCategory = new Map<string, typeof dishes>();
+for (const dish of dishes) {
+  const category = dish.data.category;
+  if (!dishesByCategory.has(category)) {
+    categoryNames.push(category);
+    dishesByCategory.set(category, []);
+  }
+  dishesByCategory.get(category)!.push(dish);
+}
+
+const categories = categoryNames.map((name) => ({
+  name,
+  dishes: dishesByCategory.get(name)!,
+}));
+
+const pdfHref = menuPdf ? withBase(menuPdf) : null;
+---
+
+<BaseLayout
+  title="Menu"
+  description="Menu Riverside. Dym i Ogień — przekąski, zupy, makarony, sałatki, specjalności znad ognia, dania główne, desery i pizza z pieca. Sprawdź pełną kartę dań i ceny."
+>
+
+  {/* Hero */}
+  <section class="section-py">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl">
+        <h1 class="font-heading text-4xl md:text-6xl mb-8 text-glass-white">Menu</h1>
+        <p class="prose-p">Menu tworzone przez naszego Chefa Michała łączy różnorodne inspiracje – od ręcznie siekanego tatara, przez ryby, pizzę, golonkę i żeberka, po smaki inspirowane kuchnią azjatycką. Dopełnieniem jest niepasteryzowany Pilsner Urquell serwowany prosto z tanka.</p>
+        <p class="prose-p">Poniżej znajdziesz pełną kartę dań wraz z cenami.</p>
+      </div>
+    </div>
+  </section>
+
+  {/* Kategorie */}
+  <div x-data="{ lightbox: false, activeImage: null, activeAlt: '' }">
+    {categories.map(({ name, dishes }) => (
+      <section class="section-py">
+        <div class="container mx-auto px-4">
+          <div class="flex flex-wrap lg:flex-nowrap -mx-4">
+            <div class="w-full lg:w-1/3 px-4 mb-10 lg:mb-0">
+              <div class="lg:sticky lg:top-32">
+                <h2 class="section-heading">{name}</h2>
+              </div>
+            </div>
+
+            <div class="w-full lg:w-2/3 px-4">
+              <div class="flex flex-col gap-6">
+                {dishes.map(({ data }) => {
+                  const thumb = data.image ? cloudinaryUrl(data.image, { width: 200, aspectRatio: '1:1', crop: 'fill' }) : null;
+                  const full = data.image ? cloudinaryUrl(data.image, { width: 1400 }) : null;
+
+                  return (
+                    <div class="flex items-start gap-6 p-6 border border-glass-border rounded-2xl transition-colors duration-300 hover:border-glass-accent-amber">
+                      {thumb ? (
+                        <button
+                          type="button"
+                          class="block flex-shrink-0 group cursor-zoom-in"
+                          x-on:click={`activeImage = ${JSON.stringify(full)}; activeAlt = ${JSON.stringify(data.name)}; lightbox = true`}
+                          aria-label={`Powiększ zdjęcie: ${data.name}`}
+                        >
+                          <img
+                            class="w-20 h-20 rounded-xl object-cover transition-opacity duration-200 group-hover:opacity-80"
+                            src={thumb}
+                            alt=""
+                            aria-hidden="true"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </button>
+                      ) : (
+                        <div
+                          class="flex flex-shrink-0 w-20 h-20 items-center justify-center bg-glass-anthracite border border-glass-border rounded-xl"
+                          role="img"
+                          aria-label="Zdjęcie wkrótce"
+                        >
+                          <svg class="w-8 h-8 text-glass-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5h16v14H4V5zm0 14 5-6 3 3 4-5 4 4M9 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                          </svg>
+                        </div>
+                      )}
+
+                      <div class="flex-1 min-w-0">
+                        <div class="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
+                          <h3 class="text-xl md:text-2xl font-medium text-glass-white">
+                            {data.name}
+                            {data.weight && <span class="ml-2 text-sm font-normal text-glass-muted">({data.weight})</span>}
+                          </h3>
+                          <span class="text-xl md:text-2xl font-bold whitespace-nowrap text-glass-accent-fire">{data.price}</span>
+                        </div>
+
+                        {data.description && <p class="mt-2 text-glass-muted leading-relaxed">{data.description}</p>}
+
+                        {data.tags.length > 0 && (
+                          <div class="flex flex-wrap gap-2 mt-3">
+                            {data.tags.map((tag) => (
+                              <span class={TAG_CLASS[tag]}>{tag}</span>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    ))}
+
+    {/* Lightbox */}
+    <div
+      x-show="lightbox"
+      x-transition:enter="transition ease-out duration-200"
+      x-transition:enter-start="opacity-0"
+      x-transition:enter-end="opacity-100"
+      x-transition:leave="transition ease-in duration-150"
+      x-transition:leave-start="opacity-100"
+      x-transition:leave-end="opacity-0"
+      class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-glass-black/95 p-4"
+      x-on:click.self="lightbox = false"
+      x-on:keydown.escape.window="lightbox = false"
+      role="dialog"
+      aria-modal="true"
+    >
+      <button
+        class="absolute top-4 right-4 text-glass-muted hover:text-glass-white transition-colors duration-200"
+        x-on:click="lightbox = false"
+        aria-label="Zamknij"
+      >
+        <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+        </svg>
+      </button>
+
+      <div class="flex flex-col items-center max-w-4xl w-full">
+        <img x-bind:src="activeImage" x-bind:alt="activeAlt" class="max-h-[75vh] w-auto rounded-xl object-contain" />
+        <p class="mt-4 text-glass-white font-medium text-center px-4" x-text="activeAlt"></p>
+      </div>
+    </div>
+  </div>
+
+  {/* Przy obsłudze grup */}
+  <section>
+    <div class="container mx-auto px-4 py-8 border-t border-b border-glass-border">
+      <p class="text-sm text-glass-muted text-center">Przy obsłudze grup od czterech osób do rachunku doliczamy serwis w wysokości 10%. Ceny podane są w złotych polskich (PLN).</p>
+    </div>
+  </section>
+
+  {/* Pobierz Menu */}
+  <section class="section-py">
+    <div class="container mx-auto px-4">
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="font-heading text-4xl md:text-6xl tracking-tighter mb-10 text-glass-white">
+          <span class="block">Pobierz</span>
+          <span class="inline-block text-fire border-b-4 border-glass-accent-fire">aktualne Menu</span>
+        </h2>
+        <p class="prose-p mb-10">Zapisz kartę dań w telefonie lub wydrukuj ją przed wizytą - pełne menu Riverside w jednym pliku PDF.</p>
+
+        {pdfHref ? (
+          <a href={pdfHref} class="btn-primary" download>Pobierz w pliku PDF</a>
+        ) : (
+          <span class="btn-primary opacity-50 pointer-events-none" aria-disabled="true">Menu PDF wkrótce do pobrania</span>
+        )}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

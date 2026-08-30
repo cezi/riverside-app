@@ -1,50 +1,23 @@
 {
-  "phone": "+48 667 947 576",
-  "phone_workshops": "+48 500 603 151",
-  "email": "mrglassproject@gmail.com",
-  "address": "ul. Grójecka 79 lok. 7",
-  "city": "02-094 Warszawa",
-  "hours": "Poniedziałek - Piątek 8:00-16:00",
+  "phone": "+48 519 716 443",
+  "phone_bot": "+48 732 143 849",
+  "phone_manager": "+48 669 639 539",
+  "email": "kontakt@riversidegdansk.pl",
+  "address": "ul. Chmielna 10",
+  "city": "80-748 Gdańsk",
+  "hours_monday": "Poniedziałek: 12:00-00:00",
+  "hours_tuesday": "Wtorek: 12:00-00:00",
+  "hours_wednesday": "Środa: 12:00-00:00",
+  "hours_thursday": "Czwartek: 12:00-00:00",
+  "hours_friday": "Piatek: 12:00-02:00",
+  "hours_saturday": "Sobota: 12:00-02:00",
+  "hours_sunday": "Niedziela 12:00-23:00",
+  "reservation_url": "https://zjedz.my/riverside-dym-i-ogien-75",
   "social": {
-    "facebook": "https://www.facebook.com/p/Mrglassproject-100063557379907/",
-    "instagram": "https://www.instagram.com/maciejrafalski_glassproject/",
-    "tiktok": "https://www.tiktok.com/@mr_glassproject",
-    "googlemaps": "https://maps.app.goo.gl/vXUA1MQB47HWjrjP9"
-  },
-  "clients": [
-  "Obi",
-  "Wasalaa",
-  "Le Collet",
-  "MedEstelle",
-  "LUX MED",
-  "Miasto Warszawa",
-  "MOSiR",
-  "Dior",
-  "Sephora",
-  "Krosno Glass",
-  "PISF",
-  "Castorama",
-  "TVN Style",
-  "La Marquese",
-  "Radio Kolor",
-  "Polsat",
-  "Desa Unicum",
-  "Dresscode",
-  "PGE Narodowy",
-  "Twój Styl"
-  ],
-  "ofertaFirmy": [
-    "mr-glass-projekt-firmy-32",
-    "mr-glass-projekt-firmy-2",
-    "mr-glass-projekt-firmy-1",
-    "mr-glass-projekt-firmy-26",
-    "mr-glass-projekt-firmy-15"
-  ],
-  "ofertaDom": [
-    "mr-glass-projekt-domu-64",
-    "mr-glass-projekt-domu-11",
-    "mr-glass-projekt-domu-13",
-    "mr-glass-projekt-domu-37",
-    "mr-glass-projekt-domu-55"
-  ]
+    "facebook": "https://www.facebook.com/riversidegdansk",
+    "instagram": "https://www.instagram.com/riversidegdansk/",
+    "tiktok": "https://www.tiktok.com/@riverside_gdansk",
+    "youtube": "",
+    "googlemaps": "https://maps.app.goo.gl/8UKffkh9tswHGx647"
+  }
 }

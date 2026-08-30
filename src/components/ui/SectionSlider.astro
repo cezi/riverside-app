@@ -1,0 +1,189 @@
+---
+import { cloudinaryUrl, cloudinarySrcset, cloudinaryVideoUrl, cloudinaryVideoPoster } from '../../utils/cloudinary';
+import { NAV_CTA } from '../../config/site';
+
+interface Slide {
+  type: 'image' | 'video';
+  image?: string;
+  video?: string;
+  poster?: string;
+  alt: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  slides?: Slide[];
+  intervalMs?: number;
+  menuHref?: string;
+  menuLabel?: string;
+}
+
+const {
+  slides = [
+    {
+      type: 'image',
+      image: 'riverside-dym-ogien-gdansk-sekcja-slider-fot-1',
+      alt: 'Wnętrze restauracji Riverside',
+      title: 'Niezapomniany widok na Motławę',
+      description: 'Delektuj się posiłkiem z panoramą malowniczej rzeki w sercu Gdańska – idealne miejsce na romantyczną kolację i wyjątkowe chwile.',
+    },
+    {
+      type: 'video',
+      video: 'riverside-dym-ogien-gdansk-sekcja-video-dania',
+      alt: 'Film prezentujący dania w restauracji',
+      title: 'Smaki, które rozgrzewają zmysły',
+      description: 'Odkryj naszą kuchnię – świeże składniki, mistrzowskie wykonanie i dania, które zachwycają wyglądem oraz smakiem.',
+    },
+    {
+      type: 'image',
+      image: 'riverside-dym-ogien-gdansk-sekcja-slider-fot-2',
+      alt: 'Widok na Motławę z restauracji',
+      title: 'Najlepsze piwo w Gdańsku',
+      description: 'Żywe, niefiltrowane, w idealnej temperaturze.',
+    },
+  ],
+  intervalMs = 6000,
+  menuHref = '/menu',
+  menuLabel = 'Zobacz Menu',
+} = Astro.props;
+---
+
+<section
+  class="relative h-screen w-full overflow-hidden bg-glass-black text-glass-white"
+  x-data={`{
+    active: 0,
+    count: ${slides.length},
+    timer: null,
+    next() { this.active = (this.active + 1) % this.count },
+    goto(i) { this.active = i },
+    start() { this.timer = setInterval(() => this.next(), ${intervalMs}) },
+    stop() { clearInterval(this.timer) }
+  }`}
+  x-init="start()"
+>
+  {/* Slideshow */}
+  <div class="absolute inset-0 h-full w-full">
+    {slides.map((slide, i) => {
+      const imageSrc = slide.type === 'image' && slide.image
+        ? cloudinaryUrl(slide.image, { width: 1920 })
+        : null;
+      const imageSrcset = slide.type === 'image' && slide.image
+        ? cloudinarySrcset(slide.image, [768, 1280, 1920, 2560])
+        : null;
+
+      const mobileVideoSrc = slide.type === 'video' && slide.video
+        ? cloudinaryVideoUrl(slide.video, { width: 640 })
+        : null;
+      const desktopVideoSrc = slide.type === 'video' && slide.video
+        ? cloudinaryVideoUrl(slide.video, { width: 1080 })
+        : null;
+      const videoPoster = slide.type === 'video' && slide.video
+        ? cloudinaryVideoPoster(slide.poster ?? slide.video, { width: 1080 })
+        : null;
+
+      return (
+        <div
+          class="absolute inset-0 h-full w-full transition-opacity duration-[1500ms] ease-in-out"
+          x-bind:class={`active === ${i} ? 'opacity-100 z-10' : 'opacity-0 z-0'`}
+        >
+          {slide.type === 'video' && slide.video ? (
+            <video
+              class="absolute inset-0 h-full w-full object-cover"
+              autoplay
+              muted
+              loop
+              playsinline
+              preload="auto"
+              poster={videoPoster}
+              aria-label={slide.alt}
+            >
+              <source media="(min-width: 1024px)" src={desktopVideoSrc} type="video/mp4" />
+              <source src={mobileVideoSrc} type="video/mp4" />
+            </video>
+          ) : slide.type === 'video' ? (
+            <div
+              class="absolute inset-0 h-full w-full flex items-center justify-center bg-glass-anthracite"
+              role="img"
+              aria-label={slide.alt || 'Wideo wkrótce'}
+            >
+              <svg class="w-16 h-16 text-glass-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 6.82v10.36a1 1 0 0 0 1.5.87l9-5.18a1 1 0 0 0 0-1.74l-9-5.18A1 1 0 0 0 8 6.82z"/>
+              </svg>
+            </div>
+          ) : imageSrc ? (
+            <img
+              class="absolute inset-0 h-full w-full object-cover"
+              src={imageSrc}
+              srcset={imageSrcset}
+              sizes="100vw"
+              alt={slide.alt}
+              loading={i === 0 ? 'eager' : 'lazy'}
+            />
+          ) : (
+            <div
+              class="absolute inset-0 h-full w-full flex items-center justify-center bg-glass-anthracite"
+              role="img"
+              aria-label={slide.alt || 'Zdjęcie wkrótce'}
+            >
+              <svg class="w-16 h-16 text-glass-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5h16v14H4V5zm0 14 5-6 3 3 4-5 4 4M9 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+            </div>
+          )}
+
+        <div class="absolute inset-x-0 bottom-0 z-20 pointer-events-none">
+          <div class="container mx-auto px-4 pb-40 lg:pb-48">
+            <div class="max-w-2xl">
+              <h1 class="font-heading text-5xl sm:text-7xl md:text-8xl tracking-tighter mb-6 drop-shadow-lg">
+                {slide.title}
+              </h1>
+              <p class="prose-p max-w-lg mb-8">
+                {slide.description}
+              </p>
+            </div>
+          </div>
+        </div>
+        </div>
+      );
+    })}
+  </div>
+
+  {/* Dark overlay */}
+  <div class="absolute inset-0 bg-gradient-to-t from-glass-black/90 via-glass-black/40 to-glass-black/60 pointer-events-none"></div>
+
+  {/* Shared CTA buttons — lower-left */}
+  <div class="absolute inset-x-0 bottom-0 z-20">
+    <div class="container mx-auto px-4 pb-20 lg:pb-24">
+      <div class="max-w-2xl">
+        <div class="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
+          <a
+            href={NAV_CTA.href}
+            class="w-full sm:w-auto inline-flex items-center justify-center bg-glass-accent-amber text-glass-white font-medium px-8 py-4 rounded-full hover:bg-glass-accent-glow transition-colors active:scale-95 text-center"
+          >
+            {NAV_CTA.label}
+          </a>
+          <a
+            href={menuHref}
+            class="w-full sm:w-auto inline-flex items-center justify-center border border-glass-accent-fire text-glass-accent-fire font-medium px-8 py-4 rounded-full hover:bg-glass-accent-fire hover:text-glass-black transition-colors active:scale-95 text-center"
+          >
+            {menuLabel}
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {/* Slide indicators */}
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex gap-3">
+    {slides.map((_, i) => (
+      <button
+        type="button"
+        class="h-2 rounded-full transition-all duration-300"
+        x-bind:class={`active === ${i} ? 'bg-glass-accent-amber w-6' : 'bg-glass-muted/50 w-2'`}
+        x-on:click={`stop(); goto(${i}); start()`}
+        aria-label={`Przejdź do slajdu ${i + 1}`}
+      ></button>
+    ))}
+  </div>
+</section>

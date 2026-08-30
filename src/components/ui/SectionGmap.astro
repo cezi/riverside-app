@@ -1,0 +1,59 @@
+---
+import { CONTACT } from '../../config/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  mapsEmbed?: string;
+}
+
+const {
+  title = 'Znajdź nas',
+  description = 'Na końcu ul. Długi Targ, po przejściu przez Zieloną Bramę i Most Zielony - Riverside. Dym i Ogień jest tuż po lewej za tym mostem, nad samą wodą.',
+  ctaLabel = 'Sprawdź dokładnie jak dojechać',
+  ctaHref = '/contact',
+  mapsEmbed = CONTACT.mapsEmbed,
+} = Astro.props;
+---
+
+<section class="section-py">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-wrap -mx-4 items-stretch">
+
+      <div class="w-full lg:w-1/2 px-4 mb-16 lg:mb-0 flex">
+        <div class="border border-glass-border p-8 md:p-12 rounded-3xl w-full flex flex-col justify-center shadow-xl shadow-black/40">
+          <div class="max-w-md">
+            <h2 class="section-heading lg:max-w-md">{title}</h2>
+            <p class="prose-p mb-10">{description}</p>
+            <a
+              href={ctaHref}
+              class="group inline-flex items-center leading-none font-medium pb-2 border-b-2 border-glass-accent-amber text-glass-accent-amber hover:text-glass-accent-glow hover:border-glass-accent-glow transition-colors duration-300"
+            >
+              <span class="mr-4">{ctaLabel}</span>
+              <span class="group-hover:rotate-45 transform transition duration-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="w-full lg:w-1/2 px-4 flex">
+        <iframe
+          src={mapsEmbed}
+          title={`Mapa — ${title}`}
+          class="w-full h-full min-h-[450px] rounded-3xl border border-glass-border shadow-xl shadow-black/40"
+          style="border:0;"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+
+    </div>
+  </div>
+</section>

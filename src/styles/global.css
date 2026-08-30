@@ -11,18 +11,19 @@
 /* ── Tailwind v4: konfiguracja przez @theme ─────────────────────────────── */
 @theme {
   /* Kolory marki */
-  --color-glass-black:      #0A0A0B;
-  --color-glass-anthracite: #161618;
-  --color-glass-border:     #26262B;
-  --color-glass-smoke:      #3E3E42;
-  --color-glass-white:      #F4F4F5;
-  --color-glass-muted:      #A1A1AA;
+  --color-glass-black:      #111315;
+  --color-glass-anthracite: #1A1D20;
+  --color-glass-border:     #34393F;
+  --color-glass-smoke:      #23272B;
+  --color-glass-white:      #F6F4EF;
+  --color-glass-muted:      #B3B6BA;
 
   /* Akcenty */
-  --color-glass-accent-amber: #FF8C00;
-  --color-glass-accent-glow:  #FFC24A;
-  --color-glass-accent-fire:  #E25822;
+  --color-glass-accent-amber: #C95A1A;
+  --color-glass-accent-glow:  #E36B22;
+  --color-glass-accent-fire:  #C99A2E;
   --color-glass-accent-cool:  #7FD1C7;
+  --color-glass-accent-chili: #D62828;
 
   /* Fonty */
   --font-sans:    'Inter', system-ui, sans-serif;
@@ -83,7 +84,7 @@
 
   /* Gradient tekstu — nagłówki */
   .text-gradient {
-    background: linear-gradient(to right, #f3f4f6, #e5e7eb, #d1d5db);
+    background: linear-gradient(to right, #F6F4EF, #E5E1D6, #D4CEC0);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -91,7 +92,7 @@
 
   /* Gradient tekstu — akcent amber */
   .text-gradient-amber {
-    background: linear-gradient(to right, #FF8C00, #FFC24A);
+    background: linear-gradient(to right, #C95A1A, #E36B22);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -112,33 +113,83 @@
   }
 
     /* tag h2 unifikacja */
-  .section-heading {
+  .section-heading,
+  .article-content h2 {
   font-size: clamp(1.875rem, 4vw, 3rem);
   font-weight: 500;
   font-family: var(--font-heading);
   margin-bottom: 2rem;
-  background: linear-gradient(to right, #f3f4f6, #e5e7eb, #d1d5db);
+  background: linear-gradient(to right, #F6F4EF, #E5E1D6, #D4CEC0);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   }
 
+  /* Artykuł jednostronicowy (np. loyalty.astro) — odstęp między sekcjami h2 */
+  .article-content h2 {
+    margin-top: 3rem;
+  }
+
   /* Akapit — standard dla treści narracyjnych */
-  .prose-p {
+  .prose-p,
+  .article-content p {
     font-size: 1.125rem;
     line-height: 1.7;
     color: var(--color-glass-muted);
     margin-bottom: 1.5rem;
   }
 
-  .prose-p:last-child {
+  .prose-p:last-child,
+  .article-content p:last-child {
   margin-bottom: 0;
   }
 
   @media (min-width: 1024px) {
-    .prose-p {
+    .prose-p,
+    .article-content p {
       font-size: 1.25rem;
     }
+  }
+
+  /* Listy w artykule jednostronicowym — spójne z akapitem */
+  .article-content ul,
+  .article-content ol {
+    font-size: 1.125rem;
+    line-height: 1.7;
+    color: var(--color-glass-muted);
+    margin-bottom: 1.5rem;
+    padding-left: 1.5rem;
+  }
+
+  .article-content li {
+    margin-bottom: 0.5rem;
+  }
+
+  @media (min-width: 1024px) {
+    .article-content ul,
+    .article-content ol {
+      font-size: 1.25rem;
+    }
+  }
+
+  /* Linki w treści opisowej — kolor + podkreślenie (nie tylko kolor, dla dostępności) */
+  .prose-content a,
+  .prose-p a,
+  .legal-content a,
+  .article-content a {
+    color: var(--color-glass-accent-amber);
+    text-decoration: underline;
+    text-decoration-color: rgba(201, 90, 26, 0.4);
+    text-underline-offset: 2px;
+    transition: color 0.2s, text-decoration-color 0.2s;
+  }
+
+  .prose-content a:hover,
+  .prose-p a:hover,
+  .legal-content a:hover,
+  .article-content a:hover {
+    color: var(--color-glass-accent-glow);
+    text-decoration-color: currentColor;
   }
 
   .prose-content h2 {
@@ -146,7 +197,7 @@
   font-weight: 500;
   font-family: var(--font-heading);
   color: var(--color-glass-muted);
-  background: linear-gradient(to right, #f3f4f6, #e5e7eb, #d1d5db);
+  background: linear-gradient(to right, #F6F4EF, #E5E1D6, #D4CEC0);
   -webkit-background-clip: text;
   background-clip: text;
   margin-top: 3rem;
@@ -179,6 +230,35 @@
   content: '-';
   color: var(--color-glass-muted);
   flex-shrink: 0;
+}
+
+.prose-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+}
+
+.prose-content th,
+.prose-content td {
+  border: 1px solid var(--color-glass-border);
+  padding: 0.75rem;
+  text-align: left;
+  color: var(--color-glass-muted);
+}
+
+.prose-content th {
+  color: var(--color-glass-white);
+  font-family: var(--font-heading);
+  font-weight: 500;
+}
+
+.prose-content iframe {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  border: 1px solid var(--color-glass-border);
+  border-radius: 0.75rem;
 }
 
   /* Wrapper zdjęcia — standard dla całego serwisu */
@@ -215,7 +295,7 @@
 
   .btn-primary:hover {
     background-color: var(--color-glass-accent-glow);
-    box-shadow: 0 0 24px rgba(255, 140, 0, 0.2);
+    box-shadow: 0 0 24px rgba(227, 107, 34, 0.2);
   }
 
   /* Przycisk drugorzędny — outline */
@@ -275,8 +355,8 @@
   .card-warm {
     background: linear-gradient(
       to top,
-      rgb(23 23 23),
-      rgb(69 26 3 / 0.6)
+      rgb(26 29 32),
+      rgb(201 90 26 / 0.6)
     );
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 1rem;
@@ -307,8 +387,14 @@
     color: var(--color-glass-muted);
   }
 
-  .form-input:hover  { border-color: rgba(255, 255, 255, 0.3); }
-  .form-input:focus  { outline: none; border-color: rgba(255, 255, 255, 0.5); }
+  .form-input:hover  { border-color: rgba(227, 107, 34, 0.3); }
+  .form-input:focus  { outline: none; border-color: rgba(227, 107, 34, 0.5); }
+
+  /* Ciemna ikona kalendarza input[type=date] jest niewidoczna na ciemnym tle formularza */
+  .form-input::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+  }
 
   /* Badge — label kategorii */
   .badge {
@@ -324,9 +410,21 @@
   }
 
   .badge-amber {
-    border-color: rgba(255, 140, 0, 0.3);
+    border-color: rgba(201, 90, 26, 0.3);
     color: var(--color-glass-accent-amber);
-    background: rgba(255, 140, 0, 0.08);
+    background: rgba(201, 90, 26, 0.08);
+  }
+
+  .badge-chili {
+    border-color: rgba(214, 40, 40, 0.35);
+    color: var(--color-glass-accent-chili);
+    background: rgba(214, 40, 40, 0.1);
+  }
+
+  .badge-cool {
+    border-color: rgba(127, 209, 199, 0.3);
+    color: var(--color-glass-accent-cool);
+    background: rgba(127, 209, 199, 0.08);
   }
 
   .legal-content ol {
@@ -358,7 +456,7 @@
     background: linear-gradient(
       to right,
       var(--color-glass-black),
-      #0f0f10,
+      #0d0e10,
       var(--color-glass-black)
     );
   }
@@ -372,7 +470,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(255, 140, 0, 0.15);
+    background: rgba(201, 90, 26, 0.15);
     filter: blur(48px);
     border-radius: inherit;
     z-index: -1;
@@ -385,7 +483,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: rgba(226, 88, 34, 0.15);
+  background: rgba(201, 154, 46, 0.15);
   filter: blur(48px);
   border-radius: inherit;
   z-index: -1;

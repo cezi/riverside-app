@@ -6,8 +6,8 @@ const formAction = `${FORMSPARK.url}/${FORMSPARK.formId}`;
 ---
 
 <BaseLayout
-  title="Kontakt — pracownia szkła artystycznego"
-  description="Skontaktuj się z pracownią szkła artystycznego MR Glass Project w Warszawie. Sprawdź adres, dane kontaktowe, mapę dojazdu i formularz."
+  title="Kontakt"
+  description="Skontaktuj się z Riverside. Dym i Ogień — restauracją nad Motławą w Gdańsku. Sprawdź adres, dane kontaktowe, mapę dojazdu i wyślij wiadomość."
 >
 
   <section class="section-py">
@@ -17,7 +17,7 @@ const formAction = `${FORMSPARK.url}/${FORMSPARK.formId}`;
         <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0">
           <h1 class="mb-8 section-heading">Gdzie nas znajdziesz?</h1>
           <p class="prose-p">
-            Pracownia jest na warszawskiej Ochocie. Kliknij <em>Zobacz trasę</em> aby sprawdzić jak do nas dojechać.
+            Znajdziesz nas w Gdańsku na Wyspie Spichrzów, nad Motławą, tuż za Zieloną Bramą. Kliknij <em>Zobacz trasę</em> aby sprawdzić jak do nas dojechać.
           </p>
 
           <div class="mt-10 flex flex-wrap -mx-4">
@@ -28,7 +28,7 @@ const formAction = `${FORMSPARK.url}/${FORMSPARK.formId}`;
                   <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/>
                 </svg>
               </div>
-              <h2 class="mb-2 text-xl font-medium text-gradient font-heading">Adres pracowni</h2>
+              <h2 class="mb-2 text-xl font-medium text-gradient font-heading">Adres lokalu</h2>
               <p class="text-glass-muted leading-loose">{CONTACT.address}</p>
               <p class="text-glass-muted leading-loose">{CONTACT.city}</p>
               <a
@@ -48,9 +48,7 @@ const formAction = `${FORMSPARK.url}/${FORMSPARK.formId}`;
                 </svg>
               </div>
               <h2 class="mb-2 text-xl font-medium text-gradient font-heading">Kontakt</h2>
-              <a href="#"
-              x-data
-              x-on:click="window.location.href = 'mai' + 'lto:' + 'mrglassproject' + '@' + 'gmail.com'"
+              <a href={CONTACT.emailHref}
               class="block text-glass-muted hover:text-glass-white leading-loose transition-colors duration-200">
                 {CONTACT.email}
               </a>
@@ -59,7 +57,6 @@ const formAction = `${FORMSPARK.url}/${FORMSPARK.formId}`;
               >
                 {CONTACT.phone}
               </a>
-              <p class="mt-2 text-sm text-glass-muted">{CONTACT.hours}</p>
             </div>
           </div>
         </div>
@@ -74,7 +71,7 @@ const formAction = `${FORMSPARK.url}/${FORMSPARK.formId}`;
               allowfullscreen
               loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
-              title={`Mapa dojazdu do pracowni ${SITE.name}`}
+              title={`Mapa dojazdu do ${SITE.name}`}
             ></iframe>
           </div>
         </div>
@@ -88,17 +85,19 @@ const formAction = `${FORMSPARK.url}/${FORMSPARK.formId}`;
       <div class="flex flex-wrap -mx-4">
 
         <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0">
-          <h2 class="section-heading">Dane firmowe</h2>
+          <h2 class="section-heading">Dane adresowe</h2>
 
           <h3 class="mb-1 text-xl font-medium text-gradient font-heading">{SITE.fullName}</h3>
           <p class="prose-p">
-            {CONTACT.address}, {CONTACT.city}<br/>
-            NIP: {CONTACT.nip}<br/>
-            REGON: {CONTACT.regon}
+            {CONTACT.address}, {CONTACT.city}
           </p>
 
           <h3 class="mb-1 text-xl font-medium text-gradient font-heading">Godziny pracy</h3>
-          <p class="text-glass-muted leading-loose">{CONTACT.hours}</p>
+          <div class="flex flex-col gap-1 text-glass-muted leading-loose">
+            {CONTACT.hours.map((day) => (
+              <p>{day}</p>
+            ))}
+          </div>
         </div>
 
         <div class="w-full lg:w-1/2 px-4">

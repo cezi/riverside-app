@@ -1,0 +1,31 @@
+---
+title: 'Chef Michał Rybak'
+category: 'Chef'
+media:
+  - file: 'riverside-dym-ogien-gdansk-galeria-chef-fot-1'
+    alt: 'Kucharz posypujący danie świeżymi ziołami w kuchni Riverside'
+  - file: 'riverside-dym-ogien-gdansk-galeria-chef-fot-2'
+    alt: 'Portret szefa kuchni przy stole z podanym daniem'
+  - file: 'riverside-dym-ogien-gdansk-galeria-chef-fot-3'
+    alt: 'Szef kuchni finalizujący danie na desce w otwartej kuchni'
+  - file: 'riverside-dym-ogien-gdansk-galeria-chef-fot-4'
+    alt: 'Szef kuchni polewający żeberka sosem BBQ'
+  - file: 'riverside-dym-ogien-gdansk-galeria-chef-fot-5'
+    alt: 'Szef kuchni komponujący danie na drewnianej desce'
+  - file: 'riverside-dym-ogien-gdansk-galeria-chef-fot-6'
+    alt: 'Szef kuchni formujący ciasto na pizzę'
+  - file: 'riverside-dym-ogien-gdansk-galeria-chef-fot-7'
+    alt: 'Flambirowanie deseru nad otwartym ogniem w kuchni Riverside'
+  - file: 'riverside-dym-ogien-gdansk-galeria-chef-fot-8'
+    alt: 'Szef kuchni degustujący sos prosto z patelni'
+  - file: 'riverside-dym-ogien-gdansk-galeria-chef-fot-9'
+    alt: 'Szef kuchni doprawiający risotto sokiem z cytryny'
+  - file: 'riverside-dym-ogien-gdansk-galeria-chef-fot-10'
+    alt: 'Szef kuchni układający danie na talerzu'
+  - file: 'riverside-dym-ogien-gdansk-galeria-chef-fot-11'
+    alt: 'Trzej kucharze Riverside przy grillu w kuchni'
+  - file: 'riverside-dym-ogien-gdansk-galeria-chef-fot-12'
+    alt: 'Szef kuchni i barman z piwem z tanka przy barze'
+order: 3
+published: true
+---

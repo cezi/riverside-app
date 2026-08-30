@@ -1,91 +1,121 @@
 ---
-import { SITE, CONTACT, SOCIAL, FOOTER_NAV } from '../config/site';
+import { SITE, SOCIAL, FOOTER_NAV, FOOTER_LEGAL, LOYALTY_CTA, MEDIA, withBase } from '../config/site';
 
 const year = new Date().getFullYear();
+
+const socials = [
+  {
+    href: SOCIAL.facebook,
+    label: 'Facebook',
+    path: 'M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z',
+    viewBox: '0 0 24 24',
+  },
+  {
+    href: SOCIAL.instagram,
+    label: 'Instagram',
+    path: 'M3 8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8Zm5-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm7.597 2.214a1 1 0 0 1 1-1h.01a1 1 0 1 1 0 2h-.01a1 1 0 0 1-1-1ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm-5 3a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z',
+    fillRule: 'evenodd' as const,
+    viewBox: '0 0 24 24',
+  },
+  {
+    href: SOCIAL.tiktok,
+    label: 'TikTok',
+    path: 'M12.4381 2.01667C13.5298 2 14.6131 2.00833 15.6964 2C15.7631 3.27498 16.2214 4.57497 17.1548 5.47496C18.0881 6.39995 19.4047 6.82494 20.688 6.9666V10.3249C19.488 10.2832 18.2797 10.0332 17.1881 9.51656C16.7131 9.29991 16.2714 9.02491 15.8381 8.74157C15.8298 11.1749 15.8464 13.6082 15.8214 16.0332C15.7548 17.1998 15.3714 18.3581 14.6964 19.3164C13.6048 20.9164 11.7131 21.9581 9.7715 21.9914C8.57986 22.0581 7.38819 21.7331 6.37154 21.1331C4.68823 20.1414 3.50492 18.3248 3.32992 16.3748C3.31325 15.9582 3.30492 15.5415 3.32158 15.1332C3.47158 13.5499 4.25491 12.0332 5.47156 10.9999C6.85488 9.7999 8.78817 9.22491 10.5965 9.56656C10.6131 10.7999 10.5631 12.0332 10.5631 13.2665C9.73816 12.9999 8.77151 13.0749 8.04652 13.5749C7.52153 13.9165 7.12154 14.4415 6.91319 15.0332C6.7382 15.4582 6.7882 15.9248 6.79654 16.3748C6.99654 17.7415 8.31318 18.8914 9.71316 18.7665C10.6465 18.7581 11.5381 18.2165 12.0215 17.4248C12.1798 17.1498 12.3548 16.8665 12.3631 16.5415C12.4465 15.0498 12.4131 13.5665 12.4215 12.0749C12.4298 8.71657 12.4131 5.36661 12.4381 2.01667Z',
+    viewBox: '0 0 24 24',
+  },
+  {
+    href: SOCIAL.googleMaps,
+    label: 'Google',
+    path: 'M15.545 6.558a9.42 9.42 0 0 1 .139 1.626c0 2.434-.87 4.492-2.384 5.885h.002C11.978 15.292 10.158 16 8 16A8 8 0 1 1 8 0a7.689 7.689 0 0 1 5.352 2.082l-2.284 2.284A4.347 4.347 0 0 0 8 3.166c-2.087 0-3.86 1.408-4.492 3.304a4.792 4.792 0 0 0 0 3.063h.003c.635 1.893 2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.702 3.702 0 0 0 1.599-2.431H8V6.558h7.545z',
+    viewBox: '0 0 16 16',
+  },
+].filter((social) => social.href);
 ---
 
-<footer class="py-20 lg:py-28">
-  <div class="container px-4 mx-auto text-center">
+<footer class="py-12 md:py-20 bg-glass-anthracite">
+  <div class="container mx-auto px-4">
 
-    <hr class="border-t border-glass-border" />
-
-    <ul class="my-8 flex flex-wrap items-center justify-center list-none p-0 gap-y-2">
-      {FOOTER_NAV.map(({ label, href }) => (
-        <li class="mb-2 md:mb-0 mx-4">
-          <a
-            href={href}
-            class="text-sm font-light text-glass-muted hover:text-glass-white transition-colors duration-200"
-          >
-            {label}
-          </a>
-        </li>
-      ))}
-    </ul>
-
-    <div class="flex items-center justify-center space-x-6">
-      {SOCIAL.facebook && (
-        <a
-          href={SOCIAL.facebook}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Facebook"
-          class="inline-flex items-center justify-center p-3 rounded-full border border-glass-border hover:border-white/50 text-glass-muted hover:text-glass-white transition-all duration-200 group"
-        >
-          <svg width="20" height="20" fill="currentColor" aria-hidden="true" viewBox="0 0 24 24">
-            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-          </svg>
-        </a>
-      )}
-      {SOCIAL.instagram && (
-        <a
-          href={SOCIAL.instagram}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Instagram"
-          class="inline-flex items-center justify-center p-3 rounded-full border border-glass-border hover:border-white/50 text-glass-muted hover:text-glass-white transition-all duration-200 group"
-        >
-          <svg width="20" height="20" fill="currentColor" aria-hidden="true" viewBox="0 0 24 24">
-            <path fill-rule="evenodd" d="M3 8a5 5 0 0 1 5-5h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8Zm5-3a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm7.597 2.214a1 1 0 0 1 1-1h.01a1 1 0 1 1 0 2h-.01a1 1 0 0 1-1-1ZM12 9a3 3 0 1 0 0 6 3 3 0 0 0 0-6Zm-5 3a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z" clip-rule="evenodd"/>
-          </svg>
-        </a>
-      )}
-      {SOCIAL.tiktok && (
-        <a
-          href={SOCIAL.tiktok}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="TikTok"
-          class="inline-flex items-center justify-center p-3 rounded-full border border-glass-border hover:border-white/50 text-glass-muted hover:text-glass-white transition-all duration-200 group"
-        >
-          <svg width="20" height="20" fill="currentColor" aria-hidden="true" viewBox="0 0 24 24">
-            <path d="M12.4381 2.01667C13.5298 2 14.6131 2.00833 15.6964 2C15.7631 3.27498 16.2214 4.57497 17.1548 5.47496C18.0881 6.39995 19.4047 6.82494 20.688 6.9666V10.3249C19.488 10.2832 18.2797 10.0332 17.1881 9.51656C16.7131 9.29991 16.2714 9.02491 15.8381 8.74157C15.8298 11.1749 15.8464 13.6082 15.8214 16.0332C15.7548 17.1998 15.3714 18.3581 14.6964 19.3164C13.6048 20.9164 11.7131 21.9581 9.7715 21.9914C8.57986 22.0581 7.38819 21.7331 6.37154 21.1331C4.68823 20.1414 3.50492 18.3248 3.32992 16.3748C3.31325 15.9582 3.30492 15.5415 3.32158 15.1332C3.47158 13.5499 4.25491 12.0332 5.47156 10.9999C6.85488 9.7999 8.78817 9.22491 10.5965 9.56656C10.6131 10.7999 10.5631 12.0332 10.5631 13.2665C9.73816 12.9999 8.77151 13.0749 8.04652 13.5749C7.52153 13.9165 7.12154 14.4415 6.91319 15.0332C6.7382 15.4582 6.7882 15.9248 6.79654 16.3748C6.99654 17.7415 8.31318 18.8914 9.71316 18.7665C10.6465 18.7581 11.5381 18.2165 12.0215 17.4248C12.1798 17.1498 12.3548 16.8665 12.3631 16.5415C12.4465 15.0498 12.4131 13.5665 12.4215 12.0749C12.4298 8.71657 12.4131 5.36661 12.4381 2.01667Z"/>
-          </svg>
-        </a>
-      )}
-      {SOCIAL.googleMaps && (
-        <a
-          href={SOCIAL.googleMaps}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Znajdź nas na mapie"
-          class="inline-flex items-center justify-center p-3 rounded-full border border-glass-border hover:border-white/50 text-glass-muted hover:text-glass-white transition-all duration-200 group"
-        >
-          <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 0 1-2.827 0l-4.244-4.243a8 8 0 1 1 11.314 0z"/>
-            <path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-          </svg>
-        </a>
-      )}
+    <div class="max-w-2xl mx-auto mb-14 text-center">
+      <a class="inline-block mb-14" href="/" aria-label={SITE.fullName}>
+        <img
+          src={withBase(MEDIA.logo.src)}
+          alt={MEDIA.logo.alt}
+          width={MEDIA.logo.width}
+          height={MEDIA.logo.height}
+          class="h-28 w-auto"
+          loading="lazy"
+          decoding="async"
+        />
+      </a>
+      <h3 class="text-xl text-glass-white tracking-tight mb-8">{LOYALTY_CTA.heading}</h3>
+      <a
+        href={LOYALTY_CTA.href}
+        class="inline-block py-5 px-8 text-center leading-none font-medium text-glass-white hover:text-glass-black border border-glass-accent-amber hover:bg-glass-accent-glow hover:border-glass-accent-glow rounded-full transition-colors duration-150"
+      >
+        {LOYALTY_CTA.label}
+      </a>
     </div>
 
+    <div class="max-w-lg mx-auto lg:max-w-none">
+
+      <nav aria-label="Nawigacja w stopce">
+        <ul class="flex flex-wrap items-center justify-center -mx-4 -mb-3 list-none p-0">
+          {FOOTER_NAV.map(({ label, href }) => (
+            <li class="px-4 mb-3">
+              <a
+                href={href}
+                class="inline-block text-glass-white hover:text-glass-accent-amber transition-colors duration-150"
+              >
+                {label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
+      {socials.length > 0 && (
+        <ul class="flex flex-wrap mt-10 items-center justify-center -mb-4 list-none p-0">
+          {socials.map(({ href, label, path, viewBox, fillRule }) => (
+            <li class="mr-10 mb-4">
+              <a
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center font-medium text-glass-white hover:text-glass-accent-amber transition-colors duration-150"
+              >
+                <svg width="16" height="16" fill="currentColor" aria-hidden="true" viewBox={viewBox}>
+                  <path fill-rule={fillRule} d={path}/>
+                </svg>
+                <span class="ml-3">{label}</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )}
+
+      <div class="flex flex-wrap -mx-4 mt-16">
+        <div class="w-full sm:w-1/2 px-4 mb-6 md:mb-0">
+          <span class="text-sm font-medium text-glass-muted">© {year} {SITE.name}</span>
+        </div>
+        <div class="w-full sm:w-1/2 px-4 md:text-right -mb-2">
+          {FOOTER_LEGAL.map(({ label, href }) => (
+            <a
+              href={href}
+              class="inline-block text-sm mb-2 mr-12 font-medium text-glass-muted hover:text-glass-accent-amber transition-colors duration-150"
+            >
+              {label}
+            </a>
+          ))}
+          <button
+            type="button"
+            data-cc="show-preferencesModal"
+            class="inline-block text-sm mb-2 font-medium text-glass-muted hover:text-glass-accent-amber transition-colors duration-150 bg-transparent border-0 p-0 cursor-pointer"
+          >
+            Zmień ustawienia cookies
+          </button>
+        </div>
+      </div>
+
+    </div>
   </div>
-
-  <div class="mt-12 mb-8 border-t border-glass-border"></div>
-
-  <div class="container px-4 mx-auto">
-    <p class="text-center text-sm text-glass-muted">
-      Wszelkie prawa zastrzeżone © {year} Maciej Rafalski
-    </p>
-  </div>
-
 </footer>

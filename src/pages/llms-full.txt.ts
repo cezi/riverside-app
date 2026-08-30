@@ -7,12 +7,10 @@ import { SITE, CONTACT } from '../config/site';
 import { getCollection } from 'astro:content';
 
 export const GET: APIRoute = async () => {
-  const workshops  = await getCollection('workshops',  e => e.data.active);
   const faqEntries = await getCollection('faq');
-  const projects   = await getCollection('projects',   e => e.data.published);
+  const projects   = await getCollection('gallery',    e => e.data.published);
   const posts      = await getCollection('posts',      e => e.data.published);
 
-  const sortedWS      = workshops.sort((a, b) => a.data.order - b.data.order);
   const sortedFaq     = faqEntries.sort((a, b) => a.data.order - b.data.order);
   const sortedProj    = projects.sort((a, b) => a.data.order - b.data.order);
   const sortedPosts   = posts.sort((a, b) =>
@@ -49,11 +47,11 @@ Filozofia: szkło stawia warunki — nie da się go zmusić do określonego zach
 
 ### Dla firm (${projectsFirm.length} realizacji)
 
-${projectsFirm.map(p => `- **${p.data.title}**${p.data.year ? ` (${p.data.year})` : ''}${p.data.description ? `: ${p.data.description}` : ''}${p.data.dimensions ? ` — wymiary: ${p.data.dimensions}` : ''}`).join('\n') || '- Realizacje dostępne na stronie portfolio'}
+${projectsFirm.map(p => `- **${p.data.title}**`).join('\n') || '- Realizacje dostępne na stronie portfolio'}
 
 ### Dla domu (${projectsDom.length} realizacji)
 
-${projectsDom.map(p => `- **${p.data.title}**${p.data.year ? ` (${p.data.year})` : ''}${p.data.description ? `: ${p.data.description}` : ''}${p.data.dimensions ? ` — wymiary: ${p.data.dimensions}` : ''}`).join('\n') || '- Realizacje dostępne na stronie portfolio'}
+${projectsDom.map(p => `- **${p.data.title}**`).join('\n') || '- Realizacje dostępne na stronie portfolio'}
 
 ---
 
@@ -76,22 +74,6 @@ Brief → konsultacja (spotkanie w pracowni lub online) → oferta z opisem tech
 ### Dla osób prywatnych
 
 Formy dekoracyjne (rzeźby, misy, dekoracje ścienne), szkło użytkowe (wazony, naczynia, patery, oświetlenie, detale meblowe), personalizowane upominki i prezenty, obiekty na zamówienie według pomysłu klienta. Możliwa dostawa kurierska w specjalnym opakowaniu na terenie całej Polski.
-
----
-
-## Warsztaty — szczegółowy opis
-
-${sortedWS.map(w => `### ${w.data.title}
-
-${w.data.description}
-
-- **Czas trwania:** ${w.data.duration}
-- **Maksymalna liczba osób:** ${w.data.maxPersons}
-- **Cena:** ${w.data.price} zł / osoba${w.data.pricePair ? `\n- **Oferta dla pary:** ${w.data.pricePairLabel} (${w.data.pricePair} zł)` : ''}
-- **Rezerwacja:** ${w.data.setmoreUrl}
-`).join('\n')}
-
-Warsztaty odbywają się w pracowni, w małych grupach. Wymagany wiek: 18+. Możliwe warsztaty dla grup zorganizowanych (min. 5 osób). Dostępne vouchery na prezent.
 
 ---
 

@@ -1,0 +1,292 @@
+---
+import { getCollection } from 'astro:content';
+import { resolveMedia } from '../utils/cloudinary';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// Domyślnie widoczne: pierwszy (specjalny) rząd + tyle standardowych rzędów po 3 zdjęcia.
+const FIRST_ROW_COUNT = 3;
+const ROW_SIZE = 3;
+const INITIAL_ROWS = 3;
+
+// Kolejność i etykiety kategorii — zgodne z listą w content.config.ts / public/admin/config.yml.
+const CATEGORY_ORDER = ['Lokal', 'Wnetrza', 'Chef', 'Dania', 'Tank'];
+const CATEGORY_LABELS: Record<string, string> = {
+  Wnetrza: 'Wnętrza',
+};
+
+const entries = (await getCollection('gallery', (e) => e.data.published))
+  .sort((a, b) => (a.data.order ?? 0) - (b.data.order ?? 0));
+
+const items = entries.flatMap((entry) =>
+  (entry.data.media ?? [])
+    .filter((m) => m.file)
+    .map((m) => {
+      const thumb = resolveMedia(m.file, { width: 900, aspectRatio: '4:3', crop: 'fill' });
+      const full = resolveMedia(m.file, { width: 1600 });
+      return {
+        category: entry.data.category,
+        alt: m.alt || entry.data.title,
+        type: thumb.type,
+        thumbUrl: thumb.type === 'video' ? thumb.poster : thumb.url,
+        videoUrl: thumb.type === 'video' ? full.url : null,
+        posterUrl: thumb.type === 'video' ? full.poster : null,
+        fullUrl: full.url,
+      };
+    }),
+);
+
+const categories = CATEGORY_ORDER.filter((c) => items.some((i) => i.category === c));
+---
+
+<BaseLayout
+  title="Poznaj Riverside"
+  description="Zobacz Riverside. Dym i Ogień od kuchni — wnętrza, kuchnię, bar, ekipę i wydarzenia. Pełna galeria zdjęć i filmów z restauracji nad Motławą w Gdańsku."
+>
+
+  {/* Hero */}
+  <section class="section-py">
+    <div class="container mx-auto px-4">
+      <div class="max-w-2xl mb-8">
+        <h1 class="font-heading text-4xl md:text-6xl tracking-tighter text-glass-white">Poznajmy się</h1>
+      </div>
+    </div>
+  </section>
+
+  {items.length > 0 ? (
+    <section class="pb-20">
+      <div
+        class="container mx-auto px-4"
+        x-data={`{
+          tab: 'Wszystkie',
+          visibleRows: ${INITIAL_ROWS},
+          lightbox: false,
+          activeItem: null,
+          items: ${JSON.stringify(items)},
+
+          get filtered() {
+            return this.tab === 'Wszystkie' ? this.items : this.items.filter(i => i.category === this.tab);
+          },
+          get firstRow() {
+            return this.filtered.slice(0, ${FIRST_ROW_COUNT});
+          },
+          get restVisible() {
+            const count = ${FIRST_ROW_COUNT} + (this.visibleRows - 1) * ${ROW_SIZE};
+            return this.filtered.slice(${FIRST_ROW_COUNT}, Math.max(${FIRST_ROW_COUNT}, count));
+          },
+          get hasMore() {
+            const count = ${FIRST_ROW_COUNT} + (this.visibleRows - 1) * ${ROW_SIZE};
+            return this.filtered.length > count;
+          },
+          setTab(t) { this.tab = t; this.visibleRows = ${INITIAL_ROWS}; },
+          showMore() { this.visibleRows++; },
+          open(item) { this.activeItem = item; this.lightbox = true; },
+          close() {
+            this.lightbox = false;
+            this.activeItem = null;
+            this.$root.querySelectorAll('video').forEach(v => v.pause());
+          },
+          prev() {
+            const idx = this.filtered.indexOf(this.activeItem);
+            if (idx > 0) this.activeItem = this.filtered[idx - 1];
+          },
+          next() {
+            const idx = this.filtered.indexOf(this.activeItem);
+            if (idx < this.filtered.length - 1) this.activeItem = this.filtered[idx + 1];
+          },
+        }`}
+      >
+        {/* Zakładki kategorii */}
+        <div class="flex flex-wrap gap-2 md:gap-3 mb-14">
+          <button
+            type="button"
+            x-on:click="setTab('Wszystkie')"
+            x-bind:class="tab === 'Wszystkie' ? 'bg-glass-accent-amber text-glass-white border-glass-accent-amber' : 'text-glass-muted border-glass-border hover:bg-glass-accent-amber hover:text-glass-white hover:border-glass-accent-amber'"
+            class="inline-block py-2.5 px-5 text-lg leading-none rounded-full transition-colors duration-200 border cursor-pointer"
+          >
+            Wszystkie
+          </button>
+          {categories.map((cat) => (
+            <button
+              type="button"
+              x-on:click={`setTab(${JSON.stringify(cat)})`}
+              x-bind:class={`tab === ${JSON.stringify(cat)} ? 'bg-glass-accent-amber text-glass-white border-glass-accent-amber' : 'text-glass-muted border-glass-border hover:bg-glass-accent-amber hover:text-glass-white hover:border-glass-accent-amber'`}
+              class="inline-block py-2.5 px-5 text-lg leading-none rounded-full transition-colors duration-200 border cursor-pointer"
+            >
+              {CATEGORY_LABELS[cat] ?? cat}
+            </button>
+          ))}
+        </div>
+
+        {/* Pierwszy rząd — duże zdjęcie po lewej, dwa mniejsze po prawej */}
+        <div class="flex flex-wrap -mx-3 mb-6" x-show="firstRow.length > 0">
+          <div class="w-full lg:w-7/12 px-3 mb-6" x-show="firstRow[0]">
+            <button
+              type="button"
+              class="group relative block h-80 lg:h-full w-full rounded-3xl overflow-hidden shadow-lg shadow-black/40 ring-1 ring-glass-border transition duration-300 hover:ring-glass-accent-amber cursor-pointer"
+              x-on:click="open(firstRow[0])"
+              x-bind:aria-label="`Powiększ: ${firstRow[0]?.alt}`"
+            >
+              <img class="block w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" x-bind:src="firstRow[0]?.thumbUrl" x-bind:alt="firstRow[0]?.alt" loading="lazy" decoding="async" />
+              <div class="absolute inset-0 bg-gradient-to-t from-glass-black/70 via-glass-accent-amber/10 to-transparent pointer-events-none"></div>
+              <span class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                <span class="flex items-center justify-center w-16 h-16 rounded-full bg-glass-black/50 text-glass-white">
+                  <template x-if="firstRow[0]?.type === 'video'">
+                    <svg width="26" height="26" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                  </template>
+                  <template x-if="firstRow[0]?.type !== 'video'">
+                    <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke-width="2"/><path stroke-linecap="round" stroke-width="2" d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
+                  </template>
+                </span>
+              </span>
+            </button>
+          </div>
+
+          <div class="w-full lg:w-5/12 px-3 mb-6" x-show="firstRow[1] || firstRow[2]">
+            <div class="relative w-full h-80 mb-6" x-show="firstRow[1]">
+              <button
+                type="button"
+                class="group block w-full h-full rounded-3xl overflow-hidden shadow-lg shadow-black/40 ring-1 ring-glass-border transition duration-300 hover:ring-glass-accent-amber cursor-pointer"
+                x-on:click="open(firstRow[1])"
+                x-bind:aria-label="`Powiększ: ${firstRow[1]?.alt}`"
+              >
+                <img class="block w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" x-bind:src="firstRow[1]?.thumbUrl" x-bind:alt="firstRow[1]?.alt" loading="lazy" decoding="async" />
+                <div class="absolute inset-0 bg-gradient-to-t from-glass-black/70 via-glass-accent-amber/10 to-transparent pointer-events-none"></div>
+                <span class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  <span class="flex items-center justify-center w-14 h-14 rounded-full bg-glass-black/50 text-glass-white">
+                    <template x-if="firstRow[1]?.type === 'video'">
+                      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                    </template>
+                    <template x-if="firstRow[1]?.type !== 'video'">
+                      <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke-width="2"/><path stroke-linecap="round" stroke-width="2" d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
+                    </template>
+                  </span>
+                </span>
+              </button>
+            </div>
+            <div class="relative w-full h-80" x-show="firstRow[2]">
+              <button
+                type="button"
+                class="group block w-full h-full rounded-3xl overflow-hidden shadow-lg shadow-black/40 ring-1 ring-glass-border transition duration-300 hover:ring-glass-accent-amber cursor-pointer"
+                x-on:click="open(firstRow[2])"
+                x-bind:aria-label="`Powiększ: ${firstRow[2]?.alt}`"
+              >
+                <img class="block w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" x-bind:src="firstRow[2]?.thumbUrl" x-bind:alt="firstRow[2]?.alt" loading="lazy" decoding="async" />
+                <div class="absolute inset-0 bg-gradient-to-t from-glass-black/70 via-glass-accent-amber/10 to-transparent pointer-events-none"></div>
+                <span class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  <span class="flex items-center justify-center w-14 h-14 rounded-full bg-glass-black/50 text-glass-white">
+                    <template x-if="firstRow[2]?.type === 'video'">
+                      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                    </template>
+                    <template x-if="firstRow[2]?.type !== 'video'">
+                      <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke-width="2"/><path stroke-linecap="round" stroke-width="2" d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
+                    </template>
+                  </span>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Kolejne rzędy — 3 na desktopie, 1 na mobile */}
+        <div class="flex flex-wrap -mx-3">
+          <template x-for="item in restVisible" x-bind:key="item.fullUrl">
+            <div class="w-full lg:w-1/3 px-3 mb-6">
+              <button
+                type="button"
+                class="group relative block w-full h-80 rounded-3xl overflow-hidden shadow-lg shadow-black/40 ring-1 ring-glass-border transition duration-300 hover:ring-glass-accent-amber cursor-pointer"
+                x-on:click="open(item)"
+                x-bind:aria-label="`Powiększ: ${item.alt}`"
+              >
+                <img class="block w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" x-bind:src="item.thumbUrl" x-bind:alt="item.alt" loading="lazy" decoding="async" />
+                <div class="absolute inset-0 bg-gradient-to-t from-glass-black/70 via-glass-accent-amber/10 to-transparent pointer-events-none"></div>
+                <span class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+                  <span class="flex items-center justify-center w-14 h-14 rounded-full bg-glass-black/50 text-glass-white">
+                    <template x-if="item.type === 'video'">
+                      <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+                    </template>
+                    <template x-if="item.type !== 'video'">
+                      <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" stroke-width="2"/><path stroke-linecap="round" stroke-width="2" d="M21 21l-4.35-4.35M11 8v6M8 11h6"/></svg>
+                    </template>
+                  </span>
+                </span>
+              </button>
+            </div>
+          </template>
+        </div>
+
+        <div class="flex justify-center mt-14" x-show="hasMore">
+          <button
+            type="button"
+            x-on:click="showMore()"
+            class="group inline-flex py-5 px-8 font-medium text-glass-white hover:text-glass-black leading-none items-center justify-center border border-glass-border hover:bg-glass-accent-fire hover:border-glass-accent-fire rounded-full transition-colors duration-150 cursor-pointer"
+          >
+            <span class="mr-2.5">Pokaż więcej zdjęć</span>
+            <span class="group-hover:rotate-45 transform transition duration-100">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+              </svg>
+            </span>
+          </button>
+        </div>
+
+        <div x-show="filtered.length === 0" class="py-20 text-center text-glass-muted">Brak zdjęć w tej kategorii.</div>
+
+        {/* Lightbox */}
+        <div
+          x-show="lightbox"
+          x-transition:enter="transition ease-out duration-200"
+          x-transition:enter-start="opacity-0"
+          x-transition:enter-end="opacity-100"
+          x-transition:leave="transition ease-in duration-150"
+          x-transition:leave-start="opacity-100"
+          x-transition:leave-end="opacity-0"
+          class="fixed inset-0 z-50 flex flex-col items-center justify-center bg-glass-black/95 p-4"
+          x-on:click.self="close()"
+          x-on:keydown.escape.window="close()"
+          role="dialog"
+          aria-modal="true"
+        >
+          <button class="absolute top-4 right-4 text-glass-muted hover:text-glass-white transition-colors duration-200 cursor-pointer" x-on:click="close()" aria-label="Zamknij">
+            <svg width="32" height="32" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          </button>
+
+          <button
+            x-show="activeItem && filtered.indexOf(activeItem) > 0"
+            x-on:click="prev()"
+            class="absolute left-4 top-1/2 -translate-y-1/2 text-glass-muted hover:text-glass-white transition-colors duration-200 cursor-pointer"
+            aria-label="Poprzednie zdjęcie"
+          >
+            <svg width="40" height="40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+          </button>
+          <button
+            x-show="activeItem && filtered.indexOf(activeItem) < filtered.length - 1"
+            x-on:click="next()"
+            class="absolute right-4 top-1/2 -translate-y-1/2 text-glass-muted hover:text-glass-white transition-colors duration-200 cursor-pointer"
+            aria-label="Następne zdjęcie"
+          >
+            <svg width="40" height="40" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+          </button>
+
+          <template x-if="activeItem">
+            <div class="flex flex-col items-center max-w-4xl w-full">
+              <template x-if="activeItem.type === 'video'">
+                <video x-bind:key="activeItem.videoUrl" x-bind:src="activeItem.videoUrl" x-bind:poster="activeItem.posterUrl" class="max-h-[75vh] w-auto rounded-xl" controls playsinline></video>
+              </template>
+              <template x-if="activeItem.type !== 'video'">
+                <img x-bind:key="activeItem.fullUrl" x-bind:src="activeItem.fullUrl" x-bind:alt="activeItem.alt" class="max-h-[75vh] w-auto rounded-xl object-contain" />
+              </template>
+              <p class="mt-4 text-glass-white font-medium text-center px-4" x-text="activeItem.alt"></p>
+            </div>
+          </template>
+        </div>
+      </div>
+    </section>
+  ) : (
+    <section class="pb-20">
+      <div class="container mx-auto px-4 text-center text-glass-muted">
+        Zdjęcia i filmy pojawią się tutaj wkrótce.
+      </div>
+    </section>
+  )}
+
+</BaseLayout>

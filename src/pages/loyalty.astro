@@ -1,0 +1,227 @@
+---
+import { cloudinaryUrl, cloudinarySrcset } from '../utils/cloudinary';
+import { withBase } from '../config/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Props {
+  heroImage?: string;
+  heroImageAlt?: string;
+  cardImagePriv?: string;
+  cardImageBiz?: string;
+}
+
+const {
+  heroImage = 'riverside-dym-ogien-gdansk-program-lojalnosciowy-fot-1',
+  heroImageAlt = '',
+  cardImagePriv = 'riverside-dym-ogien-gdansk-program-lojalnosciowy-fot-2',
+  cardImageBiz = 'riverside-dym-ogien-gdansk-program-lojalnosciowy-fot-3',
+} = Astro.props;
+
+const heroSrc = heroImage ? cloudinaryUrl(heroImage, { width: 900, aspectRatio: '4:3', crop: 'fill' }) : null;
+const heroSrcset = heroImage ? cloudinarySrcset(heroImage, [600, 900, 1200], { aspectRatio: '4:3', crop: 'fill' }) : null;
+
+const steps = [
+  {
+    title: '1. Zarejestruj się',
+    description: 'Zarejestruj się w Riverside Club i dodaj swoją kartę do Apple Wallet lub Google Wallet. Cały proces zajmuje mniej niż minutę i nie wymaga instalowania dodatkowej aplikacji.',
+  },
+  {
+    title: '2. Odwiedź Riverside',
+    description: 'Przy każdej wizycie pokaż swoją kartę lojalnościową podczas zamówienia. Za zakupy będziesz zbierać punkty, które automatycznie zapiszą się na Twoim koncie.',
+  },
+  {
+    title: '3. Odbieraj nagrody',
+    description: 'Wymieniaj zgromadzone punkty na przygotowane przez nas nagrody, rabaty i specjalne korzyści dostępne wyłącznie dla uczestników Riverside Club.',
+  },
+];
+
+const wallets = [
+  { label: 'Apple Wallet', icon: '/images/Apple_Wallet_Icon.svg' },
+  { label: 'Google Wallet', icon: '/images/Google_Wallet_icon.svg' },
+];
+
+const signupCards = [
+  {
+    title: 'Goście indywidualni',
+    description: 'Dołącz do Riverside Club i zbieraj punkty za każdą wizytę. Korzystaj z nagród, specjalnych ofert i przywilejów przygotowanych dla naszych stałych gości.',
+    ctaHref: '/loyalty-priv',
+    image: cardImagePriv,
+  },
+  {
+    title: 'Goście biznesowi',
+    description: 'Nagradzaj pracowników, buduj relacje z klientami i korzystaj z dedykowanych korzyści dla firm współpracujących z Riverside. Program dopasowujemy do potrzeb Twojego biznesu.',
+    ctaHref: '/loyalty-biz',
+    image: cardImageBiz,
+  },
+];
+---
+
+<BaseLayout
+  title="Program lojalnościowy"
+  description="Program lojalnościowy Riverside. Dym i Ogień — zbieraj pieczątki za każdą wizytę i odbieraj wyjątkowe nagrody. Programy dla klientów indywidualnych i dla firm."
+>
+
+  {/* Hero */}
+  <section class="section-py">
+    <div class="container mx-auto px-4">
+      <h1 class="font-heading text-4xl md:text-6xl tracking-tigh mb-20 text-glass-white">Program lojalnościowy</h1>
+
+      <div class="flex flex-wrap -mx-4 items-center">
+        <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0">
+          <div class="max-w-lg mx-auto">
+            <h2 class="text-glass-white section-heading tracking-tight mb-6">Nagradzamy każdą wizytę</h2>
+            <p class="prose-p max-w-sm mb-10">Zbieraj pieczątki za każdą wizytę i wymieniaj je na kolacje, wina i doświadczenia, których nie ma w menu. Mamy dwa programy: dla gości indywidualnych i dla firm.</p>
+            <a
+              href="#zarejestruj-sie"
+              class="group inline-flex py-5 px-8 items-center justify-center leading-none font-medium text-glass-white bg-glass-accent-amber hover:bg-glass-accent-glow rounded-full transition-colors duration-200"
+            >
+              <span class="mr-2">Dołącz do programu</span>
+              <span class="group-hover:rotate-45 transform transition duration-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-1/2 px-4">
+          {heroImage ? (
+            <div class="relative rounded-3xl overflow-hidden shadow-xl shadow-black/50">
+              <img
+                class="block w-full rounded-3xl"
+                src={heroSrc}
+                srcset={heroSrcset}
+                sizes="(min-width: 1024px) 42vw, 100vw"
+                alt={heroImageAlt}
+                aria-hidden={heroImageAlt ? undefined : 'true'}
+                loading="eager"
+                decoding="async"
+              />
+              <div class="absolute inset-0 rounded-3xl bg-gradient-to-t from-glass-accent-amber/40 via-glass-black/20 to-transparent pointer-events-none"></div>
+            </div>
+          ) : (
+            <div
+              class="flex aspect-[4/3] items-center justify-center bg-glass-anthracite border border-glass-border rounded-3xl"
+              role="img"
+              aria-label={heroImageAlt || 'Zdjęcie wkrótce'}
+            >
+              <svg class="w-12 h-12 text-glass-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5h16v14H4V5zm0 14 5-6 3 3 4-5 4 4M9 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Jak to działa? */}
+  <section class="section-py">
+    <div class="container mx-auto px-4">
+      <h2 class="section-heading mb-20">Jak to działa?</h2>
+
+      <div class="flex flex-wrap -mx-3">
+        {steps.map(({ title, description }) => (
+          <div class="w-full lg:w-1/3 px-3 mb-6 lg:mb-0">
+            <a
+              href="#zarejestruj-sie"
+              class="group block h-full w-full px-9 py-14 border border-glass-border rounded-3xl shadow-lg transition duration-300 hover:border-glass-accent-amber"
+            >
+              <h3 class="text-3xl xs:text-4xl text-glass-white group-hover:text-glass-accent-amber mb-6 transition duration-300">
+                {title}
+              </h3>
+              <p class="text-glass-muted group-hover:text-glass-white transition duration-300">
+                {description}
+              </p>
+            </a>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Cyfrowa karta w telefonie */}
+  <section class="section-py">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="font-heading text-4xl md:text-6xl tracking-tighter mb-14 text-glass-white">
+          <span class="block">Riverside Club to cyfrowa karta w telefonie</span>
+          <span class="inline-block text-glass-accent-amber border-b-4 border-glass-accent-amber">żadnego plastiku</span>
+        </h2>
+
+        <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12">
+          {wallets.map(({ label, icon }) => (
+            <div class="flex flex-col items-center">
+              <span class="flex h-12 w-12 items-center justify-center rounded-xl bg-glass-smoke border border-glass-border shadow-lg p-1">
+                <img src={withBase(icon)} alt="" class="h-full w-full object-contain" loading="lazy" decoding="async" />
+              </span>
+              <span class="mt-2 text-sm font-semibold text-glass-muted">{label}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Zarejestruj się */}
+  <section id="zarejestruj-sie" class="section-py">
+    <div class="container mx-auto px-4">
+      <h2 class="section-heading mb-20 text-center">Zarejestruj się w Riverside Club</h2>
+
+      <div class="flex flex-wrap -mx-4">
+        {signupCards.map(({ title, description, ctaHref, image }) => {
+          const photoSrc = image ? cloudinaryUrl(image, { width: 400 }) : null;
+          const photoSrcset = image ? cloudinarySrcset(image, [300, 400, 600]) : null;
+
+          return (
+            <div class="w-full lg:w-1/2 px-4 mb-8 lg:mb-0">
+              <div class="flex flex-col max-w-md mx-auto lg:max-w-none px-8 pt-16 pb-16 h-full border border-glass-border rounded-3xl transition-colors duration-300 hover:border-glass-accent-amber">
+                <div class="max-w-sm mx-auto mb-auto text-center">
+                  <h3 class="text-4xl tracking-tight mb-6 text-glass-white">{title}</h3>
+                  <p class="prose-p mb-10">{description}</p>
+
+                  {image ? (
+                    <img
+                      class="block mb-10 mx-auto w-1/2"
+                      src={photoSrc}
+                      srcset={photoSrcset}
+                      sizes="12rem"
+                      alt=""
+                      aria-hidden="true"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ) : (
+                    <div
+                      class="flex mb-10 mx-auto w-1/2 aspect-square items-center justify-center bg-glass-anthracite border border-glass-border rounded-2xl"
+                      role="img"
+                      aria-label="Zdjęcie wkrótce"
+                    >
+                      <svg class="w-10 h-10 text-glass-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5h16v14H4V5zm0 14 5-6 3 3 4-5 4 4M9 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                      </svg>
+                    </div>
+                  )}
+
+                  <a
+                    href={ctaHref}
+                    class="group inline-flex py-5 px-8 items-center justify-center leading-none font-medium text-glass-white bg-glass-accent-amber hover:bg-glass-accent-glow rounded-full transition-colors duration-200"
+                  >
+                    <span class="mr-2">Przejdź do rejestracji</span>
+                    <span class="group-hover:rotate-45 transform transition duration-100">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z"/>
+                      </svg>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

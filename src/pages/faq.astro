@@ -1,7 +1,6 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionCta from '../components/ui/SectionCta.astro';
 
 const faqs = await getCollection('faq');
 const sorted = faqs.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
@@ -9,7 +8,7 @@ const sorted = faqs.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
 <BaseLayout
   title="FAQ — zamówienia i wycena prac ze szkła dmuchanego"
-  description="Najczęstsze pytania o projekty ze szkła, wyceny, terminy realizacji, warsztaty i vouchery w pracowni MR Glass Project w Warszawie."
+  description="Najczęstsze pytania o projekty ze szkła, wyceny, terminy realizacji i warsztaty w pracowni MR Glass Project w Warszawie."
 >
 
   <section class="section-py">
@@ -69,12 +68,5 @@ const sorted = faqs.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
       </div>
     </div>
   </section>
-
-  <SectionCta
-    title="Nie znalazłeś odpowiedzi? Napisz lub zadzwoń!"
-    description="Każde zapytanie traktujemy tak samo — niezależnie czy chodzi o wazon, instalację w hotelu czy prezent na rocznicę. Odpowiadamy w ciągu 24h w dni robocze."
-    ctaLabel="Napisz do nas"
-    ctaHref="/contact"
-  />
 
 </BaseLayout>

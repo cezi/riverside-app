@@ -1,0 +1,73 @@
+---
+import { cloudinaryVideoUrl, cloudinaryVideoPoster } from '../../utils/cloudinary';
+
+interface Props {
+  title?: string;
+  paragraphs?: string[];
+  video?: string;
+  poster?: string;
+}
+
+const {
+  title = 'Pilsner Urquell, świeżo dostarczany. Prosto z tanka',
+  paragraphs = [
+    'Jako pierwsi na Pomorzu serwujemy złotego, niepasteryzowanego Pilsnera prosto z tanka. Żywe, niefiltrowane, w idealnej temperaturze.',
+    'Bo wierzymy, że dbałość o jakość nie kończy się na kuchni. Dlatego równie dużą wagę przykładamy do tego, co trafia do kufla. Piwo z tanka nie jest u nas atrakcją — jest standardem.',
+  ],
+  video = 'riverside-dym-ogien-gdansk-sekcja-video-piwo-tank-1',
+  poster,
+} = Astro.props;
+
+const mobileSrc  = video ? cloudinaryVideoUrl(video, { width: 480, aspectRatio: '9:16', crop: 'fill' }) : null;
+const desktopSrc = video ? cloudinaryVideoUrl(video, { width: 720, aspectRatio: '9:16', crop: 'fill' }) : null;
+const posterUrl  = video
+  ? cloudinaryVideoPoster(poster ?? video, { width: 720, aspectRatio: '9:16', crop: 'fill', startOffset: 4 })
+  : null;
+---
+
+<section class="section-py">
+  <div class="container mx-auto px-4">
+    <div class="px-8 sm:px-12 xl:px-32">
+      <div class="flex flex-wrap -mx-4 items-center">
+
+        <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0">
+          <div class="max-w-lg mx-auto">
+            <h2 class="section-heading lg:max-w-md">{title}</h2>
+            {paragraphs.map((p) => (
+              <p class="prose-p lg:max-w-md mb-10">{p}</p>
+            ))}
+          </div>
+        </div>
+
+        <div class="w-full lg:w-1/2 px-4">
+          {video ? (
+            <div class="relative rounded-3xl max-w-sm overflow-hidden shadow-xl shadow-black/50 border border-glass-border">
+              <video
+                class="block w-full aspect-[9/16] max-w-sm object-contain rounded-3xl"
+                controls
+                playsinline
+                preload="metadata"
+                poster={posterUrl}
+              >
+                <source media="(min-width: 1024px)" src={desktopSrc} type="video/mp4" />
+                <source src={mobileSrc} type="video/mp4" />
+                Twoja przeglądarka nie obsługuje odtwarzania wideo.
+              </video>
+            </div>
+          ) : (
+            <div
+              class="flex aspect-[9/16] max-w-sm mx-auto items-center justify-center bg-glass-anthracite border border-glass-border rounded-3xl"
+              role="img"
+              aria-label="Wideo wkrótce"
+            >
+              <svg class="w-14 h-14 text-glass-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 6.82v10.36a1 1 0 0 0 1.5.87l9-5.18a1 1 0 0 0 0-1.74l-9-5.18A1 1 0 0 0 8 6.82z"/>
+              </svg>
+            </div>
+          )}
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

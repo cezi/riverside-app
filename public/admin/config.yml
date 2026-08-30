@@ -1,13 +1,13 @@
 backend:
   name: github
-  repo: mrglassproject/mrglassproject.github.io
+  repo: cezi/riverside-app
   branch: main
 
 media_libraries:
   cloudinary:
     config:
-      cloud_name: "mrglassproject"
-      api_key: "822727937946891"
+      cloud_name: "riverside"
+      api_key: "156475955429289"
       default_transformations:
         - - quality: auto
             fetch_format: auto
@@ -37,10 +37,10 @@ collections:
       - { name: published, label: Opublikowany,  widget: boolean, default: false }
       - { name: body,      label: Treść,         widget: markdown }
 
-  - name: projects
+  - name: gallery
     label: Realizacje
     label_singular: Realizacja
-    folder: src/content/projects
+    folder: src/content/gallery
     create: true
     slug: "{{slug}}"
     fields:
@@ -49,70 +49,55 @@ collections:
         label: Kategoria
         widget: select
         options:
-          - { label: "Dla domu", value: dla-domu }
-          - { label: "Dla firm", value: dla-firm }
-      - name: images
-        label: Zdjęcia
+          - { label: "Lokal", value: Lokal }
+          - { label: "Wnętrza", value: Wnetrza }
+          - { label: "Tank", value: Tank }
+          - { label: "Chef", value: Chef }
+          - { label: "Dania", value: Dania }
+      - name: media
+        label: Zdjęcia / wideo
         widget: list
-        label_singular: Zdjęcie
-        thumbnail: image
+        label_singular: Plik
+        thumbnail: file
         collapsed: true
         fields:
-          - name: image
-            label: Zdjęcie
-            widget: image
+          - name: file
+            label: Zdjęcie lub wideo
+            hint: "Z biblioteki Cloudinary można wybrać zarówno zdjęcie, jak i plik wideo (mp4 itp.)."
+            widget: file
             required: true
           - name: alt
-            label: Tekst ALT
+            label: Tekst ALT / opis
             widget: string
             required: false
 
-      - { name: description, label: Opis,             widget: text,    required: false }
-      - { name: year,        label: Rok,              widget: number,  required: false }
-      - { name: dimensions,  label: Wymiary,          widget: text,    required: false }
       - { name: order, label: Kolejność, widget: number, default: 0, required: false, value_type: int }
       - { name: published,   label: Opublikowana,     widget: boolean, default: true }
 
-  - name: workshops
-    label: Warsztaty
-    label_singular: Warsztat
-    folder: src/content/workshops
+  - name: menu
+    label: Menu
+    label_singular: Danie
+    folder: src/content/menu
     create: true
     slug: "{{slug}}"
     fields:
-      - { name: title,          label: Tytuł,               widget: string }
-      - { name: description,    label: Opis,                widget: text }
-      - { name: duration,       label: Czas trwania,        widget: string }
-      - { name: maxPersons,     label: Maks. osób,          widget: number }
-      - { name: price,          label: Cena (zł),           widget: number }
-      - { name: pricePair,      label: Cena dla 2 osób,     widget: number,  required: false }
-      - { name: pricePairLabel, label: Etykieta pary,       widget: string,  required: false }
-      - { name: voucherPair,    label: Voucher dla pary,    widget: boolean, default: true }
-      - name: level
-        label: Poziom
+      - { name: category, label: Kategoria, widget: string, hint: "Nazwa kategorii, np. Przekąski. Musi być identycznie wpisana przy wszystkich daniach tej samej kategorii." }
+      - { name: name, label: Nazwa dania, widget: string }
+      - { name: description, label: Składniki / opis, widget: text, required: false }
+      - { name: price, label: Cena, widget: string, hint: "np. 48,90 zł lub 21,90 / 36,90 zł" }
+      - { name: weight, label: Gramatura, widget: string, required: false, hint: "np. 200/450 g" }
+      - name: tags
+        label: Etykiety
         widget: select
-        options:
-          - { label: Fusing,       value: fusing }
-          - { label: Podstawowy,   value: podstawowy }
-          - { label: Zaawansowany, value: zaawansowany }
-          - { label: Indywidualny, value: indywidualny }
-      - { name: setmoreUrl,  label: Link Setmore,        widget: string }
-      - { name: stripeUrl1,  label: Stripe link 1 osoba, widget: string, required: false }
-      - { name: stripeUrl2,  label: Stripe link 2 osoby, widget: string, required: false }
-      - { name: active,      label: Aktywny,             widget: boolean, default: true }
-      - { name: featured,    label: Wyróżniony,          widget: boolean, default: false }
-      - { name: order,       label: Kolejność,           widget: number,  default: 0 }
-      - name: pricingTiers
-        label: Cennik (tiery)
-        widget: list
+        multiple: true
         required: false
-        fields:
-          - { name: persons,    label: Liczba osób,  widget: number }
-          - { name: price,      label: Cena (zł),    widget: number }
-          - { name: label,      label: Etykieta,     widget: string,  required: false }
-          - { name: setmoreUrl, label: Link Setmore, widget: string }
-          - { name: stripeUrl,  label: Link Stripe,  widget: string,  required: false }
-      - { name: body, label: Opis rozszerzony, widget: markdown, required: false }
+        options: [Pikantne, Wegetariańskie, Polecane]
+      - name: image
+        label: Zdjęcie dania
+        widget: file
+        required: false
+      - { name: order, label: Kolejność, widget: number, default: 0, required: false, value_type: int, hint: "Ustala kolejność dania w kategorii ORAZ kolejność samych kategorii na stronie (decyduje najniższy numer w danej kategorii)." }
+      - { name: published, label: Opublikowane, widget: boolean, default: true }
 
   - name: testimonials
     label: Opinie
@@ -137,17 +122,6 @@ collections:
       - { name: answer,   label: Odpowiedź, widget: text }
       - { name: order,    label: Kolejność, widget: number, default: 0 }
 
-  - name: voucherfaq
-    label: FAQ Vouchery
-    label_singular: Pytanie FAQ Vouchery
-    folder: src/content/voucherfaq
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { name: question, label: Pytanie,   widget: string }
-      - { name: answer,   label: Odpowiedź, widget: text }
-      - { name: order,    label: Kolejność, widget: number, default: 0 }
-
   - name: pages
     label: Strony prawne
     files:
@@ -159,8 +133,36 @@ collections:
           - { name: updatedAt, label: Data aktualizacji,  widget: datetime, required: true, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
           - { name: body,      label: Treść,              widget: markdown }
       - name: terms
-        label: Regulamin
+        label: Regulaminy
         file: src/content/pages/terms.md
+        fields:
+          - { name: title,     label: Tytuł,             widget: string }
+          - { name: updatedAt, label: Data aktualizacji,  widget: datetime, required: true, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+          - { name: body,      label: Treść,              widget: markdown }
+      - name: loyalty-priv
+        label: Program lojalnościowy — klienci indywidualni
+        file: src/content/pages/loyalty-priv.md
+        fields:
+          - { name: title,     label: Tytuł,             widget: string }
+          - { name: updatedAt, label: Data aktualizacji,  widget: datetime, required: true, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+          - { name: body,      label: Treść,              widget: markdown }
+      - name: loyalty-biz
+        label: Program lojalnościowy — firmy
+        file: src/content/pages/loyalty-biz.md
+        fields:
+          - { name: title,     label: Tytuł,             widget: string }
+          - { name: updatedAt, label: Data aktualizacji,  widget: datetime, required: true, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+          - { name: body,      label: Treść,              widget: markdown }
+      - name: terms-priv
+        label: Regulamin programu lojalnościowego — klienci indywidualni
+        file: src/content/pages/terms-priv.md
+        fields:
+          - { name: title,     label: Tytuł,             widget: string }
+          - { name: updatedAt, label: Data aktualizacji,  widget: datetime, required: true, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
+          - { name: body,      label: Treść,              widget: markdown }
+      - name: terms-biz
+        label: Regulamin programu lojalnościowego — firmy
+        file: src/content/pages/terms-biz.md
         fields:
           - { name: title,     label: Tytuł,             widget: string }
           - { name: updatedAt, label: Data aktualizacji,  widget: datetime, required: true, date_format: "YYYY-MM-DD", time_format: false, format: "YYYY-MM-DD" }
@@ -177,6 +179,7 @@ collections:
           - { name: email,   label: Email,   widget: string }
           - { name: address, label: Adres,   widget: string }
           - { name: hours,   label: Godziny, widget: string }
+          - { name: reservation_url, label: "Link do rezerwacji online (zjedz.my)", widget: string }
           - name: social
             label: Social media
             widget: object
@@ -185,15 +188,3 @@ collections:
               - { name: instagram,  label: Instagram URL,   widget: string, required: false }
               - { name: tiktok,     label: TikTok URL,      widget: string, required: false }
               - { name: googlemaps, label: Google Maps URL, widget: string, required: false }
-          - name: clients
-            label: Klienci (lista nazw)
-            widget: list
-            field: { name: name, label: Nazwa firmy, widget: string }
-          - name: ofertaFirmy
-            label: Oferta — realizacje dla firm (5 slugów)
-            widget: list
-            field: { name: item, label: Slug projektu, widget: string }
-          - name: ofertaDom
-            label: Oferta — realizacje dla domu (5 slugów)
-            widget: list
-            field: { name: item, label: Slug projektu, widget: string }

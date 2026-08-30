@@ -1,0 +1,107 @@
+---
+import { cloudinaryUrl, cloudinarySrcset } from '../../utils/cloudinary';
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  image?: string;
+  imageAlt?: string;
+}
+
+const {
+  title = 'Planujesz imprezę?',
+  subtitle = 'Zorganizuj ją w Riverside - dopniemy wszystko od menu po oprawę.',
+  ctaLabel = 'Poznaj szczegóły oferty',
+  ctaHref = '/events',
+  image = 'riverside-dym-ogien-gdansk-chef-michal-rybak',
+  imageAlt = 'Chef Michał Rybak',
+} = Astro.props;
+
+const desktopSrc = image ? cloudinaryUrl(image, { width: 700, aspectRatio: '3:4', crop: 'fill' }) : null;
+const desktopSrcset = image ? cloudinarySrcset(image, [500, 700, 900], { aspectRatio: '3:4', crop: 'fill' }) : null;
+const mobileSrc = image ? cloudinaryUrl(image, { width: 700, aspectRatio: '3:4', crop: 'fill' }) : null;
+const mobileSrcset = image ? cloudinarySrcset(image, [400, 700, 900], { aspectRatio: '3:4', crop: 'fill' }) : null;
+---
+
+<section class="section-py md:pb-0 overflow-hidden">
+  <div class="container mx-auto px-4">
+    <div class="px-8 md:px-12">
+      <div class="relative max-w-5xl mx-auto">
+
+        {image ? (
+          <img
+            class="hidden md:block absolute bottom-0 right-0 md:w-1/2 lg:w-5/12 xl:w-96 z-10"
+            src={desktopSrc}
+            srcset={desktopSrcset}
+            sizes="(min-width: 1024px) 40vw, 50vw"
+            alt={imageAlt}
+            aria-hidden={imageAlt ? undefined : 'true'}
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          <div
+            class="hidden md:flex absolute bottom-0 right-0 md:w-1/2 lg:w-5/12 xl:w-96 z-10 aspect-[3/4] items-center justify-center bg-glass-anthracite border border-glass-border rounded-2xl"
+            role="img"
+            aria-label={imageAlt || 'Zdjęcie wkrótce'}
+          >
+            <svg class="w-12 h-12 text-glass-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5h16v14H4V5zm0 14 5-6 3 3 4-5 4 4M9 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+            </svg>
+          </div>
+        )}
+
+        <div class="relative pt-12 md:pt-24 md:pb-36 xl:pt-36 lg:max-w-3xl">
+          <div class="max-w-sm sm:max-w-none">
+            <h2 class="section-heading relative z-10 mb-14">
+              {title}
+            </h2>
+            <p class="inline-block text-2xl sm:text-3xl leading-tight mb-10 text-glass-muted">
+              {subtitle}
+            </p>
+          </div>
+
+          {image ? (
+            <img
+              class="block mb-8 max-w-xs md:hidden rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-glass-border"
+              src={mobileSrc}
+              srcset={mobileSrcset}
+              sizes="(min-width: 480px) 20rem, 80vw"
+              alt={imageAlt}
+              aria-hidden={imageAlt ? undefined : 'true'}
+              loading="lazy"
+              decoding="async"
+            />
+          ) : (
+            <div
+              class="flex mb-8 max-w-xs aspect-[3/4] md:hidden items-center justify-center bg-glass-anthracite border border-glass-border rounded-2xl"
+              role="img"
+              aria-label={imageAlt || 'Zdjęcie wkrótce'}
+            >
+              <svg class="w-12 h-12 text-glass-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5h16v14H4V5zm0 14 5-6 3 3 4-5 4 4M9 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+            </div>
+          )}
+
+          <div class="relative z-10 flex flex-col sm:flex-row flex-wrap">
+            <a
+              href={ctaHref}
+              class="group inline-flex py-5 px-8 font-medium text-glass-white leading-none items-center justify-center bg-glass-accent-amber hover:bg-glass-accent-glow rounded-full transition-colors duration-150"
+            >
+              <span class="mr-2.5">{ctaLabel}</span>
+              <span class="group-hover:rotate-45 transform transition duration-75">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>

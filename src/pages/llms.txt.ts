@@ -7,11 +7,9 @@ import { SITE, CONTACT, SOCIAL } from '../config/site';
 import { getCollection } from 'astro:content';
 
 export const GET: APIRoute = async () => {
-  const workshops    = await getCollection('workshops',    e => e.data.active);
   const faqEntries   = await getCollection('faq');
 
   const sortedFaq = faqEntries.sort((a, b) => a.data.order - b.data.order);
-  const sortedWS  = workshops.sort((a, b) => a.data.order - b.data.order);
 
   const content = `# ${SITE.fullName}
 
@@ -44,19 +42,9 @@ Proces współpracy: brief → wycena (3–5 dni roboczych) → umowa o dzieło 
 - Personalizowane upominki i prezenty
 - Obiekty na zamówienie według pomysłu klienta
 
-## Warsztaty
-
-${sortedWS.map(w => `### ${w.data.title}
-- Poziom: ${w.data.level}
-- Czas: ${w.data.duration}
-- Maks. osób: ${w.data.maxPersons}
-- Cena: ${w.data.price} zł / osoba${w.data.pricePair ? ` (${w.data.pricePairLabel})` : ''}
-- Rezerwacja: ${w.data.setmoreUrl}
-`).join('\n')}
-
 ## FAQ
 
-- [Najczęściej zadawane pytania](.../faq/): Informacje o zamówieniach, warsztatach, voucherach i rezerwacjach
+- [Najczęściej zadawane pytania](.../faq/): Informacje o zamówieniach i rezerwacjach
 
 ## Klienci (wybrani)
 
@@ -80,11 +68,8 @@ Surowce: szkło recyklingowe (stłuczka z odpadów przemysłowych).
 
 - ${SITE.finalUrl}/ — Strona główna
 - ${SITE.finalUrl}/about/ — Historia Macieja Rafalskiego
-- ${SITE.finalUrl}/workshop/ — Pracownia, narzędzia, zespół
 - ${SITE.finalUrl}/portfolio/ — Galeria realizacji (dla domu / dla firm)
 - ${SITE.finalUrl}/services/ — Oferta dla firm i osób prywatnych
-- ${SITE.finalUrl}/workshops/ — Warsztaty ze szkła
-- ${SITE.finalUrl}/vouchers/ — Vouchery na warsztaty
 - ${SITE.finalUrl}/faq/ — Najczęstsze pytania
 - ${SITE.finalUrl}/contact/ — Kontakt i formularz
 - ${SITE.finalUrl}/posts/ — Blog

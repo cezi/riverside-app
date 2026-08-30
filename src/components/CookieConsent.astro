@@ -1,9 +1,11 @@
 ---
 ---
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css"/>
 
 <script type="module">
-import * as CookieConsent from 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.0.1/dist/cookieconsent.esm.js';
+import * as CookieConsent from 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.esm.js';
+
+window.CookieConsent = CookieConsent;
 
 window.addEventListener('load', () => {
   CookieConsent.run({
@@ -24,8 +26,19 @@ window.addEventListener('load', () => {
     categories: {
       necessary: {
         readOnly: true,
+        services: {
+          cc_cookie: { label: 'Zgoda na cookies (cc_cookie)' },
+          gtranslate: { label: 'GTranslate' },
+        },
       },
-      analytics: {},
+      functional: {},
+      analytics: {
+        services: {
+          ga: { label: 'Google Analytics' },
+          gtm: { label: 'Google Tag Manager' },
+        },
+      },
+      marketing: {},
     },
     language: {
       default: 'pl',
@@ -33,7 +46,7 @@ window.addEventListener('load', () => {
         pl: {
           consentModal: {
             title: 'Używamy plików cookies',
-            description: 'Ta strona używa plików cookies w celu analizy ruchu i poprawy działania serwisu. Możesz zaakceptować wszystkie lub wybrać które kategorie akceptujesz.',
+            description: 'Ta strona używa plików cookies niezbędnych do jej działania oraz — po Twojej zgodzie — funkcjonalnych, analitycznych i marketingowych. Możesz zaakceptować wszystkie lub wybrać które kategorie akceptujesz.',
             acceptAllBtn: 'Akceptuj wszystkie',
             acceptNecessaryBtn: 'Tylko niezbędne',
             showPreferencesBtn: 'Zarządzaj preferencjami',
@@ -44,16 +57,27 @@ window.addEventListener('load', () => {
             acceptNecessaryBtn: 'Tylko niezbędne',
             savePreferencesBtn: 'Zapisz preferencje',
             closeIconLabel: 'Zamknij',
+            serviceCounterLabel: 'Usługa|Usługi',
             sections: [
               {
-                title: 'Niezbędne cookies',
-                description: 'Wymagane do prawidłowego działania strony. Nie można ich wyłączyć.',
+                title: 'Niezbędne cookies (zawsze aktywne)',
+                description: 'Wymagane do prawidłowego i bezpiecznego funkcjonowania strony, w tym przełącznika języka (GTranslate). Nie można ich wyłączyć.',
                 linkedCategory: 'necessary',
               },
               {
+                title: 'Funkcjonalne cookies',
+                description: 'Umożliwiają korzystanie z dodatkowych funkcji strony, np. osadzonych usług zewnętrznych.',
+                linkedCategory: 'functional',
+              },
+              {
                 title: 'Analityczne cookies',
-                description: 'Pomagają nam zrozumieć jak użytkownicy korzystają ze strony (Google Analytics).',
+                description: 'Pomagają nam zrozumieć jak użytkownicy korzystają ze strony (Google Analytics, Google Tag Manager).',
                 linkedCategory: 'analytics',
+              },
+              {
+                title: 'Marketingowe cookies',
+                description: 'Służą do pomiaru skuteczności reklam, remarketingu i dopasowywania reklam do zainteresowań (np. Meta Pixel).',
+                linkedCategory: 'marketing',
               },
             ],
           },

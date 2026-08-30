@@ -1,0 +1,98 @@
+---
+import { cloudinaryUrl, cloudinarySrcset } from '../../utils/cloudinary';
+import { LOYALTY_CTA } from '../../config/site';
+
+interface Props {
+  title?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  image?: string;
+  imageAlt?: string;
+}
+
+const {
+  title = 'Zbieraj pieczątki za każdą wizytę i odbieraj wyjątkowe nagrody',
+  ctaLabel = LOYALTY_CTA.label,
+  ctaHref = LOYALTY_CTA.href,
+  image = 'riverside-dym-ogien-gdansk-phone-loyalty',
+  imageAlt = 'Grafika telefonu komórkowego z apliakcją lojalnościową Riverside',
+} = Astro.props;
+
+const desktopSrc = image ? cloudinaryUrl(image, { width: 700 }) : null;
+const desktopSrcset = image ? cloudinarySrcset(image, [500, 700, 900]) : null;
+const mobileSrc = image ? cloudinaryUrl(image, { width: 800 }) : null;
+const mobileSrcset = image ? cloudinarySrcset(image, [400, 800, 1200]) : null;
+---
+
+<section class="section-py">
+  <div class="container mx-auto px-4">
+    <div class="px-8 md:px-12">
+      <div class="relative max-w-5xl mx-auto">
+        {image ? (
+          <img
+            class="hidden md:block absolute bottom-0 right-0 md:-mr-24 sm:w-8/12"
+            src={desktopSrc}
+            srcset={desktopSrcset}
+            sizes="(min-width: 768px) 67vw, 0px"
+            alt={imageAlt}
+            aria-hidden={imageAlt ? undefined : 'true'}
+            loading="lazy"
+            decoding="async"
+          />
+        ) : (
+          <div
+            class="hidden md:flex absolute bottom-0 right-0 md:-mr-24 sm:w-8/12 aspect-[3/2] items-center justify-center bg-glass-anthracite border border-glass-border rounded-2xl"
+            role="img"
+            aria-label={imageAlt || 'Zdjęcie wkrótce'}
+          >
+            <svg class="w-12 h-12 text-glass-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5h16v14H4V5zm0 14 5-6 3 3 4-5 4 4M9 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+            </svg>
+          </div>
+        )}
+        <div class="relative max-w-sm xl:max-w-lg mx-auto md:mx-0 pt-20 pb-12 md:py-20">
+          <h2 class="section-heading mb-16">
+            {title}
+          </h2>
+
+          {image ? (
+            <img
+              class="md:hidden block w-full max-w-xs mx-auto mb-8"
+              src={mobileSrc}
+              srcset={mobileSrcset}
+              sizes="(min-width: 480px) 20rem, 80vw"
+              alt={imageAlt}
+              aria-hidden={imageAlt ? undefined : 'true'}
+              loading="lazy"
+              decoding="async"
+            />
+          ) : (
+            <div
+              class="flex md:hidden aspect-[3/2] max-w-xs mx-auto mb-8 items-center justify-center bg-glass-anthracite border border-glass-border rounded-2xl"
+              role="img"
+              aria-label={imageAlt || 'Zdjęcie wkrótce'}
+            >
+              <svg class="w-12 h-12 text-glass-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5h16v14H4V5zm0 14 5-6 3 3 4-5 4 4M9 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+            </div>
+          )}
+
+          <div class="flex max-w-sm">
+            <a
+              href={ctaHref}
+              class="group inline-flex py-5 px-8 items-center justify-center leading-none font-medium text-glass-white border border-glass-accent-amber rounded-full hover:bg-glass-accent-glow hover:border-glass-accent-glow transition-colors duration-200 shadow-lg"
+            >
+              <span class="mr-2">{ctaLabel}</span>
+              <span class="group-hover:rotate-45 transform transition duration-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z"/>
+                </svg>
+              </span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

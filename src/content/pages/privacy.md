@@ -1,211 +1,706 @@
 ---
-title: Polityka prywatności
-updatedAt: 2026-06-29
+title: Polityka prywatności i plików cookie
+updatedAt: "2026-08-20"
 ---
 
-## 1. Informacje ogólne
+Niniejsza Polityka prywatności określa zasady przetwarzania danych osobowych osób korzystających ze strony internetowej **riversidegdansk.pl**, kontaktujących się z restauracją Riverside Dym i Ogień, dokonujących rezerwacji oraz uczestniczących w programach lojalnościowych.
 
-1. Niniejsza Polityka prywatności określa zasady przetwarzania danych osobowych osób korzystających ze strony internetowej Glass Project, kontaktujących się ze Sprzedawcą, rezerwujących warsztaty, kupujących warsztaty albo kupujących vouchery na warsztaty.
-2. Polityka prywatności została przygotowana zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679, zwanym dalej „RODO”.
-3. Korzystanie ze strony internetowej, przesłanie formularza kontaktowego, dokonanie rezerwacji, zakup warsztatu albo zakup vouchera może wiązać się z przetwarzaniem danych osobowych.
-4. Podanie danych osobowych jest dobrowolne, ale w niektórych przypadkach niezbędne do obsługi zapytania, rezerwacji, zakupu, płatności, reklamacji albo realizacji obowiązków prawnych.
+Polityka opisuje również zasady stosowania plików cookie i podobnych technologii.
 
-## 2. Administrator danych osobowych
+## 1. Administrator danych osobowych
 
-1. Administratorem danych osobowych jest:
+Administratorem danych osobowych jest:
 
-   **Maciej Rafalski Glass Project**  
-   ul. Grójecka 79/7  
-   02-094 Warszawa  
-   NIP: 8762371621  
-   e-mail: mrglassproject@gmail.com  
-   tel.: +48 500 603 151
+**AJ Wyspa Sp. z o.o. Spółka Komandytowa**
+ul. Garbary 1
+80-827 Gdańsk
+Polska
 
-2. W sprawach dotyczących danych osobowych można kontaktować się z Administratorem:
-   - mailowo: mrglassproject@gmail.com,
-   - pisemnie: Maciej Rafalski Glass Project, ul. Grójecka 79/7, 02-094 Warszawa, z dopiskiem „Dane osobowe”.
+prowadząca restaurację **Riverside Dym i Ogień**, ul. Chmielna 10, 80-748 Gdańsk.
 
-3. Administrator nie powołał Inspektora Ochrony Danych, ponieważ nie ma takiego obowiązku prawnego, chyba że informacja na stronie zostanie zaktualizowana i będzie wskazywać inaczej.
+Kontakt w sprawach dotyczących danych osobowych:
+
+**e-mail:** kontakt@riversidegdansk.pl
+
+W sprawach dotyczących programu lojalnościowego można również kontaktować się pod adresem:
+
+**loyalty@riversidegdansk.pl**
+
+## 2. Zakres stosowania Polityki
+
+Polityka ma zastosowanie w szczególności do danych przetwarzanych w związku z:
+
+- korzystaniem ze strony internetowej riversidegdansk.pl,
+- kontaktem z restauracją,
+- wysyłaniem formularza kontaktowego,
+- rezerwacją stolika,
+- zapytaniami dotyczącymi imprez, wydarzeń i rezerwacji grupowych,
+- korzystaniem z programu lojalnościowego dla klientów indywidualnych,
+- korzystaniem z programu lojalnościowego dla firm,
+- komunikacją marketingową,
+- korzystaniem z cyfrowych kart lojalnościowych,
+- korzystaniem z plików cookie oraz podobnych technologii,
+- analizą sposobu korzystania ze strony,
+- działaniami reklamowymi i remarketingowymi,
+- realizacją obowiązków księgowych, podatkowych i prawnych.
 
 ## 3. Jakie dane możemy przetwarzać
 
-W zależności od sposobu korzystania ze strony lub usług Administrator może przetwarzać następujące kategorie danych:
+Zakres przetwarzanych danych zależy od sposobu korzystania z naszych usług.
 
-1. dane identyfikacyjne, takie jak imię i nazwisko,
-2. dane kontaktowe, takie jak adres e-mail i numer telefonu,
-3. dane potrzebne do rezerwacji warsztatów, w tym wybrany termin, rodzaj warsztatu, liczba uczestników i informacje organizacyjne przekazane przez Klienta,
-4. dane dotyczące zakupu warsztatu lub vouchera, w tym numer zamówienia, data zakupu, wartość transakcji, status płatności i zakres zamówienia,
-5. dane potrzebne do wystawienia dokumentów księgowych, jeżeli Klient poprosi o fakturę,
-6. dane związane z reklamacją, odstąpieniem od umowy lub innym zgłoszeniem,
-7. dane techniczne związane z korzystaniem ze strony, takie jak adres IP, identyfikatory plików cookies, dane przeglądarki, dane urządzenia, data i godzina wizyty oraz informacje o aktywności na stronie,
-8. dane przekazane dobrowolnie w treści wiadomości, formularzy lub korespondencji.
+### 3.1. Kontakt z restauracją
 
-## 4. Cele i podstawy prawne przetwarzania danych
+W przypadku kontaktu za pomocą formularza, poczty elektronicznej, telefonu lub innych kanałów komunikacji możemy przetwarzać:
 
-Dane osobowe są przetwarzane w następujących celach i na następujących podstawach prawnych:
+- imię i nazwisko,
+- adres e-mail,
+- numer telefonu,
+- nazwę firmy,
+- treść wiadomości,
+- informacje przekazane dobrowolnie w toku korespondencji.
 
-1. **Obsługa zapytań i kontaktu z Klientem**  
-   Dane są przetwarzane w celu udzielenia odpowiedzi na wiadomość, zapytanie lub zgłoszenie.  
-   Podstawa prawna: art. 6 ust. 1 lit. f RODO — prawnie uzasadniony interes Administratora polegający na prowadzeniu komunikacji z osobami zainteresowanymi ofertą.
+Prosimy o nieprzekazywanie danych szczególnych kategorii, jeżeli nie jest to konieczne do obsługi sprawy.
 
-2. **Rezerwacja warsztatów i obsługa udziału w warsztatach**  
-   Dane są przetwarzane w celu przyjęcia rezerwacji, potwierdzenia terminu, organizacji warsztatów, kontaktu organizacyjnego oraz obsługi ewentualnej zmiany terminu.  
-   Podstawa prawna: art. 6 ust. 1 lit. b RODO — wykonanie umowy lub podjęcie działań przed jej zawarciem.
+### 3.2. Rezerwacja stolika
 
-3. **Sprzedaż warsztatów i voucherów**  
-   Dane są przetwarzane w celu przyjęcia zamówienia, obsługi zakupu, przekazania potwierdzenia, realizacji vouchera oraz wykonania umowy.  
-   Podstawa prawna: art. 6 ust. 1 lit. b RODO.
+W związku z rezerwacją możemy przetwarzać m.in.:
 
-4. **Obsługa płatności elektronicznych**  
-   Dane są przetwarzane w celu umożliwienia dokonania płatności, potwierdzenia transakcji, obsługi zwrotów oraz wyjaśnienia ewentualnych problemów z płatnością.  
-   Podstawa prawna: art. 6 ust. 1 lit. b RODO oraz art. 6 ust. 1 lit. f RODO — prawnie uzasadniony interes Administratora polegający na zapewnieniu prawidłowej obsługi płatności.
+- imię i nazwisko,
+- numer telefonu,
+- adres e-mail,
+- datę i godzinę rezerwacji,
+- liczbę osób,
+- informacje dotyczące rezerwacji,
+- dodatkowe informacje przekazane podczas dokonywania rezerwacji.
 
-5. **Wystawianie i przechowywanie dokumentów księgowych**  
-   Dane są przetwarzane w celu wystawiania faktur, prowadzenia księgowości i realizacji obowiązków podatkowych.  
-   Podstawa prawna: art. 6 ust. 1 lit. c RODO — obowiązek prawny ciążący na Administratorze.
+Rezerwacje internetowe mogą być obsługiwane za pośrednictwem zewnętrznego systemu **zjedz.my**.
 
-6. **Obsługa reklamacji, zwrotów, odstąpień od umowy i roszczeń**  
-   Dane są przetwarzane w celu rozpatrywania zgłoszeń, reklamacji, odstąpień od umowy, prowadzenia korespondencji oraz dochodzenia lub obrony roszczeń.  
-   Podstawa prawna: art. 6 ust. 1 lit. c RODO, jeżeli obowiązek wynika z przepisów prawa, oraz art. 6 ust. 1 lit. f RODO — prawnie uzasadniony interes Administratora.
+### 3.3. Rezerwacje grupowe, imprezy i wydarzenia
 
-7. **Marketing własnych usług**  
-   Dane mogą być przetwarzane w celu informowania o ofercie, warsztatach, wydarzeniach lub promocjach, jeżeli Klient wyraził zgodę albo jeżeli przepisy prawa pozwalają na kontakt w ramach prawnie uzasadnionego interesu Administratora.  
-   Podstawa prawna: art. 6 ust. 1 lit. a RODO — zgoda, albo art. 6 ust. 1 lit. f RODO — prawnie uzasadniony interes Administratora.
+W przypadku zapytań dotyczących imprez prywatnych, firmowych lub rezerwacji grupowych możemy przetwarzać:
 
-8. **Prowadzenie strony internetowej, bezpieczeństwo i statystyki techniczne**  
-   Dane techniczne mogą być przetwarzane w celu zapewnienia prawidłowego działania strony, jej bezpieczeństwa, wykrywania nadużyć, prowadzenia podstawowych statystyk i rozwiązywania problemów technicznych.  
-   Podstawa prawna: art. 6 ust. 1 lit. f RODO — prawnie uzasadniony interes Administratora.
+- imię i nazwisko osoby kontaktowej,
+- nazwę firmy,
+- adres e-mail,
+- numer telefonu,
+- informacje dotyczące planowanego wydarzenia,
+- dane potrzebne do przygotowania oferty, umowy lub rozliczenia.
 
-## 5. Płatności Stripe i Przelewy24
+### 3.4. Program lojalnościowy
 
-1. Płatności za warsztaty i vouchery są obsługiwane przez zewnętrznego operatora płatności Stripe.
-2. W zależności od wybranej metody płatności Klient może korzystać także z Przelewy24 jako metody płatności dostępnej przez Stripe.
-3. W celu realizacji płatności dane Klienta mogą być przekazywane do Stripe oraz — w zakresie koniecznym dla danej metody płatności — do Przelewy24 lub podmiotów uczestniczących w obsłudze płatności, takich jak banki lub instytucje płatnicze.
-4. Administrator nie przechowuje pełnych danych kart płatniczych Klientów.
-5. Stripe oraz Przelewy24 mogą działać jako odrębni administratorzy danych w zakresie, w jakim samodzielnie określają cele i sposoby przetwarzania danych w ramach świadczenia usług płatniczych.
-6. Szczegółowe informacje dotyczące przetwarzania danych przez Stripe i Przelewy24 znajdują się w ich własnych politykach prywatności i obowiązkach informacyjnych.
+W związku z uczestnictwem w programie lojalnościowym możemy przetwarzać:
 
-## 6. Vouchery i rezerwacje terminów
+- imię i nazwisko,
+- adres e-mail,
+- numer telefonu,
+- nazwę firmy – w przypadku programu dla firm,
+- identyfikator cyfrowej karty lojalnościowej,
+- datę przystąpienia do programu,
+- status karty,
+- liczbę przyznanych pieczątek,
+- informacje o uzyskanych nagrodach,
+- informacje o wykorzystanych nagrodach,
+- daty aktywności w programie,
+- informacje niezbędne do weryfikacji uprawnienia do przyznania pieczątek lub nagród,
+- informacje dotyczące udzielonych zgód marketingowych.
 
-1. W przypadku zakupu vouchera Administrator przetwarza dane niezbędne do obsługi zakupu, wysłania potwierdzenia, identyfikacji vouchera, ustalenia terminu ważności oraz realizacji vouchera.
-2. W przypadku realizacji vouchera Administrator może przetwarzać dane osoby kupującej voucher oraz osoby, która z vouchera korzysta, jeżeli są to różne osoby.
-3. Jeżeli voucher jest przekazywany innej osobie, Klient powinien przekazać tej osobie podstawowe informacje o zasadach realizacji vouchera oraz o niniejszej Polityce prywatności.
-4. Przy rezerwacji terminu warsztatów Administrator przetwarza dane potrzebne do organizacji zajęć, kontaktu z uczestnikiem i obsługi ewentualnej zmiany terminu.
+Nie zapisujemy w systemie lojalnościowym pełnych danych dotyczących kart płatniczych.
 
-## 7. Formularze, e-mail i telefon
+Program lojalnościowy może być obsługiwany przy wykorzystaniu systemu **Loopy Loyalty**, którego operatorem jest PassKit.
 
-1. Kontakt ze Sprzedawcą może odbywać się poprzez formularze na stronie, pocztę elektroniczną lub telefon.
-2. Dane przekazane w wiadomości są przetwarzane wyłącznie w celu obsługi sprawy, której dotyczy kontakt, chyba że z treści wiadomości wynika inny cel przetwarzania.
-3. Korespondencja może być archiwizowana w celu wykazania jej przebiegu, obsługi zgłoszeń oraz ochrony przed roszczeniami.
+Dane związane z programem mogą być również przetwarzane przy wykorzystaniu systemów automatyzacji i komunikacji, w szczególności **Brevo** oraz **Make**.
 
-## 8. Newsletter i komunikacja marketingowa
+### 3.5. Dane księgowe i rozliczeniowe
 
-1. Jeżeli Administrator udostępnia newsletter lub możliwość zapisu na informacje marketingowe, zapis jest dobrowolny.
-2. Wysyłka newslettera lub informacji handlowych drogą elektroniczną odbywa się wyłącznie po wyrażeniu odpowiedniej zgody, jeżeli taka zgoda jest wymagana przez przepisy prawa.
-3. Klient może w każdej chwili zrezygnować z otrzymywania newslettera lub informacji marketingowych, korzystając z linku rezygnacji, jeżeli jest dostępny, albo kontaktując się z Administratorem.
-4. Wycofanie zgody nie wpływa na zgodność z prawem przetwarzania dokonanego przed jej wycofaniem.
+Jeżeli wymagają tego przepisy prawa lub charakter transakcji, możemy przetwarzać:
 
-## 9. Cookies i podobne technologie
+- imię i nazwisko,
+- nazwę firmy,
+- adres,
+- NIP,
+- dane dotyczące zamówienia lub usługi,
+- wartość transakcji,
+- dane znajdujące się na fakturach i innych dokumentach księgowych.
 
-1. Strona internetowa może korzystać z plików cookies oraz podobnych technologii.
-2. Cookies mogą być wykorzystywane w celu:
-   - zapewnienia prawidłowego działania strony,
-   - utrzymania bezpieczeństwa strony,
-   - zapamiętania wybranych ustawień użytkownika,
-   - obsługi formularzy, rezerwacji lub płatności,
-   - prowadzenia statystyk odwiedzin,
-   - integracji z zewnętrznymi usługami, takimi jak płatności, mapy, media społecznościowe lub narzędzia analityczne.
-3. Pliki cookies mogą być własne albo pochodzić od zewnętrznych dostawców usług wykorzystywanych na stronie.
-4. Użytkownik może zmienić ustawienia cookies w swojej przeglądarce internetowej, w tym zablokować lub usunąć pliki cookies.
-5. Ograniczenie stosowania cookies może wpłynąć na działanie niektórych funkcji strony, w szczególności formularzy, rezerwacji lub płatności.
-6. Jeżeli na stronie zostanie wdrożone narzędzie wymagające zgody na cookies lub podobne technologie, użytkownik otrzyma możliwość zarządzania zgodami zgodnie z obowiązującymi przepisami.
+### 3.6. Dane techniczne
 
-## 10. Odbiorcy danych
+Podczas korzystania ze strony internetowej mogą być automatycznie przetwarzane m.in.:
 
-Dane osobowe mogą być przekazywane następującym kategoriom odbiorców:
+- adres IP,
+- typ urządzenia,
+- typ i wersja przeglądarki,
+- system operacyjny,
+- identyfikatory internetowe,
+- przybliżona lokalizacja wynikająca z adresu IP,
+- data i godzina korzystania ze strony,
+- odwiedzane podstrony,
+- źródło wejścia na stronę,
+- informacje o interakcjach ze stroną,
+- informacje zapisane za pomocą plików cookie lub podobnych technologii.
 
-1. podmiotom świadczącym usługi hostingu, utrzymania strony internetowej i poczty elektronicznej,
-2. dostawcom systemów rezerwacji i formularzy online, jeżeli są wykorzystywane,
-3. operatorom płatności, w szczególności Stripe oraz — zależnie od wybranej metody płatności — Przelewy24,
-4. bankom, instytucjom płatniczym i podmiotom uczestniczącym w obsłudze transakcji,
-5. biuru rachunkowemu lub dostawcom usług księgowych,
-6. dostawcom narzędzi do obsługi korespondencji, newslettera lub komunikacji z Klientem,
-7. dostawcom narzędzi analitycznych, technicznych lub bezpieczeństwa strony, jeżeli są wykorzystywane,
-8. kancelariom prawnym, doradcom lub podmiotom wspierającym Administratora w dochodzeniu lub obronie roszczeń,
-9. organom publicznym, sądom, urzędom lub innym podmiotom uprawnionym do uzyskania danych na podstawie przepisów prawa.
+Zakres tych danych zależy od wyrażonych przez użytkownika zgód dotyczących plików cookie.
 
-## 11. Przekazywanie danych poza Europejski Obszar Gospodarczy
+## 4. Cele i podstawy prawne przetwarzania
 
-1. Co do zasady Administrator dąży do korzystania z usług podmiotów przetwarzających dane na terenie Europejskiego Obszaru Gospodarczego.
-2. Niektórzy zewnętrzni dostawcy usług, w szczególności dostawcy narzędzi płatniczych, hostingowych, analitycznych, komunikacyjnych lub technicznych, mogą przetwarzać dane poza Europejskim Obszarem Gospodarczym.
-3. W przypadku przekazywania danych poza Europejski Obszar Gospodarczy Administrator stosuje lub wymaga stosowania mechanizmów przewidzianych przez RODO, w szczególności standardowych klauzul umownych, decyzji stwierdzających odpowiedni stopień ochrony albo innych zabezpieczeń przewidzianych przez przepisy prawa.
-4. Stripe jako globalny dostawca usług płatniczych może przekazywać dane do państw poza Europejskim Obszarem Gospodarczym zgodnie z własnymi zasadami prywatności i mechanizmami transferu danych.
+### 4.1. Kontakt i udzielanie odpowiedzi
 
-## 12. Okres przechowywania danych
+Dane przekazane podczas kontaktu z nami przetwarzamy w celu:
 
-1. Dane związane z realizacją umowy, rezerwacją warsztatów, zakupem warsztatu lub zakupem vouchera będą przechowywane przez czas potrzebny do wykonania umowy, a następnie przez okres przedawnienia ewentualnych roszczeń.
-2. Dane związane z dokumentami księgowymi i podatkowymi będą przechowywane przez okres wymagany przepisami prawa, zasadniczo przez 5 lat od końca roku podatkowego, w którym powstał obowiązek podatkowy.
-3. Dane przetwarzane na podstawie zgody będą przechowywane do czasu wycofania zgody, chyba że istnieje inna podstawa prawna dalszego przetwarzania.
-4. Dane przetwarzane w celu obsługi korespondencji będą przechowywane przez czas potrzebny do załatwienia sprawy, a następnie przez okres uzasadniony ochroną przed roszczeniami.
-5. Dane techniczne i cookies będą przechowywane przez okres wynikający z ustawień przeglądarki, konfiguracji strony lub okresów przechowywania stosowanych przez dostawców zewnętrznych narzędzi.
-6. Dane przetwarzane w celu dochodzenia lub obrony roszczeń będą przechowywane do czasu przedawnienia roszczeń albo prawomocnego zakończenia postępowania, jeżeli takie postępowanie zostało wszczęte.
+- udzielenia odpowiedzi,
+- prowadzenia korespondencji,
+- obsługi zapytań,
+- przygotowania oferty.
 
-## 13. Prawa osób, których dane dotyczą
+Podstawą przetwarzania jest:
 
-Osobie, której dane dotyczą, przysługują prawa wynikające z RODO, w tym:
+- art. 6 ust. 1 lit. b RODO – jeżeli kontakt dotyczy zawarcia lub wykonania umowy,
+- art. 6 ust. 1 lit. f RODO – nasz prawnie uzasadniony interes polegający na prowadzeniu komunikacji z osobami zainteresowanymi działalnością restauracji.
 
-1. prawo dostępu do danych,
-2. prawo do otrzymania kopii danych,
-3. prawo sprostowania danych,
-4. prawo usunięcia danych,
-5. prawo ograniczenia przetwarzania,
-6. prawo przenoszenia danych,
-7. prawo sprzeciwu wobec przetwarzania danych,
-8. prawo wycofania zgody w dowolnym momencie, jeżeli dane są przetwarzane na podstawie zgody,
-9. prawo wniesienia skargi do Prezesa Urzędu Ochrony Danych Osobowych.
+### 4.2. Rezerwacja stolika
 
-W celu skorzystania z praw należy skontaktować się z Administratorem na adres: mrglassproject@gmail.com.
+Dane związane z rezerwacją przetwarzamy w celu:
 
-## 14. Prawo sprzeciwu
+- przyjęcia rezerwacji,
+- kontaktu dotyczącego rezerwacji,
+- zapewnienia odpowiedniej liczby miejsc,
+- obsługi zmian lub anulowania rezerwacji.
 
-1. Jeżeli dane są przetwarzane na podstawie prawnie uzasadnionego interesu Administratora, osoba, której dane dotyczą, może wnieść sprzeciw wobec takiego przetwarzania z przyczyn związanych z jej szczególną sytuacją.
-2. Jeżeli dane są przetwarzane na potrzeby marketingu bezpośredniego, osoba, której dane dotyczą, może wnieść sprzeciw w dowolnym momencie.
-3. Po wniesieniu skutecznego sprzeciwu wobec marketingu bezpośredniego dane nie będą dalej przetwarzane w tym celu.
+Podstawą prawną jest art. 6 ust. 1 lit. b RODO – podjęcie działań na żądanie osoby przed zawarciem umowy oraz wykonanie umowy dotyczącej świadczenia usług restauracyjnych.
 
-## 15. Dobrowolność podania danych
+### 4.3. Imprezy i wydarzenia
 
-1. Podanie danych jest dobrowolne, ale może być konieczne do:
-   - udzielenia odpowiedzi na zapytanie,
-   - dokonania rezerwacji,
-   - zakupu warsztatu lub vouchera,
-   - obsługi płatności,
-   - wystawienia faktury,
-   - rozpatrzenia reklamacji,
-   - realizacji obowiązków prawnych Administratora.
-2. Niepodanie danych może uniemożliwić obsługę zapytania, rezerwację, zakup, płatność, wystawienie faktury albo rozpatrzenie zgłoszenia.
+Dane przetwarzamy w celu:
 
-## 16. Zautomatyzowane podejmowanie decyzji i profilowanie
+- przygotowania oferty,
+- ustalenia warunków wydarzenia,
+- realizacji wydarzenia,
+- rozliczenia usługi,
+- dochodzenia lub obrony ewentualnych roszczeń.
 
-1. Administrator nie podejmuje wobec Klientów decyzji opartych wyłącznie na zautomatyzowanym przetwarzaniu danych, które wywoływałyby wobec nich skutki prawne lub w podobny sposób istotnie na nich wpływały.
-2. Jeżeli na stronie wykorzystywane są narzędzia analityczne lub reklamowe, mogą one służyć do podstawowej analizy aktywności użytkowników albo dopasowania komunikatów marketingowych, ale nie są wykorzystywane przez Administratora do podejmowania decyzji opisanych w ust. 1.
+Podstawą jest odpowiednio:
 
-## 17. Bezpieczeństwo danych
+- art. 6 ust. 1 lit. b RODO,
+- art. 6 ust. 1 lit. c RODO,
+- art. 6 ust. 1 lit. f RODO.
 
-1. Administrator stosuje środki organizacyjne i techniczne odpowiednie do ryzyka naruszenia praw lub wolności osób, których dane dotyczą.
-2. Administrator chroni dane przed dostępem osób nieuprawnionych, utratą, zniszczeniem, nieuprawnioną zmianą lub ujawnieniem.
-3. Dostęp do danych mają wyłącznie osoby i podmioty, dla których jest to niezbędne do realizacji celów opisanych w Polityce prywatności.
-4. Administrator korzysta z zewnętrznych dostawców usług, którzy powinni zapewniać odpowiedni poziom ochrony danych osobowych.
+### 4.4. Program lojalnościowy
 
-## 18. Media społecznościowe i linki zewnętrzne
+Dane uczestników programu lojalnościowego przetwarzamy w celu:
 
-1. Strona może zawierać linki do profili Administratora w mediach społecznościowych, takich jak Facebook, Instagram, TikTok lub inne serwisy.
-2. Po kliknięciu w link prowadzący do zewnętrznego serwisu użytkownik korzysta z tego serwisu na zasadach określonych przez jego administratora.
-3. Administrator może przetwarzać dane osób kontaktujących się z nim przez media społecznościowe w celu prowadzenia komunikacji, obsługi zapytań, promocji działalności oraz ochrony przed roszczeniami.
-4. Administratorzy serwisów społecznościowych mogą przetwarzać dane użytkowników niezależnie od Administratora, zgodnie z własnymi politykami prywatności.
+- rejestracji uczestnika,
+- wydania i prowadzenia cyfrowej karty lojalnościowej,
+- naliczania pieczątek,
+- ustalania uprawnień do nagród,
+- realizacji nagród,
+- prowadzenia historii uczestnictwa,
+- zapobiegania nadużyciom,
+- obsługi pytań i reklamacji dotyczących programu.
 
-## 19. Zmiany Polityki prywatności
+Podstawą prawną jest przede wszystkim art. 6 ust. 1 lit. b RODO – wykonanie umowy wynikającej z przystąpienia do programu lojalnościowego.
 
-1. Administrator może zmienić Politykę prywatności w szczególności w przypadku zmiany przepisów prawa, zmiany sposobu działania strony, zmiany wykorzystywanych narzędzi, zmiany operatorów płatności lub zmiany zakresu oferowanych usług.
-2. Aktualna wersja Polityki prywatności jest publikowana na stronie internetowej.
-3. Polityka prywatności obowiązuje od dnia jej publikacji na stronie.
+W zakresie zapobiegania nadużyciom i ochrony praw Administratora podstawą może być również art. 6 ust. 1 lit. f RODO – prawnie uzasadniony interes Administratora.
 
+### 4.5. Marketing bezpośredni
+
+Jeżeli użytkownik wyrazi odpowiednią zgodę, możemy wykorzystywać podane dane kontaktowe do przesyłania informacji dotyczących m.in.:
+
+- oferty restauracji,
+- wydarzeń,
+- promocji,
+- programu lojalnościowego,
+- nowych dań lub usług,
+- innych informacji marketingowych Riverside Dym i Ogień.
+
+W przypadku komunikacji elektronicznej oraz marketingu wykorzystującego telekomunikacyjne urządzenia końcowe stosujemy również wymagania wynikające z ustawy – Prawo komunikacji elektronicznej.
+
+Użytkownik może w dowolnym momencie:
+
+- wycofać zgodę,
+- wypisać się z komunikacji marketingowej,
+- wnieść sprzeciw wobec marketingu bezpośredniego.
+
+Wycofanie zgody nie wpływa na zgodność z prawem działań podjętych przed jej wycofaniem.
+
+### 4.6. Księgowość i podatki
+
+Dane znajdujące się w dokumentacji księgowej i podatkowej przetwarzamy w celu wykonania obowiązków wynikających z przepisów prawa.
+
+Podstawą jest art. 6 ust. 1 lit. c RODO.
+
+### 4.7. Dochodzenie i obrona roszczeń
+
+Dane mogą być przetwarzane w celu:
+
+- ustalenia roszczeń,
+- dochodzenia roszczeń,
+- obrony przed roszczeniami,
+- zabezpieczenia materiału dowodowego.
+
+Podstawą jest art. 6 ust. 1 lit. f RODO – prawnie uzasadniony interes Administratora polegający na ochronie jego praw.
+
+### 4.8. Bezpieczeństwo strony internetowej
+
+Dane techniczne mogą być przetwarzane w celu:
+
+- zapewnienia bezpieczeństwa serwisu,
+- zapobiegania atakom i nadużyciom,
+- wykrywania błędów,
+- zapewnienia prawidłowego działania infrastruktury.
+
+Podstawą jest art. 6 ust. 1 lit. f RODO – prawnie uzasadniony interes Administratora polegający na zapewnieniu bezpieczeństwa i prawidłowego działania serwisu.
+
+### 4.9. Statystyka i analityka
+
+Jeżeli użytkownik wyrazi zgodę na analityczne pliki cookie lub podobne technologie, dane mogą być wykorzystywane do:
+
+- mierzenia liczby odwiedzin,
+- analizowania sposobu korzystania ze strony,
+- sprawdzania źródeł ruchu,
+- poprawiania funkcjonalności strony.
+
+Podstawą wykorzystania niekoniecznych plików cookie i podobnych technologii jest zgoda użytkownika.
+
+### 4.10. Reklama i remarketing
+
+Jeżeli użytkownik wyrazi zgodę na marketingowe pliki cookie, dane mogą być wykorzystywane do:
+
+- mierzenia skuteczności reklam,
+- tworzenia grup odbiorców,
+- remarketingu,
+- ograniczania częstotliwości reklam,
+- dostosowywania reklam do zainteresowań użytkownika.
+
+Dotyczy to w szczególności narzędzi Meta oraz Google, jeżeli są aktywne na stronie.
+
+## 5. Czy podanie danych jest obowiązkowe?
+
+Podanie danych jest co do zasady dobrowolne.
+
+W niektórych przypadkach podanie określonych danych jest jednak niezbędne.
+
+Przykładowo:
+
+- bez danych kontaktowych możemy nie być w stanie odpowiedzieć na wiadomość;
+- bez wymaganych danych rezerwacyjnych możemy nie być w stanie przyjąć rezerwacji;
+- bez danych wymaganych podczas rejestracji nie będzie możliwe utworzenie karty lojalnościowej;
+- podanie danych wymaganych przepisami podatkowymi może być konieczne do wystawienia faktury.
+
+Podanie danych do celów marketingowych jest dobrowolne i nie jest warunkiem skorzystania z podstawowych usług restauracji.
+
+## 6. Odbiorcy danych
+
+Dane mogą być udostępniane podmiotom, z których usług korzystamy w związku z prowadzeniem restauracji i strony internetowej.
+
+Mogą to być w szczególności:
+
+- dostawcy hostingu i infrastruktury IT,
+- dostawcy usług przechowywania i serwowania plików multimedialnych (zdjęć, wideo),
+- dostawcy poczty elektronicznej,
+- administratorzy i serwisanci systemów informatycznych,
+- dostawcy systemów rezerwacyjnych,
+- dostawcy systemów lojalnościowych,
+- dostawcy systemów marketingowych i mailingowych,
+- dostawcy usług automatyzacji,
+- dostawcy narzędzi analitycznych,
+- dostawcy usług reklamowych,
+- dostawcy usług zabezpieczających serwis,
+- biuro rachunkowe,
+- kancelarie prawne i doradcy,
+- podmioty świadczące usługi związane z organizacją wydarzeń,
+- organy publiczne, jeżeli obowiązek przekazania danych wynika z przepisów prawa.
+
+W zależności od wykorzystywanych funkcjonalności odbiorcami lub podmiotami przetwarzającymi dane mogą być w szczególności:
+
+### Loopy Loyalty / PassKit
+
+System wykorzystywany do obsługi cyfrowych kart programu lojalnościowego.
+
+PassKit przetwarza dane uczestników programu na zlecenie Administratora w zakresie niezbędnym do funkcjonowania programu.
+
+### Brevo
+
+System wykorzystywany do obsługi komunikacji e-mail, zarządzania kontaktami oraz automatyzacji komunikacji.
+
+### Make
+
+System wykorzystywany do integracji i automatycznego przekazywania danych pomiędzy wykorzystywanymi przez Administratora systemami.
+
+### zjedz.my
+
+System wykorzystywany do obsługi internetowych rezerwacji stolików.
+
+### Cloudinary
+
+System wykorzystywany do przechowywania oraz serwowania zdjęć i plików wideo prezentowanych na stronie internetowej (w tym galerii, materiałów promocyjnych i menu).
+
+Cloudinary przetwarza dane w zakresie niezbędnym do dostarczania i optymalizacji plików multimedialnych, w tym adres IP i informacje techniczne dotyczące żądania pliku.
+
+### Google
+
+W zależności od ustawień strony możemy korzystać m.in. z:
+
+- Google Analytics,
+- Google Tag Manager,
+- innych narzędzi Google związanych z pomiarem ruchu lub reklamą.
+
+### Meta Platforms
+
+Możemy korzystać z technologii Meta, w tym Meta Pixel, służącej w szczególności do pomiaru skuteczności reklam i działań marketingowych.
+
+### Cloudflare
+
+Cloudflare może być wykorzystywany do:
+
+- zapewnienia bezpieczeństwa strony,
+- ochrony przed atakami,
+- obsługi ruchu sieciowego,
+- poprawy wydajności serwisu.
+
+### GTranslate
+
+Na stronie może być wykorzystywane rozwiązanie GTranslate umożliwiające prezentowanie treści w innych wersjach językowych.
+
+W zakresie, w jakim określony dostawca samodzielnie określa cele i sposoby przetwarzania danych, może działać również jako odrębny administrator danych zgodnie ze swoją polityką prywatności.
+
+## 7. Przekazywanie danych poza Europejski Obszar Gospodarczy
+
+Niektórzy dostawcy usług wykorzystywanych przez Administratora prowadzą działalność również poza Europejskim Obszarem Gospodarczym, w szczególności w Stanach Zjednoczonych.
+
+Dotyczyć to może m.in.:
+
+- PassKit / Loopy Loyalty,
+- Google,
+- Meta Platforms,
+- Cloudflare,
+- Cloudinary,
+- dostawców infrastruktury technicznej wykorzystywanej przez pozostałe systemy.
+
+W przypadku przekazywania danych do państwa spoza Europejskiego Obszaru Gospodarczego Administrator stosuje mechanizmy przewidziane przez RODO, w szczególności:
+
+- decyzję Komisji Europejskiej stwierdzającą odpowiedni stopień ochrony,
+- EU–US Data Privacy Framework – w przypadku podmiotów objętych tym mechanizmem,
+- standardowe klauzule umowne zatwierdzone przez Komisję Europejską,
+- inne prawnie dopuszczalne zabezpieczenia.
+
+Informację dotyczącą stosowanych zabezpieczeń można uzyskać, kontaktując się z Administratorem.
+
+## 8. Jak długo przechowujemy dane
+
+Dane przechowujemy nie dłużej, niż jest to niezbędne do realizacji celu, dla którego zostały zebrane.
+
+### 8.1. Dane z korespondencji
+
+Dane związane ze zwykłymi zapytaniami przechowujemy przez okres niezbędny do zakończenia korespondencji, a następnie przez okres uzasadniony możliwością ponownego kontaktu lub koniecznością wykazania przebiegu komunikacji.
+
+Jeżeli korespondencja dotyczy umowy, rezerwacji, reklamacji lub potencjalnego roszczenia, dane mogą być przechowywane do upływu odpowiednich terminów przedawnienia.
+
+### 8.2. Dane rezerwacyjne
+
+Dane dotyczące rezerwacji przechowujemy przez okres potrzebny do jej realizacji oraz przez okres niezbędny do obsługi ewentualnych reklamacji lub roszczeń.
+
+### 8.3. Program lojalnościowy
+
+Dane dotyczące programu lojalnościowego są przetwarzane przez okres uczestnictwa w programie.
+
+Po rezygnacji uczestnika albo dezaktywacji karty dane zostaną usunięte lub zanonimizowane, chyba że dalsze ich przechowywanie jest niezbędne:
+
+- do rozpatrzenia reklamacji,
+- do obrony lub dochodzenia roszczeń,
+- do wykonania obowiązków prawnych.
+
+Zasady ważności pieczątek i dezaktywacji kart określają odpowiednie regulaminy programu lojalnościowego.
+
+### 8.4. Dokumentacja księgowa
+
+Dokumentację podatkową i księgową przechowujemy przez okres wymagany właściwymi przepisami.
+
+### 8.5. Dane marketingowe
+
+Dane wykorzystywane na podstawie zgody przetwarzamy do:
+
+- wycofania zgody,
+- wniesienia skutecznego sprzeciwu,
+- zakończenia danego działania marketingowego,
+
+w zależności od tego, co nastąpi wcześniej.
+
+Możemy następnie zachować ograniczony zakres informacji niezbędny do wykazania udzielonej lub wycofanej zgody oraz respektowania sprzeciwu.
+
+### 8.6. Dane związane z plikami cookie
+
+Okres przechowywania zależy od rodzaju konkretnego pliku cookie lub podobnego identyfikatora.
+
+Szczegółowe informacje mogą być prezentowane w panelu ustawień plików cookie dostępnym na stronie.
+
+## 9. Prawa osób, których dane dotyczą
+
+Osobie, której dane dotyczą, przysługuje – w przypadkach przewidzianych przez RODO – prawo do:
+
+- uzyskania informacji o przetwarzaniu danych,
+- dostępu do danych,
+- otrzymania kopii danych,
+- sprostowania nieprawidłowych danych,
+- uzupełnienia niekompletnych danych,
+- usunięcia danych,
+- ograniczenia przetwarzania,
+- przenoszenia danych,
+- wniesienia sprzeciwu wobec przetwarzania,
+- wycofania zgody w dowolnym momencie.
+
+W celu skorzystania z praw można skontaktować się z Administratorem pod adresem:
+
+**kontakt@riversidegdansk.pl**
+
+Administrator może poprosić o informacje umożliwiające potwierdzenie tożsamości osoby składającej żądanie, jeżeli jest to konieczne do ochrony danych przed udostępnieniem osobie nieuprawnionej.
+
+## 10. Prawo do sprzeciwu
+
+Jeżeli dane są przetwarzane na podstawie art. 6 ust. 1 lit. f RODO, użytkownik ma prawo w dowolnym momencie wnieść sprzeciw wobec przetwarzania z przyczyn związanych z jego szczególną sytuacją.
+
+Jeżeli dane są przetwarzane na potrzeby **marketingu bezpośredniego**, użytkownik może w dowolnym momencie wnieść sprzeciw wobec takiego przetwarzania.
+
+Po otrzymaniu sprzeciwu wobec marketingu bezpośredniego dane nie będą dalej wykorzystywane w tym celu.
+
+## 11. Wycofanie zgody
+
+Jeżeli przetwarzanie odbywa się na podstawie zgody, użytkownik może ją wycofać w dowolnym momencie.
+
+Zgodę można wycofać m.in.:
+
+- poprzez ustawienia dostępne w wiadomości marketingowej,
+- poprzez panel ustawień plików cookie,
+- poprzez kontakt z Administratorem.
+
+Wycofanie zgody powinno być równie łatwe jak jej udzielenie.
+
+Wycofanie zgody nie wpływa na zgodność z prawem przetwarzania dokonanego przed jej wycofaniem.
+
+## 12. Skarga do organu nadzorczego
+
+Jeżeli użytkownik uważa, że jego dane osobowe są przetwarzane niezgodnie z prawem, ma prawo złożyć skargę do:
+
+**Prezesa Urzędu Ochrony Danych Osobowych.**
+
+Aktualne dane kontaktowe organu nadzorczego dostępne są na stronie internetowej Urzędu Ochrony Danych Osobowych.
+
+## 13. Zautomatyzowane podejmowanie decyzji i profilowanie
+
+Administrator nie podejmuje wobec użytkowników decyzji opartych wyłącznie na zautomatyzowanym przetwarzaniu danych, które wywoływałyby wobec nich skutki prawne lub w podobny sposób istotnie na nich wpływały w rozumieniu art. 22 RODO.
+
+W przypadku wyrażenia zgody na marketingowe pliki cookie dane dotyczące aktywności w Internecie mogą być wykorzystywane przez dostawców usług reklamowych do:
+
+- tworzenia grup odbiorców,
+- dopasowywania reklam,
+- remarketingu,
+- mierzenia skuteczności reklam.
+
+Takie działania mogą stanowić profilowanie marketingowe, ale nie skutkują podejmowaniem przez Riverside decyzji wywołujących wobec użytkownika skutki prawne lub podobnie istotne konsekwencje.
+
+## 14. Pliki cookie i podobne technologie
+
+Strona riversidegdansk.pl wykorzystuje pliki cookie oraz podobne technologie.
+
+Pliki cookie to niewielkie informacje zapisywane na urządzeniu użytkownika podczas korzystania ze strony internetowej.
+
+Możemy używać zarówno własnych plików cookie, jak i technologii dostarczanych przez podmioty trzecie.
+
+## 15. Kategorie plików cookie
+
+### 15.1. Niezbędne
+
+Pliki niezbędne są potrzebne do prawidłowego i bezpiecznego funkcjonowania strony.
+
+Mogą służyć m.in. do:
+
+- zapewnienia bezpieczeństwa,
+- obsługi ruchu sieciowego,
+- zapamiętania preferencji dotyczących zgód,
+- przełącznika języka strony (GTranslate),
+- zapewnienia podstawowej funkcjonalności strony.
+
+Dla plików niezbędnych zgoda nie jest wymagana, jeżeli spełnione są ustawowe warunki ich stosowania.
+
+### 15.2. Funkcjonalne
+
+Pliki funkcjonalne umożliwiają korzystanie z dodatkowych funkcji strony, np.:
+
+- zapamiętywania wybranych ustawień,
+- osadzonych usług zewnętrznych.
+
+Jeżeli dana technologia nie jest niezbędna do świadczenia usługi żądanej przez użytkownika, jej uruchomienie następuje po uzyskaniu odpowiedniej zgody.
+
+### 15.3. Analityczne
+
+Pliki analityczne służą do badania sposobu korzystania z serwisu.
+
+Możemy wykorzystywać w szczególności:
+
+**Google Analytics**
+
+Narzędzie może umożliwiać analizę m.in.:
+
+- liczby użytkowników,
+- liczby sesji,
+- odwiedzanych podstron,
+- źródeł ruchu,
+- urządzeń używanych do korzystania ze strony,
+- interakcji użytkowników z serwisem.
+
+Niekonieczne technologie analityczne są uruchamiane dopiero po uzyskaniu zgody użytkownika.
+
+### 15.4. Marketingowe
+
+Pliki marketingowe służą m.in. do:
+
+- mierzenia skuteczności kampanii reklamowych,
+- remarketingu,
+- tworzenia grup odbiorców,
+- dopasowywania reklam,
+- analizy konwersji.
+
+Możemy wykorzystywać w szczególności:
+
+**Meta Pixel**
+
+Technologia Meta może umożliwiać przekazywanie informacji dotyczących korzystania ze strony do Meta Platforms w celu pomiaru reklam i prowadzenia działań marketingowych.
+
+Marketingowe pliki cookie oraz podobne technologie nie są uruchamiane bez uprzedniej zgody użytkownika.
+
+## 16. Google Tag Manager
+
+Na stronie może być wykorzystywany **Google Tag Manager** jako narzędzie techniczne służące do zarządzania innymi skryptami i tagami.
+
+Samo użycie Google Tag Manager nie oznacza, że użytkownik wyraził zgodę na technologie analityczne lub marketingowe.
+
+Tagi wymagające zgody powinny być uruchamiane dopiero po dokonaniu przez użytkownika odpowiedniego wyboru w panelu zarządzania zgodami.
+
+## 17. Cloudflare
+
+Serwis może korzystać z usług Cloudflare w celu:
+
+- ochrony przed atakami,
+- zabezpieczenia infrastruktury,
+- filtrowania niebezpiecznego ruchu,
+- zwiększania dostępności i wydajności strony.
+
+Cloudflare może w związku z tym przetwarzać m.in. adres IP i informacje techniczne dotyczące połączenia.
+
+Technologie, które są ściśle niezbędne do zapewnienia bezpieczeństwa serwisu, mogą działać bez odrębnej zgody użytkownika.
+
+## 18. GTranslate
+
+Strona korzysta z usług GTranslate umożliwiających automatyczne tłumaczenie treści oraz przełączanie języka strony.
+
+Przełącznik języka traktowany jest jako element niezbędny do podstawowego funkcjonowania strony i jest dostępny niezależnie od wyrażonych zgód na pliki cookie, ponieważ służy wyłącznie realizacji funkcji wybranej bezpośrednio przez użytkownika.
+
+## 19. Zarządzanie zgodami na pliki cookie
+
+Podczas pierwszej wizyty użytkownik może otrzymać możliwość wyboru zakresu stosowanych technologii.
+
+Użytkownik powinien mieć możliwość:
+
+- zaakceptowania wszystkich niekoniecznych plików cookie,
+- odrzucenia wszystkich niekoniecznych plików cookie,
+- dokonania szczegółowego wyboru według kategorii.
+
+Brak zgody na analityczne lub marketingowe pliki cookie nie powinien uniemożliwiać korzystania z podstawowych funkcjonalności strony.
+
+Użytkownik może w dowolnym momencie zmienić swój wybór za pomocą funkcji:
+
+<button class="btn-primary" data-cc="show-preferencesModal" aria-haspopup="dialog">Zmień ustawienia cookies</button>
+
+dostępnej na stronie.
+
+Wycofanie zgody nie wpływa na zgodność z prawem przetwarzania dokonanego przed jej wycofaniem.
+
+Użytkownik może również usuwać lub blokować pliki cookie za pomocą ustawień swojej przeglądarki.
+
+## 20. Media społecznościowe i linki zewnętrzne
+
+Na stronie mogą znajdować się linki prowadzące do profili Riverside Dym i Ogień w serwisach społecznościowych, w szczególności Facebook lub Instagram.
+
+Po przejściu do zewnętrznego serwisu dane użytkownika są przetwarzane zgodnie z zasadami obowiązującymi u operatora tego serwisu.
+
+Samo umieszczenie zwykłego linku do serwisu społecznościowego nie oznacza automatycznie przekazywania danych do operatora tego serwisu.
+
+Jeżeli na stronie zostanie wykorzystana osadzona wtyczka, film, mapa, feed lub inny element zewnętrzny powodujący automatyczne połączenie z serwerami dostawcy, odpowiednie zasady dotyczące zgody i przetwarzania danych mają zastosowanie również do takiej technologii.
+
+## 21. Cyfrowa karta lojalnościowa
+
+Karta programu lojalnościowego może być przechowywana w kompatybilnym portfelu cyfrowym użytkownika.
+
+Jeżeli użytkownik zdecyduje się dodać kartę do zewnętrznej usługi, np. Apple Wallet lub Google Wallet, dalsze przetwarzanie danych związane z działaniem tej usługi może odbywać się zgodnie z zasadami jej operatora.
+
+Korzystanie z portfela cyfrowego nie jest równoznaczne z udzieleniem zgody na marketing Riverside Dym i Ogień.
+
+## 22. Program lojalnościowy a komunikacja marketingowa
+
+Przystąpienie do programu lojalnościowego nie oznacza automatycznie zgody na otrzymywanie marketingu.
+
+Komunikaty niezbędne do funkcjonowania programu, dotyczące np.:
+
+- utworzenia karty,
+- statusu uczestnictwa,
+- przyznania nagrody,
+- zmian dotyczących programu,
+- jego zakończenia,
+- bezpieczeństwa konta lub karty,
+
+mogą być przesyłane jako komunikacja związana z realizacją programu.
+
+Komunikacja reklamowa i promocyjna jest wysyłana zgodnie z właściwą podstawą prawną i wymaganymi zgodami.
+
+## 23. Bezpieczeństwo danych
+
+Administrator stosuje odpowiednie środki techniczne i organizacyjne mające chronić dane osobowe odpowiednio do charakteru, zakresu i ryzyka przetwarzania.
+
+Środki te mogą obejmować w szczególności:
+
+- szyfrowanie transmisji danych,
+- kontrolę dostępu do systemów,
+- ograniczenie dostępu do danych do osób upoważnionych,
+- zabezpieczenia infrastruktury informatycznej,
+- wykonywanie kopii zapasowych,
+- aktualizację oprogramowania,
+- odpowiednie umowy z podmiotami przetwarzającymi dane,
+- procedury reagowania na incydenty bezpieczeństwa.
+
+Mimo stosowania odpowiednich zabezpieczeń żaden system informatyczny nie gwarantuje całkowitego wyeliminowania ryzyka.
+
+## 24. Naruszenia ochrony danych
+
+W przypadku naruszenia ochrony danych osobowych Administrator podejmuje działania wymagane przez RODO.
+
+Jeżeli naruszenie może powodować wysokie ryzyko naruszenia praw lub wolności osób fizycznych, osoby, których dane dotyczą, zostaną poinformowane o naruszeniu zgodnie z obowiązującymi przepisami.
+
+## 25. Dane osób małoletnich
+
+Strona oraz program lojalnościowy nie są kierowane specjalnie do dzieci.
+
+Administrator nie zamierza świadomie pozyskiwać od dzieci danych osobowych w celach marketingowych.
+
+Jeżeli Administrator uzyska informację, że dane zostały przekazane przez osobę, która nie mogła skutecznie dokonać określonej czynności prawnej lub udzielić wymaganej zgody, podejmie odpowiednie działania zgodnie z obowiązującymi przepisami.
+
+## 26. Zmiany Polityki prywatności
+
+Polityka może być okresowo aktualizowana, w szczególności w przypadku:
+
+- zmian przepisów prawa,
+- zmian stosowanych technologii,
+- wdrożenia nowych usług,
+- zmiany dostawców usług,
+- zmiany sposobu przetwarzania danych.
+
+W przypadku istotnych zmian możemy dodatkowo poinformować o nich użytkowników odpowiednim komunikatem.
+
+## 27. Kontakt
+
+W sprawach dotyczących ochrony danych osobowych, realizacji praw wynikających z RODO oraz niniejszej Polityki można kontaktować się z Administratorem:
+
+**AJ Wyspa Sp. z o.o. Spółka Komandytowa**
+ul. Garbary 1
+80-827 Gdańsk
+
+e-mail: kontakt@riversidegdansk.pl
+
+W sprawach programu lojalnościowego: loyalty@riversidegdansk.pl

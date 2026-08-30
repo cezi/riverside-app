@@ -1,117 +1,125 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { cloudinaryUrl, cloudinarySrcset } from '../../utils/cloudinary';
+import { cloudinaryUrl } from '../../utils/cloudinary';
 import { withBase } from '../../config/site';
+
+// Pierwszy (specjalny) rząd: najnowszy post duży po lewej + 2 kolejne po prawej.
+// Kolejne rzędy: 3 posty na desktopie / 1 na mobile. Domyślnie widoczne 3 rzędy.
+const FIRST_ROW_COUNT = 3;
+const ROW_SIZE = 3;
+const INITIAL_ROWS = 3;
 
 const allPosts = await getCollection('posts', ({ data }) => data.published);
 const posts = allPosts
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .map(post => ({
+  .map((post) => ({
     id:      post.id,
     title:   post.data.title,
     excerpt: post.data.excerpt,
-    date:    post.data.date.toLocaleDateString('pl-PL', { day: 'numeric', month: 'long', year: 'numeric' }),
     href:    withBase(`/posts/${post.id}`),
-    thumb:   cloudinaryUrl(post.data.cover, { width: 600, aspectRatio: '16:9', crop: 'fill' }),
-    thumbSm: cloudinaryUrl(post.data.cover, { width: 400, aspectRatio: '16:9', crop: 'fill' }),
+    cover:   cloudinaryUrl(post.data.cover, { width: 900 }),
+    coverSm: cloudinaryUrl(post.data.cover, { width: 500 }),
   }));
+
+const featured = posts[0];
+const secondary = posts.slice(1, FIRST_ROW_COUNT);
+const rest = posts.slice(FIRST_ROW_COUNT);
 ---
 
 <BaseLayout
-  title="Blog — MR Glass Project"
-  description="Artykuły o szkle artystycznym, technikach hutniczych i pracy w pracowni Glass Project Warszawa."
+  title="Aktualności"
+  description="Aktualności z Riverside. Dym i Ogień - nowości w menu, wydarzenia i promocje."
 >
   <section class="section-py">
     <div class="container px-4 mx-auto">
 
-      <div class="max-w-2xl mx-auto text-center mb-16">
-        <h1 class="section-heading">Blog</h1>
+      <div class="max-w-2xl mb-16">
+        <h1 class="font-heading text-4xl md:text-6xl tracking-tighter text-glass-white">Aktualności</h1>
       </div>
 
-      <div
-        x-data={`{
-          visible: 6,
-          step: 6,
-          posts: ${JSON.stringify(posts)},
-          get shown() { return this.posts.slice(0, this.visible); },
-          get hasMore() { return this.visible < this.posts.length; },
-          loadMore() { this.visible += this.step; }
-        }`}
-      >
-
-        {posts.length === 0 && (
-          <p class="prose-p text-center">Brak opublikowanych wpisów.</p>
-        )}
-
-        <div class="relative flex flex-wrap -mx-4 -mb-8">
-
-          {/* Glow */}
-          <div class="absolute inset-0 bg-glass-accent-fire opacity-10 rounded-2xl blur-3xl pointer-events-none" aria-hidden="true"></div>
-
-          <template x-for="post in shown" x-bind:key="post.id">
-            <div class="relative w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
-              <a
-                x-bind:href="post.href"
-                class="block p-1 border border-white/20 hover:border-white/30 rounded-2xl transition-all duration-200 group h-full"
-              >
-                <div class="bg-gradient-to-t from-glass-anthracite to-glass-accent-fire/10 border border-white/10 p-6 pb-8 rounded-xl h-full flex flex-col">
-
-                  {/* Zdjęcie */}
-                  <div class="relative overflow-hidden rounded-lg border border-glass-border mb-6 h-40">
-                    <img
-                      x-bind:src="post.thumb"
-                      x-bind:alt="post.title"
-                      class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-                      loading="lazy"
-                      decoding="async"
-                    />
+      {posts.length > 0 ? (
+        <div
+          x-data={`{
+            visibleRows: ${INITIAL_ROWS},
+            rest: ${JSON.stringify(rest)},
+            get restVisible() {
+              const count = (this.visibleRows - 1) * ${ROW_SIZE};
+              return this.rest.slice(0, Math.max(0, count));
+            },
+            get hasMore() {
+              const count = (this.visibleRows - 1) * ${ROW_SIZE};
+              return this.rest.length > count;
+            },
+            showMore() { this.visibleRows++; },
+          }`}
+        >
+          {/* Pierwszy rząd — wyróżniony post po lewej, 2 mniejsze po prawej */}
+          <div class="flex flex-wrap -mx-4 xl:-mx-5 mb-8">
+            {featured && (
+              <div class="w-full lg:w-5/12 px-4 xl:px-5 mb-10 lg:mb-0">
+                <a href={featured.href} class="group block">
+                  <div class="relative mb-6 rounded-3xl overflow-hidden ring-1 ring-glass-border">
+                    <div class="absolute inset-0 bg-gradient-to-t from-glass-accent-amber/30 to-transparent pointer-events-none z-10 group-hover:from-glass-accent-amber/50 transition duration-300"></div>
+                    <img class="block w-full h-88 object-cover group-hover:scale-105 transition duration-500" src={featured.cover} alt={featured.title} loading="lazy" decoding="async" />
                   </div>
-
-                  {/* Data */}
-                  <span class="inline-block text-xs font-medium text-glass-muted mb-2" x-text="post.date"></span>
-
-                  {/* Tytuł */}
-                  <h2
-                    class="mb-3 text-xl md:text-2xl font-medium text-gradient font-heading group-hover:opacity-80 transition-opacity duration-200"
-                    x-text="post.title"
-                  ></h2>
-
-                  {/* Excerpt */}
-                  <p
-                    class="mb-6 text-base text-glass-muted leading-relaxed flex-1"
-                    x-text="post.excerpt"
-                  ></p>
-
-                  {/* Link */}
-                  <div class="flex items-center text-sm font-semibold text-glass-white group-hover:text-glass-accent-amber transition-colors duration-200">
-                    <span>Czytaj dalej</span>
-                    <svg class="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                    </svg>
+                  <div class="max-w-lg">
+                    <h2 class="max-w-md text-3xl sm:text-4xl tracking-tight mb-4 text-glass-white group-hover:text-glass-accent-amber transition duration-200">{featured.title}</h2>
+                    <p class="text-lg text-glass-muted">{featured.excerpt}</p>
                   </div>
+                </a>
+              </div>
+            )}
 
-                </div>
-              </a>
+            <div class="w-full lg:w-7/12 px-4 xl:px-5">
+              {secondary.map((post) => (
+                <a href={post.href} class="group block md:flex mb-6 last:mb-0 items-center rounded-3xl p-4 border border-glass-border hover:border-glass-accent-amber transition duration-300">
+                  <div class="relative w-full md:w-64 h-48 mb-6 md:mb-0 md:mr-12 rounded-2xl overflow-hidden shrink-0 ring-1 ring-glass-border">
+                    <div class="absolute inset-0 bg-gradient-to-t from-glass-accent-amber/30 to-transparent pointer-events-none z-10 group-hover:from-glass-accent-amber/50 transition duration-300"></div>
+                    <img class="block w-full h-full object-cover group-hover:scale-105 transition duration-500" src={post.cover} alt={post.title} loading="lazy" decoding="async" />
+                  </div>
+                  <div class="max-w-sm">
+                    <h2 class="max-w-md text-2xl md:text-3xl tracking-tight text-glass-white group-hover:text-glass-accent-amber transition duration-200">{post.title}</h2>
+                  </div>
+                </a>
+              ))}
             </div>
-          </template>
+          </div>
 
+          {/* Kolejne rzędy — 3 na desktopie, 1 na mobile */}
+          <div class="flex flex-wrap -mx-4 xl:-mx-5">
+            <template x-for="post in restVisible" x-bind:key="post.id">
+              <div class="w-full lg:w-1/3 px-4 xl:px-5 mb-10">
+                <a x-bind:href="post.href" class="group block h-full">
+                  <div class="relative mb-6 rounded-3xl overflow-hidden ring-1 ring-glass-border">
+                    <div class="absolute inset-0 bg-gradient-to-t from-glass-accent-amber/30 to-transparent pointer-events-none z-10 group-hover:from-glass-accent-amber/50 transition duration-300"></div>
+                    <img class="block w-full h-56 object-cover group-hover:scale-105 transition duration-500" x-bind:src="post.coverSm" x-bind:alt="post.title" loading="lazy" decoding="async" />
+                  </div>
+                  <h2 class="text-2xl tracking-tight text-glass-white group-hover:text-glass-accent-amber transition duration-200" x-text="post.title"></h2>
+                </a>
+              </div>
+            </template>
+          </div>
+
+          <div class="mt-12 text-center" x-show="hasMore">
+            <button
+              type="button"
+              x-on:click="showMore()"
+              class="group inline-flex py-5 px-8 font-medium text-glass-white hover:text-glass-black leading-none items-center justify-center border border-glass-border hover:bg-glass-accent-fire hover:border-glass-accent-fire rounded-full transition-colors duration-150 cursor-pointer"
+            >
+              <span class="mr-2.5">Pokaż więcej wpisów</span>
+              <span class="group-hover:rotate-45 transform transition duration-100">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+                </svg>
+              </span>
+            </button>
+          </div>
         </div>
+      ) : (
+        <p class="prose-p">Wpisy pojawią się tutaj wkrótce.</p>
+      )}
 
-        {/* Pokaż więcej */}
-        <div x-show="hasMore" class="mt-16 text-center">
-          <button
-            x-on:click="loadMore()"
-            class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-glass-white border border-glass-border hover:border-white/50 rounded-full transition-all duration-200 group"
-          >
-            Pokaż więcej wpisów
-            <svg class="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-            </svg>
-          </button>
-        </div>
-
-      </div>
     </div>
   </section>
 </BaseLayout>

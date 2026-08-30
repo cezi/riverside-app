@@ -1,4 +1,4 @@
-# MR Glass Project - mrglassproject.com
+# Riverside. Dym i Ogień - [www.riversidegdansk.pl](https://www.riversidegdansk.pl/)
 
-Aplikacja internetowa pracowni szkła artystycznego MR Glass Project z Warszawy. 
+Aplikacja internetowa restauracji Riverside. Dym i Ogień. 
 

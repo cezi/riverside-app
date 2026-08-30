@@ -1,0 +1,170 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { CONTACT, FORMSPARK, TURNSTILE, SITE } from '../config/site';
+
+const formAction = `${FORMSPARK.url}/${FORMSPARK.eventsFormId}`;
+
+const EVENT_TYPES = [
+  'Urodziny',
+  'Wesele',
+  'Komunia / Chrzciny',
+  'Jubileusz',
+  'Impreza firmowa',
+  'Integracja firmowa',
+  'Kolacja biznesowa',
+  'Szkolenie / Konferencja',
+  'Inna okazja',
+];
+---
+
+<BaseLayout
+  title="Zapytanie o organizację imprezy"
+  description="Zamów wstępnie termin imprezy w Riverside. Dym i Ogień nad Motławą w Gdańsku — kameralna sala VIP lub cały lokal na wyłączność. Wypełnij formularz, oddzwonimy."
+>
+
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+      <div class="flex flex-wrap -mx-4">
+
+        <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0">
+          <h1 class="mb-8 section-heading">Zapytanie o organizację imprezy</h1>
+          <p class="prose-p">
+            Organizujesz urodziny, wesele, jubileusz albo spotkanie firmowe? Wypełnij formularz, a nasz zespół skontaktuje się z Tobą, aby potwierdzić dostępność terminu i ustalić szczegóły.
+          </p>
+          <p class="prose-p">
+            To wstępne zgłoszenie — nie jest jeszcze potwierdzoną rezerwacją. Oferujemy kameralną salę VIP dla mniejszych grup oraz cały lokal na wyłączność dla większych wydarzeń.
+          </p>
+          <p class="prose-p">
+            Wolisz rozmawiać od razu? Zadzwoń: <a href={CONTACT.phoneEventsHref}>{CONTACT.phoneEvents}</a>.
+          </p>
+        </div>
+
+        <div class="w-full lg:w-1/2 px-4">
+          <form
+            action={formAction}
+            method="POST"
+            x-data="{ sending: false, sent: false, error: false }"
+            x-on:submit.prevent="
+            sending = true;
+            fetch($el.action, {
+            method: 'POST',
+            headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+            },
+            body: JSON.stringify(Object.fromEntries(new FormData($el)))
+            })
+            .then(r => { sent = r.ok; error = !r.ok; })
+            .catch(() => { error = true; })
+            .finally(() => { sending = false; })
+            "
+          >
+
+            <input type="hidden" name="_redirect" value="false" />
+            <div style="display:none" aria-hidden="true">
+              <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" />
+            </div>
+
+            <label for="name" class="sr-only">Imię</label>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              placeholder="Imię"
+              required
+              class="form-input mb-4"
+            />
+
+            <label for="company" class="sr-only">Firma</label>
+            <input
+              id="company"
+              type="text"
+              name="company"
+              placeholder="Firma (opcjonalnie)"
+              class="form-input mb-4"
+            />
+
+            <label for="phone" class="sr-only">Telefon</label>
+            <input
+              id="phone"
+              type="tel"
+              name="phone"
+              placeholder="Telefon"
+              required
+              class="form-input mb-4"
+            />
+
+            <label for="email" class="sr-only">E-mail</label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              placeholder="E-mail"
+              required
+              class="form-input mb-4"
+            />
+
+            <label for="event_type" class="sr-only">Rodzaj imprezy</label>
+            <select
+              id="event_type"
+              name="event_type"
+              required
+              class="form-input mb-4"
+            >
+              <option value="" disabled selected>Rodzaj imprezy</option>
+              {EVENT_TYPES.map((type) => (
+                <option value={type}>{type}</option>
+              ))}
+            </select>
+
+            <label for="guests" class="sr-only">Ilość osób</label>
+            <input
+              id="guests"
+              type="number"
+              name="guests"
+              placeholder="Ilość osób"
+              min="10"
+              required
+              class="form-input mb-4"
+            />
+
+            <label for="event_date" class="sr-only">Termin imprezy</label>
+            <input
+              id="event_date"
+              type="date"
+              name="event_date"
+              placeholder="Termin imprezy"
+              required
+              class="form-input mb-4"
+            />
+
+            <div class="cf-turnstile my-8" data-sitekey={TURNSTILE.siteKey}></div>
+
+            <div x-show="sent" class="mb-4 p-4 rounded-lg border border-glass-accent-cool/30 bg-glass-accent-cool/10 text-glass-accent-cool text-sm">
+              Dziękujemy. Zgłoszenie zostało poprawnie wysłane! Skontaktujemy się w ciągu 24h w dni robocze, aby potwierdzić termin.
+            </div>
+            <div x-show="error" class="mb-4 p-4 rounded-lg border border-glass-accent-fire/30 bg-glass-accent-fire/10 text-glass-accent-fire text-sm">
+              Coś poszło nie tak. Spróbuj ponownie lub napisz bezpośrednio na {CONTACT.email}.
+            </div>
+
+            <button
+              type="submit"
+              class="inline-flex items-center justify-center px-6 py-3 text-sm font-semibold text-glass-black bg-glass-white hover:bg-glass-white/90 rounded-full transition-all duration-200 hover:shadow-lg group disabled:opacity-50"
+              x-bind:disabled="sending || sent"
+            >
+              <span x-text="sending ? 'Wysyłanie…' : 'Wyślij zapytanie'">Wyślij zapytanie</span>
+              <svg class="ml-2 w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+              </svg>
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>

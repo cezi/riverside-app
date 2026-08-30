@@ -1,7 +1,9 @@
 ---
 // GTranslate widget — tłumaczenia
 // Dokumentacja: https://gtranslate.io/
+// Traktowany jako niezbędny (przełącznik języka) — ładowany bez czekania na zgodę, zgodnie z cookieconsent.astro
 ---
+<div class="gtranslate_wrapper"></div>
 <script>
   window.gtranslateSettings = {
     default_language:  "pl",
@@ -14,5 +16,4 @@
     alt_flags:         { en: "usa" },
   };
 </script>
-<div class="gtranslate_wrapper"></div>
 <script src="https://cdn.gtranslate.net/widgets/latest/float.js" defer></script>

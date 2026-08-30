@@ -1,0 +1,94 @@
+---
+import { getCollection } from 'astro:content';
+
+interface Props {
+  title?: string;
+  intervalMs?: number;
+}
+
+const { title = 'Co mówią o nas goście', intervalMs = 6000 } = Astro.props;
+
+const entries = await getCollection('testimonials');
+const testimonials = entries.map(({ data }) => ({
+  name: data.name,
+  content: data.content,
+  rating: data.rating,
+  source: data.source ?? '',
+}));
+---
+
+{testimonials.length > 0 && (
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+      <div
+        class="bg-glass-anthracite rounded-3xl p-8 md:p-16 shadow-2xl shadow-black/40 border border-glass-border"
+        x-data={`{
+          testimonials: ${JSON.stringify(testimonials)},
+          active: 0,
+          timer: null,
+          get current() { return this.testimonials[this.active] },
+          get stars() { return '★'.repeat(this.current.rating) + '☆'.repeat(5 - this.current.rating) },
+          next() { this.active = (this.active + 1) % this.testimonials.length },
+          prev() { this.active = (this.active - 1 + this.testimonials.length) % this.testimonials.length },
+          start() { this.timer = setInterval(() => this.next(), ${intervalMs}) },
+          stop() { clearInterval(this.timer) }
+        }`}
+        x-init="start()"
+        x-on:mouseenter="stop()"
+        x-on:mouseleave="start()"
+      >
+        <h2 class="section-heading">{title}</h2>
+
+        <div class="overflow-hidden">
+          <div
+            class="flex transition-transform duration-500 ease-in-out"
+            x-bind:style="`transform: translateX(-${active * 100}%)`"
+          >
+            {testimonials.map((t) => (
+              <div class="w-full flex-shrink-0">
+                <p class="max-w-5xl mb-10 text-2xl sm:text-3xl leading-snug text-glass-muted">
+                  „{t.content}”
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div class="sm:flex items-center justify-between">
+          <div class="flex mb-10 sm:mb-0 items-center">
+            <div class="mr-4 flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-glass-anthracite ring-2 ring-glass-accent-amber/40 text-glass-white font-medium" aria-hidden="true">
+              <span x-text="current.name.charAt(0)"></span>
+            </div>
+            <div>
+              <span class="block text-glass-white" x-text="current.name"></span>
+              <span class="block text-sm text-glass-accent-amber" x-text="stars" aria-hidden="true"></span>
+              <span class="block text-sm text-glass-muted" x-text="current.source" x-show="current.source"></span>
+            </div>
+          </div>
+          <div>
+            <button
+              type="button"
+              class="inline-flex h-16 sm:h-18 w-16 sm:w-18 mr-6 sm:mr-9 items-center justify-center text-glass-accent-amber hover:text-glass-white hover:bg-glass-accent-amber border border-glass-accent-amber rounded-full transition duration-200"
+              x-on:click="stop(); prev(); start()"
+              aria-label="Poprzednia opinia"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+              </svg>
+            </button>
+            <button
+              type="button"
+              class="inline-flex h-16 sm:h-18 w-16 sm:w-18 items-center justify-center text-glass-accent-amber hover:text-glass-white hover:bg-glass-accent-amber border border-glass-accent-amber rounded-full transition duration-200"
+              x-on:click="stop(); next(); start()"
+              aria-label="Następna opinia"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+)}

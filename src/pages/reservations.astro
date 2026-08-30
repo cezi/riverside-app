@@ -1,0 +1,73 @@
+---
+import { cloudinaryUrl, cloudinarySrcset } from '../utils/cloudinary';
+import { CONTACT } from '../config/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionBooking from '../components/ui/SectionBooking.astro';
+
+interface Props {
+  heroImage?: string;
+  heroImageAlt?: string;
+}
+
+const { 
+  heroImage = 'riverside-dym-ogien-gdansk-sekcja-events-fot-3', 
+  heroImageAlt = '' 
+  } = Astro.props;
+
+const heroSrc = heroImage ? cloudinaryUrl(heroImage, { width: 900, aspectRatio: '4:3', crop: 'fill' }) : null;
+const heroSrcset = heroImage ? cloudinarySrcset(heroImage, [600, 900, 1200], { aspectRatio: '4:3', crop: 'fill' }) : null;
+---
+
+<BaseLayout
+  title="Rezerwacja stolika"
+  description="Zarezerwuj stolik w Riverside. Dym i Ogień nad Motławą w Gdańsku — rezerwacja online lub telefonicznie."
+>
+
+  {/* Hero */}
+  <section class="section-py">
+    <div class="container mx-auto px-4">
+      <h1 class="font-heading text-4xl md:text-6xl tracking-tighter mb-20 text-glass-white">Rezerwacja stolika</h1>
+
+      <div class="flex flex-wrap -mx-4 items-center">
+        <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0">
+          <div class="max-w-lg">
+            <h2 class="text-glass-white section-heading tracking-tight mb-6">Zarezerwuj stolik online</h2>
+            <p class="prose-p max-w-sm">System rezerwacji online obsługuje portal zjedz.my. Rezerwujemy maksymalnie 10 miejsc w systemie online.</p>
+            <p class="prose-p max-w-sm">Jeśli potrzebujesz zarezerwować więcej miejsc lub chcesz zorganizować imprezę — <a href="/events">zapoznaj się z naszą ofertą imprez i eventów</a>.</p>
+          </div>
+        </div>
+
+        <div class="w-full lg:w-1/2 px-4">
+          {heroImage ? (
+            <div class="relative rounded-3xl overflow-hidden shadow-xl shadow-black/50">
+              <img
+                class="block w-full rounded-3xl"
+                src={heroSrc}
+                srcset={heroSrcset}
+                sizes="(min-width: 1024px) 42vw, 100vw"
+                alt={heroImageAlt}
+                aria-hidden={heroImageAlt ? undefined : 'true'}
+                loading="eager"
+                decoding="async"
+              />
+              <div class="absolute inset-0 rounded-3xl bg-gradient-to-t from-glass-accent-amber/40 via-glass-black/20 to-transparent pointer-events-none"></div>
+            </div>
+          ) : (
+            <div
+              class="flex aspect-[4/3] items-center justify-center bg-glass-anthracite border border-glass-border rounded-3xl"
+              role="img"
+              aria-label={heroImageAlt || 'Zdjęcie wkrótce'}
+            >
+              <svg class="w-12 h-12 text-glass-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5h16v14H4V5zm0 14 5-6 3 3 4-5 4 4M9 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+              </svg>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <SectionBooking onlineHref={CONTACT.reservationUrl} />
+
+</BaseLayout>

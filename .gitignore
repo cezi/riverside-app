@@ -4,7 +4,6 @@ dist/
 
 # Dependencies
 node_modules/
-cloudflare-worker/node_modules/
 
 # Env
 .env
@@ -14,13 +13,6 @@ cloudflare-worker/node_modules/
 # Logi setupu
 setup.log
 
-# Cloudflare Worker
-cloudflare-worker/.wrangler/
-cloudflare-worker/.env
-cloudflare-worker/.dev.vars
-
-# Fonty Worker
-!cloudflare-worker/assets/.gitkeep
 
 # OS
 .DS_Store

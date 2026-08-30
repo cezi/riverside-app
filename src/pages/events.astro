@@ -1,0 +1,199 @@
+---
+import { cloudinaryUrl, cloudinarySrcset, cloudinaryVideoUrl, cloudinaryVideoPoster } from '../utils/cloudinary';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionGallery from '../components/ui/SectionGallery.astro';
+import SectionBookingEvent from '../components/ui/SectionBookingEvent.astro';
+
+interface Props {
+  heroVideo?: string;
+  privateEventImage?: string;
+  businessEventImage?: string;
+}
+
+const {
+  heroVideo = 'riverside-dym-ogien-gdansk-sekcja-video-imprezy',
+  privateEventImage = 'riverside-dym-ogien-gdansk-sekcja-events-fot-1',
+  businessEventImage = 'riverside-dym-ogien-gdansk-sekcja-events-fot-2',
+} = Astro.props;
+
+// Poster z 9. sekundy — jedyna klatka bez wypalonych napisów z automatycznego montażu, a przy tym dobrze
+// oddaje klimat (stolik z widokiem na oświetloną Motławę nocą), spójny z treścią sekcji.
+const HERO_POSTER_OFFSET = 4;
+const heroVideoSrc = heroVideo ? cloudinaryVideoUrl(heroVideo, { width: 900 }) : null;
+const heroVideoPoster = heroVideo ? cloudinaryVideoPoster(heroVideo, { width: 900, startOffset: HERO_POSTER_OFFSET }) : null;
+
+const rooms = [
+  {
+    title: 'Kameralna sala VIP',
+    description: 'Idealna przestrzeń na mniejsze spotkania biznesowe, prywatne kolacje, jubileusze lub warsztaty w zamkniętym gronie z widokiem na rzekę.',
+    stats: [
+      { label: 'Maksymalna pojemność', value: 'do 50 osób' },
+      { label: 'Powierzchnia', value: 'ok. 70 m²' },
+      { label: 'Układ stołów', value: 'Dowolny' },
+    ],
+  },
+  {
+    title: 'Cały lokal na wyłączność',
+    description: 'Spektakularna przestrzeń na duże eventy firmowe, bankiety i gale. Zapewnia pełną prywatność oraz swobodny dostęp do wszystkich udogodnień obiektu.',
+    stats: [
+      { label: 'Maksymalna pojemność', value: 'do 150 osób' },
+      { label: 'Powierzchnia', value: 'ok. 250 m²' },
+      { label: 'Układ stołów', value: 'Dowolny' },
+    ],
+  },
+];
+
+const included = [
+  'Menu dopasowane do wydarzenia',
+  'Salę VIP lub lokal na wyłączność',
+  'Elastyczny układ stołów',
+  'Obsługę kelnerską',
+  'Nagłośnienie',
+  'Oprawę wydarzenia',
+];
+
+const eventTypes = [
+  {
+    kicker: 'Typ imprezy',
+    kickerClass: 'text-glass-accent-fire',
+    dotClass: 'bg-glass-accent-fire',
+    title: 'Prywatna',
+    description: 'Urodziny, komunie, chrzciny, wesela czy jubileusze – organizujemy wydarzenia, które łączą dobrą kuchnię, świetną atmosferę i wyjątkową lokalizację w samym sercu Gdańska.',
+    image: privateEventImage,
+    imageAlt: 'Impreza prywatna',
+    reverse: false,
+  },
+  {
+    kicker: 'Typ imprezy',
+    kickerClass: 'text-glass-accent-amber',
+    dotClass: 'bg-glass-accent-amber',
+    title: 'Firmowa',
+    description: 'Spotkania firmowe, integracje, kolacje biznesowe, szkolenia – organizujemy wydarzenia, które łączą profesjonalną obsługę, doskonałą kuchnię i wyjątkową lokalizację nad Motławą.',
+    image: businessEventImage,
+    imageAlt: 'Impreza firmowa',
+    reverse: true,
+  },
+];
+---
+
+<BaseLayout
+  title="Imprezy i eventy"
+  description="Organizujemy eventy firmowe i imprezy prywatne w Riverside. Dym i Ogień — kameralna sala VIP do 50 osób lub cały lokal na wyłączność dla 150 gości, z widokiem na Motławę."
+>
+
+  {/* Hero */}
+  <section class="section-py">
+    <div class="container mx-auto px-4">
+      <div class="flex flex-wrap -mx-4 items-stretch">
+        <div class="w-full lg:w-1/2 px-4 mb-16 lg:mb-0">
+          <div class="max-w-md">
+            <h1 class="lg:max-w-md text-4xl md:text-6xl mb-8 text-glass-white">Organizujemy eventy firmowe i imprezy prywatne</h1>
+            <p class="prose-p">Oferujemy przestrzeń dla grup od kilkunastu do 150 osób – z widokiem na Motławę.</p>
+            <p class="prose-p">Kameralna sala VIP mieści do 50 gości. Cały lokal do wynajęcia na wyłączność dla około 150 osób.</p>
+            <p class="prose-p">Nie obsługujemy koncertów i głośnych atrakcji – stawiamy na komfort i prywatność. Na specjalne życzenie zapewniamy nagłośnienie, oprawę tematyczną, menu degustacyjne.</p>
+          </div>
+        </div>
+        <div class="w-full lg:w-1/2 px-4">
+          {heroVideo ? (
+            <video
+              class="block w-full h-[686px] max-h-[686px] object-cover lg:ml-auto rounded-3xl shadow-2xl shadow-black/40 ring-1 ring-glass-border"
+              controls
+              preload="metadata"
+              poster={heroVideoPoster}
+            >
+              <source src={heroVideoSrc} type="video/mp4" />
+              Twoja przeglądarka nie obsługuje odtwarzania wideo.
+            </video>
+          ) : (
+            <div class="flex w-full h-[547px] max-h-[547px] lg:ml-auto items-center justify-center bg-glass-anthracite border border-glass-border rounded-3xl" role="img" aria-label="Wideo wkrótce">
+              <svg class="w-14 h-14 text-glass-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 6.82v10.36a1 1 0 0 0 1.5.87l9-5.18a1 1 0 0 0 0-1.74l-9-5.18A1 1 0 0 0 8 6.82z"/>
+              </svg>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* Ile miejsca potrzebujesz? */}
+  <section class="section-py">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl lg:text-5xl mb-12 text-center lg:text-left text-glass-white">Ile miejsca potrzebujesz?</h2>
+
+      <div class="flex flex-wrap -mx-4">
+        {rooms.map(({ title, description, stats }) => (
+          <div class="w-full lg:w-1/2 px-4 mb-8 lg:mb-0">
+            <div class="p-8 rounded-3xl h-full border border-glass-border flex flex-col justify-between transition-colors duration-300 hover:border-glass-accent-amber">
+              <div>
+                <h3 class="text-2xl mb-4 text-glass-white">{title}</h3>
+                <p class="text-lg mb-8 text-glass-muted">{description}</p>
+              </div>
+              <div class="space-y-4 border-t border-glass-border pt-6">
+                {stats.map(({ label, value }) => (
+                  <div class="flex justify-between items-center">
+                    <span class="font-medium text-glass-white">{label}</span>
+                    <span class="text-glass-accent-fire">{value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* Jakie imprezy organizujemy? */}
+  <section class="section-py">
+    <div class="container mx-auto px-4">
+      <h2 class="tracking-tighter mb-12 text-4xl lg:text-5xl text-glass-white">Jakie imprezy organizujemy?</h2>
+
+      <div class="flex flex-col gap-12 lg:gap-20">
+        {eventTypes.map(({ kicker, kickerClass, dotClass, title, description, image, imageAlt, reverse }) => {
+          const photoSrc = image ? cloudinaryUrl(image, { width: 900, aspectRatio: '4:3', crop: 'fill' }) : null;
+          const photoSrcset = image ? cloudinarySrcset(image, [600, 900, 1200], { aspectRatio: '4:3', crop: 'fill' }) : null;
+
+          return (
+            <div class="flex flex-wrap items-center gap-8 lg:gap-0">
+              <div class:list={['w-full lg:w-1/2', reverse ? 'order-1 lg:order-2' : '']}>
+                {image ? (
+                  <div class="overflow-hidden rounded-3xl border border-glass-border shadow-xl shadow-black/40">
+                    <img class="w-full h-full object-cover" src={photoSrc} srcset={photoSrcset} sizes="(min-width: 1024px) 50vw, 100vw" alt={imageAlt} loading="lazy" decoding="async" />
+                  </div>
+                ) : (
+                  <div class="flex aspect-[4/3] items-center justify-center bg-glass-anthracite border border-glass-border rounded-3xl" role="img" aria-label="Zdjęcie wkrótce">
+                    <svg class="w-12 h-12 text-glass-muted" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 5h16v14H4V5zm0 14 5-6 3 3 4-5 4 4M9 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                    </svg>
+                  </div>
+                )}
+              </div>
+              <div class:list={['w-full lg:w-1/2', reverse ? 'order-2 lg:order-1' : '']}>
+                <div class:list={[reverse ? 'lg:pr-12' : 'lg:pl-12']}>
+                  <span class:list={['block mb-2 text-xl font-medium', kickerClass]}>{kicker}</span>
+                  <h3 class="tracking-tighter mb-4 text-4xl text-glass-white">{title}</h3>
+                  <p class="text-glass-muted mb-6">{description}</p>
+                  <h4 class="block mb-4 text-2xl font-medium text-glass-white">Co zapewniamy?</h4>
+                  <ul class="flex flex-col gap-3">
+                    {included.map((item) => (
+                      <li class="flex items-center gap-3 text-glass-muted">
+                        <span class:list={['flex-shrink-0 w-2 h-2 rounded-full', dotClass]}></span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  </section>
+
+  <SectionGallery title="Poznaj miejsce spotkań nad Motławą" />
+
+  <SectionBookingEvent />
+
+</BaseLayout>

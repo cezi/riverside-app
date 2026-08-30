@@ -1,53 +1,81 @@
 import settingsData from '../data/settings.json';
 
+const parseHoursValue = (value: string | undefined): string => {
+  if (!value) return '';
+  const match = value.match(/(\d{1,2}:\d{2})\s*-\s*(\d{1,2}:\d{2})/);
+  return match ? `${match[1]}-${match[2]}` : '';
+};
+
+const hoursSchema = [
+  `Mo ${parseHoursValue(settingsData.hours_monday)}`,
+  `Tu ${parseHoursValue(settingsData.hours_tuesday)}`,
+  `We ${parseHoursValue(settingsData.hours_wednesday)}`,
+  `Th ${parseHoursValue(settingsData.hours_thursday)}`,
+  `Fr ${parseHoursValue(settingsData.hours_friday)}`,
+  `Sa ${parseHoursValue(settingsData.hours_saturday)}`,
+  `Su ${parseHoursValue(settingsData.hours_sunday)}`,
+].filter((slot) => slot.includes('-')).join('; ');
+
 export const SITE = {
-  name: 'MR Glass Project w Warszawie',
-  fullName: 'Pracownia Szkła Artystycznego MR Glass Project Maciej Rafalski',
-  description: 'Pracownia szkła artystycznego w Warszawie. Projekty na zamówienie dla firm, hoteli i architektów.',
-  url: 'https://mrglassproject.github.io',
-  finalUrl: 'https://mrglassproject.com',
+  name: 'Riverside. Dym i Ogień',
+  fullName: 'Restauracja Riverside. Dym i Ogień',
+  description: 'Opis Restauracja Riverside. Dym i Ogień',
+  url: 'https://www.riversidegdansk.pl',
+  finalUrl: 'https://www.riversidegdansk.pl',
   lang: 'pl',
   locale: 'pl_PL',
-  themeColor: '#FF8C00',
-  bgColor: '#0A0A0B',
-  ogImage: 'https://res.cloudinary.com/mrglassproject/image/upload/f_auto,q_auto,w_1200,h_630,c_fill/home/og-default',
+  themeColor: '#C95A1A',
+  bgColor: '#111315',
+  ogImage: 'https://res.cloudinary.com/riverside/image/upload/f_auto,q_auto,w_1200,h_630,c_fill/home/riverside-og-default',
 } as const;
 
 export const CONTACT = {
   address:      settingsData.address,
   city:         settingsData.city,
   phone:        settingsData.phone,
-  phoneWork:    settingsData.phone_workshops,
+  phoneWork:    settingsData.phone_bot,
+  phoneEvents:    settingsData.phone_manager,
   phoneHref:    `tel:${settingsData.phone.replace(/\s/g, '')}`,
-  phoneWorkHref:`tel:${settingsData.phone_workshops.replace(/\s/g, '')}`,
+  phoneWorkHref:`tel:${settingsData.phone_bot.replace(/\s/g, '')}`,
+  phoneEventsHref:`tel:${settingsData.phone_manager.replace(/\s/g, '')}`,
   email:        settingsData.email,
   emailHref:    `mailto:${settingsData.email}`,
-  hours:        settingsData.hours,
-  region: 'mazowieckie',
+  reservationUrl: settingsData.reservation_url,
+  hours: [
+    settingsData.hours_monday,
+    settingsData.hours_tuesday,
+    settingsData.hours_wednesday,
+    settingsData.hours_thursday,
+    settingsData.hours_friday,
+    settingsData.hours_saturday,
+    settingsData.hours_sunday,
+  ],
+  region: 'pomorskie',
   country: 'PL',
-  nip: '8762371621',
-  regon: '387628069',
-  hoursSchema: 'Mo-Fr 08:00-16:00',
-  lat: 52.2121751,
-  lng: 20.9779826,
-  mapsUrl: 'https://maps.app.goo.gl/vXUA1MQB47HWjrjP9',
-  mapsEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2444.7178278804267!2d20.977982600000004!3d52.212175099999996!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x471ecd7dea749169%3A0x37b3ffea814a8560!2sPracownia%20Szk%C5%82a%20Artystycznego%20Maciej%20Rafalski%20Glass%20Project!5e0!3m2!1spl!2spl!4v1770455090382!5m2!1spl!2spl',
+  nip: '',
+  regon: '',
+  hoursSchema,
+  lat: 54.34801648908613,
+  lng: 18.656882571164516,
+  mapsUrl: 'https://maps.app.goo.gl/8UKffkh9tswHGx647',
+  mapsEmbed: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2325.5164748128354!2d18.6568933!3d54.3478539!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46fd73971ce21083%3A0x6ec5626f9bca4c7d!2sRiverside%20Dym%20i%20Ogie%C5%84!5e0!3m2!1spl!2spl!4v1786628571645!5m2!1spl!2spl',
 } as const;
 
 export const SOCIAL = {
-  facebook:   'https://www.facebook.com/p/Mrglassproject-100063557379907/',
-  instagram:  'https://www.instagram.com/maciejrafalski_glassproject/',
-  tiktok:     'https://www.tiktok.com/@mr_glassproject',
-  googleMaps: 'https://maps.app.goo.gl/vXUA1MQB47HWjrjP9',
+  facebook:   'https://www.facebook.com/riversidegdansk/',
+  instagram:  'https://www.instagram.com/riversidegdansk/',
+  tiktok:     'https://www.tiktok.com/@riverside_gdansk',
+  googleMaps: 'https://maps.app.goo.gl/HJFKB67eAdpTHTi57',
 } as const;
 
 export const CLOUDINARY = {
-  cloudName: 'mrglassproject',
+  cloudName: 'riverside',
   baseUrl: 'https://res.cloudinary.com',
 } as const;
 
 export const FORMSPARK = {
   formId: import.meta.env.PUBLIC_FORMSPARK_FORM_ID,
+  eventsFormId: import.meta.env.PUBLIC_FORMSPARK_EVENTS_FORM_ID,
   url: 'https://submit-form.com',
 } as const;
 
@@ -56,50 +84,60 @@ export const TURNSTILE = {
 } as const;
 
 export const NAV = [
-  { label: 'Start',         href: '/' },
-  { label: 'Moja historia', href: '/about' },
-  { label: 'Pracownia',     href: '/workshop' },
-  { label: 'Realizacje',    href: '/portfolio' },
-  { label: 'Oferta',        href: '/services' },
-//{ label: 'Blog',          href: '/posts' },
-  { label: 'Vouchery',        href: '/vouchers' },
-  { label: 'FAQ',           href: '/faq' },
-  { label: 'Kontakt',       href: '/contact' },
+  { label: 'Start',                href: '/' },
+  { label: 'O nas',                href: '/about' },
+  { label: 'Menu',                 href: '/menu' },
+  { label: 'Imprezy',              href: '/events' },
+  { label: 'Poznaj Riverside',     href: '/gallery' },
+  { label: 'Riverside Club',       href: '/loyalty' },
+  { label: 'Aktualności',          href: '/posts' },
+  { label: 'Kontakt',              href: '/contact' },
 ] as const;
 
 export const NAV_CTA = {
-  label: 'Warsztaty',
-  href: '/workshops',
+  label: 'Zarezerwuj stolik',
+  href: '/reservations',
 } as const;
 
 export const FOOTER_NAV = [
-  { label: 'Start',               href: '/' },
-  { label: 'Oferta',              href: '/services' },
-  { label: 'Warsztaty',           href: '/workshops' },
-  { label: 'FAQ',                 href: '/faq' },
-  { label: 'Kontakt',             href: '/contact' },
-  { label: 'Regulamin',           href: '/terms' },
-  { label: 'Polityka prywatności', href: '/privacy' },
+  { label: 'Aktualności',      href: '/posts' },
+  { label: 'Menu',              href: '/menu' },
+  { label: 'Imprezy',           href: '/events' },
+  { label: 'O nas',             href: '/about' },
+  { label: 'Rezerwacje',        href: NAV_CTA.href },
+  { label: 'Poznaj Riverside',  href: '/gallery' },
+  { label: 'Kontakt',           href: '/contact' },
 ] as const;
 
+export const FOOTER_LEGAL = [
+  { label: 'Regulaminy',            href: '/terms' },
+  { label: 'Polityka prywatności',  href: '/privacy' },
+] as const;
+
+export const LOYALTY_CTA = {
+  heading: 'Zbieraj znaczki za każdą wizytę i odbieraj wyjątkowe nagrody',
+  label:   'Dołącz do Riverside Club',
+  href:    '/loyalty',
+} as const;
+
 export const BUSINESS = {
-  type:               ['LocalBusiness', 'ArtGallery'] as const,
+  type:               ['LocalBusiness', 'Restaurant'] as const,
   priceRange:         '$$',
   currenciesAccepted: 'PLN',
   paymentAccepted:    'Cash, Credit Card, Bank Transfer',
-  areaServed:         'Warszawa',
+  areaServed:         'Gdańsk',
 } as const;
 
 export const SAME_AS = Object.values(SOCIAL).filter(Boolean);
 
 export const MEDIA = {
   logo: {
-    src:       '/images/logo-glassproject-500x175px.webp',
-    alt:       'Glass Project — Pracownia Szkła Artystycznego',
-    width:     500,
-    height:    175,
-    navWidth:  128,
-    navHeight: 45,
+    src:       '/images/logo-riverside-biale-transparent-czerwone-plomienie.webp',
+    alt:       'Logo Restauracji Riverside. Dym i Ogień z Gdańska',
+    width:     150,
+    height:    150,
+    navWidth:  150,
+    navHeight: 150,
   },
   favicon: {
   ico:            '/favicons/favicon.ico',
@@ -108,7 +146,7 @@ export const MEDIA = {
   icon96:         '/favicons/favicon-96x96.png',
   icon192:        '/favicons/web-app-manifest-192x192.png',
   icon512:        '/favicons/web-app-manifest-512x512.png',
-  manifest:       '/favicons/manifest.webmanifest',
+  manifest:       '/favicons/site.webmanifest',
 },
 } as const;
 
@@ -119,5 +157,5 @@ export function withBase(path: string): string {
 }
 
 export const ANALYTICS = {
-  gtmId: 'GTM-KJBWFFDN',
+  gtmId: '',
 } as const;

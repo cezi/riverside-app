@@ -29,6 +29,8 @@ const isLegalPage =
   pathname.endsWith('/terms') ||
   pathname.endsWith('/privacy');
 
+const isHome = pathname === '/';
+
 ---
 
 <!doctype html>
@@ -108,7 +110,7 @@ const isLegalPage =
       Przejdź do treści
     </a>
 
-    <Header />
+    <Header transparent={isHome} />
 
 <main
   id="main-content"

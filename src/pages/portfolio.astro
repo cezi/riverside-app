@@ -1,39 +1,35 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import SectionCta from '../components/ui/SectionCta.astro';
-import { cloudinaryUrl } from '../utils/cloudinary';
+import { cloudinaryThumbUrl, resolveMedia } from '../utils/cloudinary';
 
-const allProjects = await getCollection('projects');
+const allProjects = await getCollection('gallery');
 const sorted = allProjects
   .filter(p => p.data.published !== false)
   .sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
 
 const projects = sorted.map(p => {
-  const images = p.data.images ?? [];
-  const firstImage = images[0]?.image;
+  const media = p.data.media ?? [];
+  const firstFile = media[0]?.file;
 
   return {
     id:          p.id,
     title:       p.data.title,
-    description: p.data.description ?? null,
-    year:        p.data.year ?? null,
-    dimensions:  p.data.dimensions ?? null,
     category:    p.data.category,
+    isVideo:     firstFile ? resolveMedia(firstFile).type === 'video' : false,
 
-    thumb: firstImage
-      ? cloudinaryUrl(firstImage, { width: 600, aspectRatio: '9:16', crop: 'fill' })
+    thumb: firstFile
+      ? cloudinaryThumbUrl(firstFile, { width: 600, aspectRatio: '9:16', crop: 'fill' })
       : null,
 
-    thumbSq: firstImage
-      ? cloudinaryUrl(firstImage, { width: 600, aspectRatio: '1:1', crop: 'fill' })
+    thumbSq: firstFile
+      ? cloudinaryThumbUrl(firstFile, { width: 600, aspectRatio: '1:1', crop: 'fill' })
       : null,
 
-    images: images.map((item) =>
-      cloudinaryUrl(item.image, { width: 1400, crop: 'fill' })
-    ),
-
-    imageAlts: images.map((item) => item.alt || p.data.title),
+    media: media.map((item) => ({
+      ...resolveMedia(item.file, { width: 1400, crop: 'fill' }),
+      alt: item.alt || p.data.title,
+    })),
   };
 });
 ---
@@ -93,12 +89,13 @@ const projects = sorted.map(p => {
           close() {
             this.lightbox = false;
             this.project = null;
+            this.$root.querySelectorAll('video').forEach(v => v.pause());
           },
           prev() {
             if (this.project && this.imgIndex > 0) this.imgIndex--;
           },
           next() {
-            if (this.project && this.imgIndex < this.project.images.length - 1) this.imgIndex++;
+            if (this.project && this.imgIndex < this.project.media.length - 1) this.imgIndex++;
           }
         }`}
         x-on:keydown.escape.window="close()"
@@ -146,6 +143,15 @@ const projects = sorted.map(p => {
                 decoding="async"
               />
               <div class="absolute inset-0 bg-glass-black/0 group-hover:bg-glass-black/30 transition-colors duration-300 pointer-events-none"></div>
+
+              {/* Znacznik wideo */}
+              <div x-show="p.isVideo" class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div class="flex items-center justify-center w-12 h-12 rounded-full bg-glass-black/50 text-glass-white">
+                  <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              </div>
 
             </button>
           </template>
@@ -203,48 +209,42 @@ const projects = sorted.map(p => {
             </svg>
           </button>
 
-          {/* Zdjęcie */}
+          {/* Zdjęcie / wideo */}
           <template x-if="project">
             <div class="flex flex-col items-center max-w-4xl w-full">
-              <img
-                x-bind:src="project.images[imgIndex]"
-                x-bind:alt="project.imageAlts?.[imgIndex] || project.title"
-                class="max-h-[75vh] w-auto rounded-xl object-contain"
-              />
+              <template x-if="project.media[imgIndex].type === 'video'">
+                <video
+                  x-bind:key="project.media[imgIndex].url"
+                  x-bind:src="project.media[imgIndex].url"
+                  x-bind:poster="project.media[imgIndex].poster"
+                  class="max-h-[75vh] w-auto rounded-xl"
+                  controls
+                  playsinline
+                ></video>
+              </template>
+              <template x-if="project.media[imgIndex].type !== 'video'">
+                <img
+                  x-bind:key="project.media[imgIndex].url"
+                  x-bind:src="project.media[imgIndex].url"
+                  x-bind:alt="project.media[imgIndex].alt || project.title"
+                  class="max-h-[75vh] w-auto rounded-xl object-contain"
+                />
+              </template>
 
-              {/* Tytuł i opis */}
+              {/* Tytuł */}
               <div class="mt-4 text-center px-4">
                 <p class="text-glass-white font-medium" x-text="project.title"></p>
-                <template x-if="project.description">
-                  <p class="mt-1 text-sm text-glass-muted" x-text="project.description"></p>
-                </template>
-                <template x-if="project.year || project.dimensions">
-                  <div class="mt-3 flex flex-col items-center gap-1 text-xs text-glass-muted">
-                    <template x-if="project.year">
-                      <p>
-                        <span>Rok realizacji: </span>
-                        <span x-text="project.year"></span>
-                      </p>
-                    </template>
-                    <template x-if="project.dimensions">
-                      <p>
-                        <span>Wymiary: </span>
-                        <span x-text="project.dimensions"></span>
-                      </p>
-                    </template>
-                  </div>
-                </template>
               </div>
 
               {/* Dots nawigacja */}
-              <template x-if="project.images.length > 1">
+              <template x-if="project.media.length > 1">
                 <div class="flex gap-2 mt-4">
-                  <template x-for="(img, i) in project.images" x-bind:key="i">
+                  <template x-for="(m, i) in project.media" x-bind:key="i">
                     <button
                       x-on:click="imgIndex = i"
                       x-bind:class="imgIndex === i ? 'bg-glass-white' : 'bg-glass-border'"
                       class="w-2 h-2 rounded-full transition-colors duration-200"
-                      x-bind:aria-label="`Zdjęcie ${i + 1}`"
+                      x-bind:aria-label="`Pozycja ${i + 1}`"
                     ></button>
                   </template>
                 </div>
@@ -254,7 +254,7 @@ const projects = sorted.map(p => {
 
           {/* Następne */}
           <button
-            x-show="project && imgIndex < project.images.length - 1"
+            x-show="project && imgIndex < project.media.length - 1"
             x-on:click="next()"
             class="absolute right-4 top-1/2 -translate-y-1/2 text-glass-muted hover:text-glass-white transition-colors duration-200"
             aria-label="Następne zdjęcie"
@@ -269,11 +269,5 @@ const projects = sorted.map(p => {
       </div>
     </div>
   </section>
-
-  <SectionCta
-    title="Realizujemy projekty dla firm, hoteli i architektów"
-    description="Hotele, restauracje, biura, przestrzenie eventowe. Każda realizacja powstaje w pracowni od podstaw - ręcznie, według Twoich wymagań i w skali, której potrzebujesz."
-    ctaLabel="Opisz nam swój projekt"
-  />
 
 </BaseLayout>

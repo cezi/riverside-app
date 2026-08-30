@@ -1,0 +1,41 @@
+---
+import { CONTACT } from '../../config/site';
+
+interface Props {
+  title?:      string;
+  highlight?:  string;
+  phoneLabel?: string;
+  formLabel?:  string;
+  formHref?:   string;
+}
+
+const {
+  title      = 'Zapytaj o dostępne',
+  highlight  = 'terminy',
+  phoneLabel = CONTACT.phoneEvents,
+  formLabel  = 'Wypełnij formularz',
+  formHref   = '/events-booking',
+} = Astro.props;
+---
+
+<section class="section-py">
+  <div class="container px-4 mx-auto max-w-6xl">
+    <div class="max-w-3xl mx-auto text-center">
+
+      <h2 class="font-heading text-4xl md:text-6xl tracking-tighter mb-14 text-glass-white">
+        <span class="block">{title}</span>
+        <span class="inline-block text-fire border-b-4 border-glass-accent-fire">{highlight}</span>
+      </h2>
+
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+        <a href={CONTACT.phoneEventsHref} class="btn-primary">
+          {phoneLabel}
+        </a>
+        <a href={formHref} class="btn-secondary">
+          {formLabel}
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>

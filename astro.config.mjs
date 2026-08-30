@@ -4,12 +4,11 @@ import sitemap   from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 export default defineConfig({
-  site: 'https://mrglassproject.com',
+  site: 'https://riversidegdansk.github.io/',
   integrations: [
   alpinejs(),
   sitemap({
     filter: (page) =>
-      !page.includes('/voucher-success/') &&
       !page.includes('/privacy/') &&
       !page.includes('/terms/')
   }),

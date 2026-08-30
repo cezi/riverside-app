@@ -1,0 +1,56 @@
+---
+import { CONTACT } from '../../config/site';
+
+interface Props {
+  title?:         string;
+  highlight?:     string;
+  phoneLabel?:    string;
+  onlineLabel?:   string;
+  onlineHref?:    string;
+  onlineOnClick?: string;
+}
+
+const {
+  title         = 'Stolik w Riverside',
+  highlight     = 'już na Ciebie czeka',
+  phoneLabel    = 'Rezerwuj telefonicznie',
+  onlineLabel   = 'Rezerwuj online',
+  onlineHref    = '/reservations',
+  onlineOnClick,
+} = Astro.props;
+
+const isExternal = onlineHref.startsWith('http://') || onlineHref.startsWith('https://');
+---
+
+<section class="section-py">
+  <div class="container px-4 mx-auto max-w-6xl">
+    <div class="max-w-3xl mx-auto text-center">
+
+      <h2 class="font-heading text-4xl md:text-6xl tracking-tighter mb-14 text-glass-white">
+        <span class="block">{title}</span>
+        <span class="inline-block text-fire border-b-4 border-glass-accent-fire">{highlight}</span>
+      </h2>
+
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+        <a href={CONTACT.phoneWorkHref} class="btn-primary">
+          {phoneLabel}
+        </a>
+        {onlineOnClick ? (
+          <button type="button" x-on:click={onlineOnClick} class="btn-secondary">
+            {onlineLabel}
+          </button>
+        ) : (
+          <a
+            href={onlineHref}
+            class="btn-secondary"
+            target={isExternal ? '_blank' : undefined}
+            rel={isExternal ? 'noopener noreferrer' : undefined}
+          >
+            {onlineLabel}
+          </a>
+        )}
+      </div>
+
+    </div>
+  </div>
+</section>

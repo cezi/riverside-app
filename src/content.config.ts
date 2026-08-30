@@ -5,7 +5,7 @@ const posts = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/posts' }),
   schema: z.object({
     title:     z.string(),
-    author: z.string().default('MR Glass Project'),
+    author: z.string().default('Riverside Dym i Ogień'),
     date:      z.coerce.date(),
     excerpt:   z.string(),
     cover:     z.string(),
@@ -21,20 +21,17 @@ const pages = defineCollection({
   }),
 });
 
-const projects = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/projects' }),
+const gallery = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/gallery' }),
   schema: z.object({
     title:       z.string(),
-    category:    z.enum(['dla-domu', 'dla-firm']),
-    images: z.array(
+    category:    z.enum(['Lokal', 'Wnetrza', 'Tank', 'Chef', 'Dania']),
+    media: z.array(
     z.object({
-    image: z.string(),
+    file: z.string(),
     alt: z.string().optional(),
      })
     ),
-    description: z.string().optional().nullable(),
-    year:        z.coerce.number().optional().nullable(),
-    dimensions:  z.string().optional().nullable(),
     order: z.coerce.number().optional().default(0),
     published:   z.boolean().default(true),
   }),
@@ -45,29 +42,6 @@ const pricingTierSchema = z.object({
   price:      z.number(),
   label:      z.string().optional(),
   setmoreUrl: z.string(),
-  stripeUrl:  z.string().optional(),
-});
-
-const workshops = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/workshops' }),
-  schema: z.object({
-    title:          z.string(),
-    description:    z.string(),
-    duration:       z.string(),
-    maxPersons:     z.number(),
-    price:          z.number(),
-    pricePair:      z.number().optional(),
-    pricePairLabel: z.string().optional(),
-    voucherPair:    z.boolean().default(true),
-    level:          z.enum(['fusing', 'podstawowy', 'zaawansowany', 'indywidualny']),
-    setmoreUrl:     z.string(),
-    active:         z.boolean().default(true),
-    order:          z.number().default(0),
-    featured:       z.boolean().default(false),
-    stripeUrl1:     z.string().optional(),
-    stripeUrl2:     z.string().optional(),
-    pricingTiers:   z.array(pricingTierSchema).optional(),
-  }),
 });
 
 const testimonials = defineCollection({
@@ -90,21 +64,26 @@ const faq = defineCollection({
   }),
 });
 
-const voucherFaq = defineCollection({
-  loader: glob({ pattern: '**/*.md', base: './src/content/voucherfaq' }),
+const menu = defineCollection({
+  loader: glob({ pattern: '**/*.md', base: './src/content/menu' }),
   schema: z.object({
-    order:    z.number().optional(),
-    question: z.string(),
-    answer:   z.string(),
+    category:    z.string(),
+    name:        z.string(),
+    description: z.string().optional(),
+    price:       z.string(),
+    weight:      z.string().optional(),
+    tags:        z.array(z.enum(['Pikantne', 'Wegetariańskie', 'Polecane'])).optional().default([]),
+    image:       z.string().optional(),
+    order:       z.coerce.number().optional().default(0),
+    published:   z.boolean().default(true),
   }),
 });
 
 export const collections = {
   posts,
   pages,
-  projects,
-  workshops,
+  gallery,
   testimonials,
   faq,
-  voucherfaq: voucherFaq,
+  menu,
 };

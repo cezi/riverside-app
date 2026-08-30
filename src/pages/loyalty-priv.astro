@@ -1,0 +1,38 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const entries = await getCollection('pages');
+const entry = entries.find(e => e.id === 'loyalty-priv');
+if (!entry) throw new Error('Brak pliku src/content/pages/loyalty-priv.md');
+const { Content } = await render(entry);
+---
+
+<BaseLayout
+  title="Program lojalnościowy dla klientów indywidualnych"
+  description="Zbieraj pieczątki za każdą wizytę w Riverside. Dym i Ogień i odbieraj wyjątkowe kolacje oraz nagrody kulinarne."
+>
+
+  <section class="section-py">
+    <div class="container px-4 mx-auto">
+      <div class="max-w-3xl mx-auto">
+
+        <h1 class="section-heading">{entry.data.title}</h1>
+
+        <p class="mb-8 text-sm text-glass-muted">
+          Ostatnia aktualizacja: {entry.data.updatedAt.toLocaleDateString('pl-PL', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+          })}
+        </p>
+
+        <div class="prose-content">
+          <Content />
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</BaseLayout>

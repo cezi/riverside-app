@@ -1,5 +1,5 @@
 ---
-import { CONTACT } from '../../config/site';
+import { CONTACT, withBase } from '../../config/site';
 
 interface Props {
   title?: string;
@@ -28,7 +28,7 @@ const {
             <h2 class="section-heading lg:max-w-md">{title}</h2>
             <p class="prose-p mb-10">{description}</p>
             <a
-              href={ctaHref}
+              href={withBase(ctaHref)}
               class="group inline-flex items-center leading-none font-medium pb-2 border-b-2 border-glass-accent-amber text-glass-accent-amber hover:text-glass-accent-glow hover:border-glass-accent-glow transition-colors duration-300"
             >
               <span class="mr-4">{ctaLabel}</span>

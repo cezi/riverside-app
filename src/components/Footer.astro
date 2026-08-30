@@ -36,7 +36,7 @@ const socials = [
   <div class="container mx-auto px-4">
 
     <div class="max-w-2xl mx-auto mb-14 text-center">
-      <a class="inline-block mb-14" href="/" aria-label={SITE.fullName}>
+      <a class="inline-block mb-14" href={withBase('/')} aria-label={SITE.fullName}>
         <img
           src={withBase(MEDIA.logo.src)}
           alt={MEDIA.logo.alt}
@@ -49,7 +49,7 @@ const socials = [
       </a>
       <h3 class="text-xl text-glass-white tracking-tight mb-8">{LOYALTY_CTA.heading}</h3>
       <a
-        href={LOYALTY_CTA.href}
+        href={withBase(LOYALTY_CTA.href)}
         class="inline-block py-5 px-8 text-center leading-none font-medium text-glass-white hover:text-glass-black border border-glass-accent-amber hover:bg-glass-accent-glow hover:border-glass-accent-glow rounded-full transition-colors duration-150"
       >
         {LOYALTY_CTA.label}
@@ -63,7 +63,7 @@ const socials = [
           {FOOTER_NAV.map(({ label, href }) => (
             <li class="px-4 mb-3">
               <a
-                href={href}
+                href={withBase(href)}
                 class="inline-block text-glass-white hover:text-glass-accent-amber transition-colors duration-150"
               >
                 {label}
@@ -100,7 +100,7 @@ const socials = [
         <div class="w-full sm:w-1/2 px-4 md:text-right -mb-2">
           {FOOTER_LEGAL.map(({ label, href }) => (
             <a
-              href={href}
+              href={withBase(href)}
               class="inline-block text-sm mb-2 mr-12 font-medium text-glass-muted hover:text-glass-accent-amber transition-colors duration-150"
             >
               {label}

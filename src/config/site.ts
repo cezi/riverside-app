@@ -90,7 +90,7 @@ export const NAV = [
   { label: 'Imprezy',              href: '/events' },
   { label: 'Poznaj Riverside',     href: '/gallery' },
   { label: 'Riverside Club',       href: '/loyalty' },
-  { label: 'Aktualności',          href: '/posts' },
+  { label: 'Riverside od Kuchni',  href: '/posts' },
   { label: 'Kontakt',              href: '/contact' },
 ] as const;
 
@@ -100,13 +100,13 @@ export const NAV_CTA = {
 } as const;
 
 export const FOOTER_NAV = [
-  { label: 'Aktualności',      href: '/posts' },
-  { label: 'Menu',              href: '/menu' },
-  { label: 'Imprezy',           href: '/events' },
-  { label: 'O nas',             href: '/about' },
-  { label: 'Rezerwacje',        href: NAV_CTA.href },
-  { label: 'Poznaj Riverside',  href: '/gallery' },
-  { label: 'Kontakt',           href: '/contact' },
+  { label: 'Menu',                  href: '/menu' },
+  { label: 'O nas',                 href: '/about' },
+  { label: 'Imprezy',               href: '/events' },
+  { label: 'Rezerwacje',            href: NAV_CTA.href },
+  { label: 'Poznaj Riverside',      href: '/gallery' },
+  { label: 'Riverside od Kuchni',   href: '/posts' },
+  { label: 'Kontakt',               href: '/contact' },
 ] as const;
 
 export const FOOTER_LEGAL = [

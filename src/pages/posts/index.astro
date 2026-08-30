@@ -8,7 +8,7 @@ import { withBase } from '../../config/site';
 // Kolejne rzędy: 3 posty na desktopie / 1 na mobile. Domyślnie widoczne 3 rzędy.
 const FIRST_ROW_COUNT = 3;
 const ROW_SIZE = 3;
-const INITIAL_ROWS = 3;
+const INITIAL_ROWS = 2;
 
 const allPosts = await getCollection('posts', ({ data }) => data.published);
 const posts = allPosts
@@ -16,7 +16,6 @@ const posts = allPosts
   .map((post) => ({
     id:      post.id,
     title:   post.data.title,
-    excerpt: post.data.excerpt,
     href:    withBase(`/posts/${post.id}`),
     cover:   cloudinaryUrl(post.data.cover, { width: 900 }),
     coverSm: cloudinaryUrl(post.data.cover, { width: 500 }),
@@ -35,7 +34,7 @@ const rest = posts.slice(FIRST_ROW_COUNT);
     <div class="container px-4 mx-auto">
 
       <div class="max-w-2xl mb-16">
-        <h1 class="font-heading text-4xl md:text-6xl tracking-tighter text-glass-white">Aktualności</h1>
+        <h1 class="font-heading text-4xl md:text-6xl tracking-tighter text-glass-white">Riverside od Kuchni</h1>
       </div>
 
       {posts.length > 0 ? (
@@ -64,8 +63,7 @@ const rest = posts.slice(FIRST_ROW_COUNT);
                     <img class="block w-full h-88 object-cover group-hover:scale-105 transition duration-500" src={featured.cover} alt={featured.title} loading="lazy" decoding="async" />
                   </div>
                   <div class="max-w-lg">
-                    <h2 class="max-w-md text-3xl sm:text-4xl tracking-tight mb-4 text-glass-white group-hover:text-glass-accent-amber transition duration-200">{featured.title}</h2>
-                    <p class="text-lg text-glass-muted">{featured.excerpt}</p>
+                    <h2 class="max-w-md text-3xl sm:text-4xl tracking-tight text-glass-white group-hover:text-glass-accent-amber transition duration-200">{featured.title}</h2>
                   </div>
                 </a>
               </div>

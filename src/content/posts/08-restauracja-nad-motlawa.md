@@ -1,7 +1,7 @@
 ---
 title: 'Restauracja nad Motławą - Gdańsk widziany z Riverside'
 author: 'Riverside Dym i Ogień'
-date: 2026-12-10
+date: 2026-05-10
 excerpt: 'Kilka kroków od Długiego Targu, tuż nad Motławą. Zobacz, dlaczego lokalizacja Riverside jest częścią doświadczenia wizyty w naszej restauracji.'
 cover: 'riverside-dym-ogien-gdansk-galeria-wnetrza-fot-7'
 published: true

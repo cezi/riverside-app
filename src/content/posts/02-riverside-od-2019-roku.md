@@ -1,7 +1,7 @@
 ---
 title: 'Riverside od 2019 roku - nasza historia nad Motławą'
 author: 'Riverside Dym i Ogień'
-date: 2026-09-17
+date: 2026-06-17
 excerpt: 'Od 2019 roku gotujemy nad Motławą, serwujemy Pilsnera prosto z tanka i rozwijamy własny styl kuchni. Poznaj historię Riverside.'
 cover: 'riverside-dym-ogien-gdansk-galeria-otoczenie-fot-2'
 published: true

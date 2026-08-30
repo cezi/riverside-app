@@ -1,7 +1,7 @@
 ---
 title: 'Chef Michał Rybak - smak Riverside'
 author: 'Riverside Dym i Ogień'
-date: 2026-11-12
+date: 2026-08-12
 excerpt: 'Poznaj Michała Rybaka, Chefa Riverside. To on odpowiada za kierunek naszej kuchni, menu i połączenie klasyki z inspiracjami z różnych stron świata.'
 cover: 'riverside-dym-ogien-gdansk-galeria-chef-fot-2'
 published: true

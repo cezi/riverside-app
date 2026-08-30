@@ -1,7 +1,7 @@
 ---
 title: 'Wyspa Spichrzów i Motława - co zobaczyć przed kolacją?'
 author: 'Riverside Dym i Ogień'
-date: 2027-01-28
+date: 2026-05-28
 excerpt: 'Spacerujesz po centrum Gdańska? Podpowiadamy, co zobaczyć nad Motławą i na Wyspie Spichrzów przed obiadem lub kolacją w Riverside.'
 cover: 'riverside-dym-ogien-gdansk-galeria-otoczenie-fot-5'
 published: true

@@ -1,12 +1,9 @@
 ---
 import { cloudinaryUrl, cloudinarySrcset } from '../../utils/cloudinary';
-import { withBase } from '../../config/site';
 
 interface Dish {
   title: string;
   description: string;
-  ctaLabel: string;
-  ctaHref?: string;
   image?: string;
   imageAlt?: string;
   reverse?: boolean;
@@ -24,27 +21,22 @@ const {
       image: 'riverside-dym-ogien-gdansk-sekcja-menu-golonka',
       title: 'Wolno gotowana golonka',
       description: 'Golonka pieczona 12 godzin – miękka, soczysta, rozpada się przy pierwszym ruchu.',
-      ctaLabel: 'Z czym ją serwujemy',
       reverse: false,
     },
     {
       image: 'riverside-dym-ogien-gdansk-sekcja-menu-zeberka',
       title: 'Żeberka pieczone BBQ',
       description: 'Żeberka BBQ – wolno pieczone, w autorskim sosie, dokładnie takie, jakie mają być.',
-      ctaLabel: 'Jak je podajemy',
       reverse: true,
     },
     {
       image: 'riverside-dym-ogien-gdansk-sekcja-menu-burger',
       title: 'Cheesy Bacon Burger',
       description: 'Soczyste, delikatne mięso z wyczuwalną nutą dymu, autorskie sosy i składniki. Każdy kęs to konkretny smak.',
-      ctaLabel: 'Z jakimi dodatkami',
       reverse: false,
     },
   ],
 } = Astro.props;
-
-const MENU_HREF = '/menu';
 ---
 
 <section class="section-py">
@@ -54,7 +46,7 @@ const MENU_HREF = '/menu';
     </h2>
 
     <div class="space-y-6">
-      {dishes.map(({ title: dishTitle, description, ctaLabel, ctaHref = MENU_HREF, image, imageAlt = '', reverse = false }) => {
+      {dishes.map(({ title: dishTitle, description, image, imageAlt = '', reverse = false }) => {
         const photoSrc = image ? cloudinaryUrl(image, { width: 700, aspectRatio: '4:3', crop: 'fill' }) : null;
         const photoSrcset = image ? cloudinarySrcset(image, [500, 700, 900], { aspectRatio: '4:3', crop: 'fill' }) : null;
 
@@ -65,18 +57,7 @@ const MENU_HREF = '/menu';
               <div class="w-full lg:w-7/12 px-4 mb-12 lg:mb-0">
                 <div class="max-w-sm xl:max-w-lg mx-auto">
                   <h3 class="text-4xl tracking-tight mb-6 text-glass-white">{dishTitle}</h3>
-                  <p class="prose-p max-w-md mb-10">{description}</p>
-                  <a
-                    href={withBase(ctaHref)}
-                    class="group inline-flex py-5 px-8 items-center justify-center leading-none font-medium text-glass-white bg-glass-accent-amber hover:bg-glass-accent-glow rounded-full transition-colors duration-200"
-                  >
-                    <span class="mr-2">{ctaLabel}</span>
-                    <span class="group-hover:rotate-45 transform transition duration-100">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M14 2.5a.5.5 0 0 0-.5-.5h-6a.5.5 0 0 0 0 1h4.793L2.146 13.146a.5.5 0 0 0 .708.708L13 3.707V8.5a.5.5 0 0 0 1 0v-6z"/>
-                      </svg>
-                    </span>
-                  </a>
+                  <p class="prose-p max-w-md">{description}</p>
                 </div>
               </div>
 

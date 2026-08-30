@@ -1,7 +1,7 @@
 ---
 title: 'Jak zorganizować spotkanie firmowe w restauracji w Gdańsku?'
 author: 'Riverside Dym i Ogień'
-date: 2027-01-14
+date: 2026-05-14
 excerpt: 'Przestrzeń, menu, liczba gości, prywatność i lokalizacja. Podpowiadamy, na co zwrócić uwagę przy organizacji spotkania firmowego w restauracji.'
 cover: 'riverside-dym-ogien-gdansk-galeria-wnetrza-fot-5'
 published: true

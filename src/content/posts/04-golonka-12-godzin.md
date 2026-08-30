@@ -1,7 +1,7 @@
 ---
 title: '12 godzin dla jednej golonki - dlaczego warto czekać?'
 author: 'Riverside Dym i Ogień'
-date: 2026-10-15
+date: 2026-07-15
 excerpt: 'Nasza golonka potrzebuje około 12 godzin przygotowania. Wyjaśniamy, dlaczego czas i temperatura mają tak duże znaczenie dla jej smaku i struktury.'
 cover: 'riverside-dym-ogien-gdansk-galeria-dania-fot-21'
 published: true

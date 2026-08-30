@@ -1,7 +1,7 @@
 ---
 title: 'Dym i Ogień - co oznaczają w naszej kuchni?'
 author: 'Riverside Dym i Ogień'
-date: 2026-10-01
+date: 2026-07-01
 excerpt: 'Dym i Ogień to nie tylko część naszej nazwy. To temperatura, czas, pieczenie, grillowanie i techniki, dzięki którym budujemy smak.'
 cover: 'riverside-dym-ogien-gdansk-galeria-chef-fot-7'
 published: true

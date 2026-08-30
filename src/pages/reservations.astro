@@ -1,6 +1,6 @@
 ---
 import { cloudinaryUrl, cloudinarySrcset } from '../utils/cloudinary';
-import { CONTACT } from '../config/site';
+import { CONTACT, withBase } from '../config/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionBooking from '../components/ui/SectionBooking.astro';
 
@@ -33,7 +33,7 @@ const heroSrcset = heroImage ? cloudinarySrcset(heroImage, [600, 900, 1200], { a
           <div class="max-w-lg">
             <h2 class="text-glass-white section-heading tracking-tight mb-6">Zarezerwuj stolik online</h2>
             <p class="prose-p max-w-sm">System rezerwacji online obsługuje portal zjedz.my. Rezerwujemy maksymalnie 10 miejsc w systemie online.</p>
-            <p class="prose-p max-w-sm">Jeśli potrzebujesz zarezerwować więcej miejsc lub chcesz zorganizować imprezę — <a href="/events">zapoznaj się z naszą ofertą imprez i eventów</a>.</p>
+            <p class="prose-p max-w-sm">Jeśli potrzebujesz zarezerwować więcej miejsc lub chcesz zorganizować imprezę — <a href={withBase('/events')}>zapoznaj się z naszą ofertą imprez i eventów</a>.</p>
           </div>
         </div>
 

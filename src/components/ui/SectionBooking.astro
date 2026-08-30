@@ -1,5 +1,5 @@
 ---
-import { CONTACT } from '../../config/site';
+import { CONTACT, withBase } from '../../config/site';
 
 interface Props {
   title?:         string;
@@ -41,7 +41,7 @@ const isExternal = onlineHref.startsWith('http://') || onlineHref.startsWith('ht
           </button>
         ) : (
           <a
-            href={onlineHref}
+            href={isExternal ? onlineHref : withBase(onlineHref)}
             class="btn-secondary"
             target={isExternal ? '_blank' : undefined}
             rel={isExternal ? 'noopener noreferrer' : undefined}

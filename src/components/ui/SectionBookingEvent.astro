@@ -1,5 +1,5 @@
 ---
-import { CONTACT } from '../../config/site';
+import { CONTACT, withBase } from '../../config/site';
 
 interface Props {
   title?:      string;
@@ -31,7 +31,7 @@ const {
         <a href={CONTACT.phoneEventsHref} class="btn-primary">
           {phoneLabel}
         </a>
-        <a href={formHref} class="btn-secondary">
+        <a href={withBase(formHref)} class="btn-secondary">
           {formLabel}
         </a>
       </div>

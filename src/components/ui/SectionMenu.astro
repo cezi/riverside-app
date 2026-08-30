@@ -1,5 +1,6 @@
 ---
 import { cloudinaryUrl, cloudinarySrcset } from '../../utils/cloudinary';
+import { withBase } from '../../config/site';
 
 interface Dish {
   title: string;
@@ -66,7 +67,7 @@ const MENU_HREF = '/menu';
                   <h3 class="text-4xl tracking-tight mb-6 text-glass-white">{dishTitle}</h3>
                   <p class="prose-p max-w-md mb-10">{description}</p>
                   <a
-                    href={ctaHref}
+                    href={withBase(ctaHref)}
                     class="group inline-flex py-5 px-8 items-center justify-center leading-none font-medium text-glass-white bg-glass-accent-amber hover:bg-glass-accent-glow rounded-full transition-colors duration-200"
                   >
                     <span class="mr-2">{ctaLabel}</span>

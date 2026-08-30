@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { LOYALTY_FORMS } from '../config/site';
 
 const entries = await getCollection('pages');
 const entry = entries.find(e => e.id === 'loyalty-biz');
@@ -30,6 +31,15 @@ const { Content } = await render(entry);
         <div class="prose-content">
           <Content />
         </div>
+
+        <a
+          href={LOYALTY_FORMS.biz}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn-primary mt-2"
+        >
+          Zarejestruj się
+        </a>
 
       </div>
     </div>

@@ -120,6 +120,11 @@ export const LOYALTY_CTA = {
   href:    '/loyalty',
 } as const;
 
+export const LOYALTY_FORMS = {
+  priv: 'https://56a512f6.sibforms.com/serve/MUIFAJgOxlsp8M7DKKZOnEhxGaOYW5GCxEkhSwp2OW9Ri51zQsM2j1ErwvlBLF6zvlInahxXa49bEfJwc43ReFVMteK0aiFB7DkPOZMSBGwcCANJ-FiJGHuYUNgt40BiA_pLpXKbK3PCv9JDlgB99csuQ1DPp8aLYTsc44ztYUnOlaK6AblxVJ7hM680tRWr_p8mf_e6YAnmznpr',
+  biz:  'https://56a512f6.sibforms.com/serve/MUIFAPv35Ydri1uA5_ckWByd7hV542lJBsD-rYSWQqK3SqsVqevGSc5NPI-WjvnOp7EYyFL7Jz5M2IvAnvXf8aApLbJbpfiGKyxuOwqchqlGRu-MvcmvZ2pyn4FO04Qe6xLPUtoYikiSPY-1qMVGO2UYlgzbOm3rbikEwOx-cJ-h05RYllSj2pC60PSDK9ny-2PMf-8M8KbObsVs',
+} as const;
+
 export const BUSINESS = {
   type:               ['LocalBusiness', 'Restaurant'] as const,
   priceRange:         '$$',

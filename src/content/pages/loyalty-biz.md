@@ -36,4 +36,4 @@ Zapoznaj się z [Regulaminem przyznawania punktów](/terms-biz).
 
 ## Rejestracja do programu lojalnościowego dla firm
 
-<iframe width="100%" height="1100" src="https://56a512f6.sibforms.com/serve/MUIFAPv35Ydri1uA5_ckWByd7hV542lJBsD-rYSWQqK3SqsVqevGSc5NPI-WjvnOp7EYyFL7Jz5M2IvAnvXf8aApLbJbpfiGKyxuOwqchqlGRu-MvcmvZ2pyn4FO04Qe6xLPUtoYikiSPY-1qMVGO2UYlgzbOm3rbikEwOx-cJ-h05RYllSj2pC60PSDK9ny-2PMf-8M8KbObsVs" frameborder="0" scrolling="auto" style="display:block;margin-left:auto;margin-right:auto;max-width:100%;"></iframe>
+Wypełnij krótki formularz rejestracyjny, aby dołączyć do programu.

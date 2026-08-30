@@ -36,4 +36,4 @@ Zapoznaj się z [Regulaminem przyznawania punktów](/terms-priv).
 
 ## Rejestracja do programu lojalnościowego dla klientów indywidualnych
 
-<iframe width="100%" height="1000" src="https://56a512f6.sibforms.com/serve/MUIFAJgOxlsp8M7DKKZOnEhxGaOYW5GCxEkhSwp2OW9Ri51zQsM2j1ErwvlBLF6zvlInahxXa49bEfJwc43ReFVMteK0aiFB7DkPOZMSBGwcCANJ-FiJGHuYUNgt40BiA_pLpXKbK3PCv9JDlgB99csuQ1DPp8aLYTsc44ztYUnOlaK6AblxVJ7hM680tRWr_p8mf_e6YAnmznpr" frameborder="0" scrolling="auto" style="display:block;margin-left:auto;margin-right:auto;max-width:100%;"></iframe>
+Wypełnij krótki formularz rejestracyjny, aby dołączyć do programu.

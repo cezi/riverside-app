@@ -43,8 +43,10 @@ const posterUrl  = video
           {video ? (
             <div class="relative rounded-3xl max-w-sm overflow-hidden shadow-xl shadow-black/50 border border-glass-border">
               <video
+                id="tank-video"
                 class="block w-full aspect-[9/16] max-w-sm object-contain rounded-3xl"
                 controls
+                muted
                 playsinline
                 preload="metadata"
                 poster={posterUrl}
@@ -71,3 +73,22 @@ const posterUrl  = video
     </div>
   </div>
 </section>
+
+<script>
+  const video = document.getElementById('tank-video');
+  if (video instanceof HTMLVideoElement) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            video.play().catch(() => {});
+          } else {
+            video.pause();
+          }
+        });
+      },
+      { threshold: 0.5 },
+    );
+    observer.observe(video);
+  }
+</script>

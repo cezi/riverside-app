@@ -10,6 +10,7 @@ interface Slide {
   alt: string;
   title: string;
   description: string;
+  mobileObjectPosition?: string;
 }
 
 interface Props {
@@ -26,14 +27,15 @@ const {
       image: 'riverside-dym-ogien-gdansk-sekcja-slider-fot-1',
       alt: 'Wnętrze restauracji Riverside',
       title: 'Niezapomniany widok na Motławę',
-      description: 'Delektuj się posiłkiem z panoramą malowniczej rzeki w sercu Gdańska - idealne miejsce na romantyczną kolację i wyjątkowe chwile.',
+      description: 'Delektuj się posiłkiem z panoramą Motławy.',
+      mobileObjectPosition: 'object-left',
     },
     {
       type: 'video',
       video: 'riverside-dym-ogien-gdansk-sekcja-video-dania',
       alt: 'Film prezentujący dania w restauracji',
       title: 'Smaki, które rozgrzewają zmysły',
-      description: 'Odkryj naszą kuchnię - świeże składniki, mistrzowskie wykonanie i dania, które zachwycają wyglądem oraz smakiem.',
+      description: 'Odkryj naszą kuchnię - świeże składniki, mistrzowskie wykonanie.',
     },
     {
       type: 'image',
@@ -113,7 +115,7 @@ const {
             </div>
           ) : imageSrc ? (
             <img
-              class="absolute inset-0 h-full w-full object-cover"
+              class={`absolute inset-0 h-full w-full object-cover ${slide.mobileObjectPosition ?? 'object-center'} md:object-center`}
               src={imageSrc}
               srcset={imageSrcset}
               sizes="100vw"

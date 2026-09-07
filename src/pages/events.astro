@@ -83,7 +83,7 @@ const eventTypes = [
 
   {/* Hero */}
   <section class="section-py">
-    <div class="container mx-auto px-4">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex flex-wrap -mx-4 items-stretch">
         <div class="w-full lg:w-1/2 px-4 mb-16 lg:mb-0">
           <div class="max-w-md">
@@ -96,7 +96,7 @@ const eventTypes = [
         <div class="w-full lg:w-1/2 px-4">
           {heroVideo ? (
             <video
-              class="block w-full h-[686px] max-h-[686px] object-cover lg:ml-auto rounded-3xl shadow-2xl shadow-black/40 ring-1 ring-glass-border"
+              class="block w-full aspect-[9/16] sm:aspect-[4/5] md:aspect-[4/3] lg:aspect-auto lg:h-[686px] lg:max-h-[686px] object-cover lg:ml-auto rounded-3xl shadow-2xl shadow-black/40 ring-1 ring-glass-border"
               controls
               preload="metadata"
               poster={heroVideoPoster}
@@ -118,7 +118,7 @@ const eventTypes = [
 
   {/* Ile miejsca potrzebujesz? */}
   <section class="section-py">
-    <div class="container mx-auto px-4">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="text-4xl lg:text-5xl mb-12 text-center lg:text-left text-glass-white">Ile miejsca potrzebujesz?</h2>
 
       <div class="flex flex-wrap -mx-4">
@@ -131,7 +131,7 @@ const eventTypes = [
               </div>
               <div class="space-y-4 border-t border-glass-border pt-6">
                 {stats.map(({ label, value }) => (
-                  <div class="flex justify-between items-center">
+                  <div class="flex flex-col sm:flex-row sm:justify-between gap-1 sm:gap-4">
                     <span class="font-medium text-glass-white">{label}</span>
                     <span class="text-glass-accent-fire">{value}</span>
                   </div>
@@ -146,7 +146,7 @@ const eventTypes = [
 
   {/* Jakie imprezy organizujemy? */}
   <section class="section-py">
-    <div class="container mx-auto px-4">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <h2 class="tracking-tighter mb-12 text-4xl lg:text-5xl text-glass-white">Jakie imprezy organizujemy?</h2>
 
       <div class="flex flex-col gap-12 lg:gap-20">

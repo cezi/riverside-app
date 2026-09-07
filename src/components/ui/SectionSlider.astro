@@ -52,7 +52,7 @@ const {
 ---
 
 <section
-  class="relative h-screen w-full overflow-hidden bg-glass-black text-glass-white"
+  class="relative min-h-[100svh] h-[100dvh] w-full overflow-hidden bg-glass-black text-glass-white"
   x-data={`{
     active: 0,
     count: ${slides.length},
@@ -135,7 +135,7 @@ const {
           )}
 
         <div class="absolute inset-x-0 bottom-0 z-20 pointer-events-none">
-          <div class="container mx-auto px-4 pb-60 sm:pb-40 lg:pb-48">
+          <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-60 sm:pb-40 lg:pb-48">
             <div class="max-w-2xl">
               <h1 class="font-heading text-5xl sm:text-7xl md:text-8xl tracking-tighter mb-6 drop-shadow-lg">
                 {slide.title}
@@ -156,7 +156,7 @@ const {
 
   {/* Shared CTA buttons — lower-left */}
   <div class="absolute inset-x-0 bottom-0 z-20">
-    <div class="container mx-auto px-4 pb-20 lg:pb-24">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 lg:pb-24">
       <div class="max-w-2xl">
         <div class="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center">
           <a

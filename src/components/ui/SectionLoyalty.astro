@@ -25,15 +25,15 @@ const mobileSrcset = image ? cloudinarySrcset(image, [400, 800, 1200]) : null;
 ---
 
 <section class="section-py">
-  <div class="container mx-auto px-4">
-    <div class="px-8 md:px-12">
+  <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="px-0 sm:px-6 md:px-12">
       <div class="relative max-w-5xl mx-auto">
         {image ? (
           <img
-            class="hidden md:block absolute bottom-0 right-0 md:-mr-24 sm:w-8/12"
+            class="hidden lg:block absolute bottom-0 right-0 lg:-mr-24 lg:w-8/12"
             src={desktopSrc}
             srcset={desktopSrcset}
-            sizes="(min-width: 768px) 67vw, 0px"
+            sizes="(min-width: 1024px) 67vw, 0px"
             alt={imageAlt}
             aria-hidden={imageAlt ? undefined : 'true'}
             loading="lazy"
@@ -41,7 +41,7 @@ const mobileSrcset = image ? cloudinarySrcset(image, [400, 800, 1200]) : null;
           />
         ) : (
           <div
-            class="hidden md:flex absolute bottom-0 right-0 md:-mr-24 sm:w-8/12 aspect-[3/2] items-center justify-center bg-glass-anthracite border border-glass-border rounded-2xl"
+            class="hidden lg:flex absolute bottom-0 right-0 lg:-mr-24 lg:w-8/12 aspect-[3/2] items-center justify-center bg-glass-anthracite border border-glass-border rounded-2xl"
             role="img"
             aria-label={imageAlt || 'Zdjęcie wkrótce'}
           >
@@ -57,7 +57,7 @@ const mobileSrcset = image ? cloudinarySrcset(image, [400, 800, 1200]) : null;
 
           {image ? (
             <img
-              class="md:hidden block w-full max-w-xs mx-auto mb-8"
+              class="lg:hidden block w-full max-w-xs mx-auto mb-8"
               src={mobileSrc}
               srcset={mobileSrcset}
               sizes="(min-width: 480px) 20rem, 80vw"
@@ -68,7 +68,7 @@ const mobileSrcset = image ? cloudinarySrcset(image, [400, 800, 1200]) : null;
             />
           ) : (
             <div
-              class="flex md:hidden aspect-[3/2] max-w-xs mx-auto mb-8 items-center justify-center bg-glass-anthracite border border-glass-border rounded-2xl"
+              class="flex lg:hidden aspect-[3/2] max-w-xs mx-auto mb-8 items-center justify-center bg-glass-anthracite border border-glass-border rounded-2xl"
               role="img"
               aria-label={imageAlt || 'Zdjęcie wkrótce'}
             >

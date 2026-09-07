@@ -27,13 +27,13 @@ const mobileSrcset = image ? cloudinarySrcset(image, [400, 700, 900], { aspectRa
 ---
 
 <section class="section-py md:pb-0 overflow-hidden">
-  <div class="container mx-auto px-4">
-    <div class="px-8 md:px-12">
+  <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="px-0 sm:px-6 md:px-12">
       <div class="relative max-w-5xl mx-auto">
 
         {image ? (
           <img
-            class="hidden md:block absolute bottom-0 right-0 md:w-1/2 lg:w-5/12 xl:w-96 z-10"
+            class="hidden lg:block absolute bottom-0 right-0 lg:w-5/12 xl:w-96 z-10"
             src={desktopSrc}
             srcset={desktopSrcset}
             sizes="(min-width: 1024px) 40vw, 50vw"
@@ -44,7 +44,7 @@ const mobileSrcset = image ? cloudinarySrcset(image, [400, 700, 900], { aspectRa
           />
         ) : (
           <div
-            class="hidden md:flex absolute bottom-0 right-0 md:w-1/2 lg:w-5/12 xl:w-96 z-10 aspect-[3/4] items-center justify-center bg-glass-anthracite border border-glass-border rounded-2xl"
+            class="hidden lg:flex absolute bottom-0 right-0 lg:w-5/12 xl:w-96 z-10 aspect-[3/4] items-center justify-center bg-glass-anthracite border border-glass-border rounded-2xl"
             role="img"
             aria-label={imageAlt || 'Zdjęcie wkrótce'}
           >
@@ -66,7 +66,7 @@ const mobileSrcset = image ? cloudinarySrcset(image, [400, 700, 900], { aspectRa
 
           {image ? (
             <img
-              class="block mb-8 max-w-xs md:hidden rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-glass-border"
+              class="block mb-8 max-w-xs lg:hidden rounded-2xl shadow-2xl shadow-black/50 ring-1 ring-glass-border"
               src={mobileSrc}
               srcset={mobileSrcset}
               sizes="(min-width: 480px) 20rem, 80vw"
@@ -77,7 +77,7 @@ const mobileSrcset = image ? cloudinarySrcset(image, [400, 700, 900], { aspectRa
             />
           ) : (
             <div
-              class="flex mb-8 max-w-xs aspect-[3/4] md:hidden items-center justify-center bg-glass-anthracite border border-glass-border rounded-2xl"
+              class="flex mb-8 max-w-xs aspect-[3/4] lg:hidden items-center justify-center bg-glass-anthracite border border-glass-border rounded-2xl"
               role="img"
               aria-label={imageAlt || 'Zdjęcie wkrótce'}
             >

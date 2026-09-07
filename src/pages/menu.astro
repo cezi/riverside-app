@@ -47,7 +47,7 @@ const pdfHref = menuPdf ? withBase(menuPdf) : null;
 
   {/* Hero */}
   <section class="section-py">
-    <div class="container mx-auto px-4">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-3xl">
         <h1 class="font-heading text-4xl md:text-6xl mb-8 text-glass-white">Menu</h1>
         <p class="prose-p">Menu tworzone przez naszego Chefa Michała łączy różnorodne inspiracje – od ręcznie siekanego tatara, przez ryby, pizzę, golonkę i żeberka, po smaki inspirowane kuchnią azjatycką. Dopełnieniem jest niepasteryzowany Pilsner Urquell serwowany prosto z tanka.</p>
@@ -60,7 +60,7 @@ const pdfHref = menuPdf ? withBase(menuPdf) : null;
   <div x-data="{ lightbox: false, activeImage: null, activeAlt: '' }">
     {categories.map(({ name, dishes }) => (
       <section class="section-py">
-        <div class="container mx-auto px-4">
+        <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div class="flex flex-wrap lg:flex-nowrap -mx-4">
             <div class="w-full lg:w-1/3 px-4 mb-10 lg:mb-0">
               <div class="lg:sticky lg:top-32">
@@ -167,14 +167,14 @@ const pdfHref = menuPdf ? withBase(menuPdf) : null;
 
   {/* Przy obsłudze grup */}
   <section>
-    <div class="container mx-auto px-4 py-8 border-t border-b border-glass-border">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 border-t border-b border-glass-border">
       <p class="text-sm text-glass-muted text-center">Przy obsłudze grup od czterech osób do rachunku doliczamy serwis w wysokości 10%. Ceny podane są w złotych polskich (PLN).</p>
     </div>
   </section>
 
   {/* Pobierz Menu */}
   <section class="section-py">
-    <div class="container mx-auto px-4">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-2xl mx-auto text-center">
         <h2 class="font-heading text-4xl md:text-6xl tracking-tighter mb-10 text-glass-white">
           <span class="block">Pobierz</span>

@@ -45,7 +45,7 @@ const categories = CATEGORY_ORDER.filter((c) => items.some((i) => i.category ===
 
   {/* Hero */}
   <section class="section-py">
-    <div class="container mx-auto px-4">
+    <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="max-w-2xl mb-8">
         <h1 class="font-heading text-4xl md:text-6xl tracking-tighter text-glass-white">Poznaj Riverside</h1>
       </div>
@@ -55,7 +55,7 @@ const categories = CATEGORY_ORDER.filter((c) => items.some((i) => i.category ===
   {items.length > 0 ? (
     <section class="pb-20">
       <div
-        class="container mx-auto px-4"
+        class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
         x-data={`{
           tab: 'Wszystkie',
           visibleRows: ${INITIAL_ROWS},
@@ -283,7 +283,7 @@ const categories = CATEGORY_ORDER.filter((c) => items.some((i) => i.category ===
     </section>
   ) : (
     <section class="pb-20">
-      <div class="container mx-auto px-4 text-center text-glass-muted">
+      <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-glass-muted">
         Zdjęcia i filmy pojawią się tutaj wkrótce.
       </div>
     </section>

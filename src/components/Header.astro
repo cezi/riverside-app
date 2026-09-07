@@ -16,7 +16,7 @@ const isActive = (href: string) => {
 ---
 
 <header x-data="{ open: false }" class:list={[{ 'absolute inset-x-0 top-0 z-30': transparent }]}>
-  <div class="container px-4 mx-auto">
+  <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <nav class="flex items-center py-6 md:py-8">
 
       <a href={withBase('/')} aria-label={SITE.fullName} class="flex items-center">
@@ -31,7 +31,7 @@ const isActive = (href: string) => {
         />
       </a>
 
-      <ul class="hidden lg:flex ml-auto mr-12 items-center space-x-10 list-none">
+      <ul class="hidden xl:flex ml-auto mr-12 items-center space-x-10 list-none">
         {NAV.map(({ label, href }) => (
           <li>
             <a
@@ -52,14 +52,14 @@ const isActive = (href: string) => {
 
       <a
         href={withBase(NAV_CTA.href)}
-        class="hidden lg:inline-flex items-center justify-center px-6 py-4 text-sm font-medium leading-none text-glass-white bg-glass-accent-amber hover:bg-glass-accent-glow rounded-full transition-colors duration-200"
+        class="hidden xl:inline-flex items-center justify-center px-6 py-4 text-sm font-medium leading-none text-glass-white bg-glass-accent-amber hover:bg-glass-accent-glow rounded-full transition-colors duration-200"
         aria-label={`${NAV_CTA.label} — zarezerwuj miejsce`}
       >
         {NAV_CTA.label}
       </a>
 
       <button
-        class="lg:hidden ml-auto block text-glass-white hover:text-glass-accent-amber focus:outline-none transition-colors duration-200"
+        class="xl:hidden ml-auto block text-glass-white hover:text-glass-accent-amber focus:outline-none transition-colors duration-200"
         x-on:click="open = !open"
         x-bind:aria-expanded="open.toString()"
         aria-controls="mobile-menu-panel"
@@ -97,7 +97,7 @@ const isActive = (href: string) => {
     x-transition:leave="transition ease-in duration-150"
     x-transition:leave-start="opacity-100 translate-x-0"
     x-transition:leave-end="opacity-0 -translate-x-4"
-    class="fixed top-0 left-0 bottom-0 w-5/6 max-w-sm z-50 flex flex-col py-6 px-6 bg-glass-black border-r border-glass-border overflow-y-auto"
+    class="fixed top-0 left-0 h-screen h-[100dvh] w-5/6 max-w-sm z-50 flex flex-col py-6 px-6 bg-glass-black border-r border-glass-border overflow-y-auto"
     aria-label="Nawigacja mobilna"
   >
     <div class="flex items-center justify-between mb-12">

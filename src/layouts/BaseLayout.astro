@@ -24,9 +24,7 @@ const props = Astro.props;
 const pathname = Astro.url.pathname;
 
 const isLegalPage =
-  pathname.endsWith('/terms/') ||
   pathname.endsWith('/privacy/') ||
-  pathname.endsWith('/terms') ||
   pathname.endsWith('/privacy');
 
 const isHome = pathname === '/';

@@ -1,9 +1,9 @@
 ---
 title: Polityka prywatności i plików cookie
-updatedAt: "2026-08-20"
+updatedAt: "2026-09-28"
 ---
 
-Niniejsza Polityka prywatności określa zasady przetwarzania danych osobowych osób korzystających ze strony internetowej **riversidegdansk.pl**, kontaktujących się z restauracją Riverside Dym i Ogień, dokonujących rezerwacji oraz uczestniczących w programach lojalnościowych.
+Niniejsza Polityka prywatności określa zasady przetwarzania danych osobowych osób korzystających ze strony internetowej **riversidegdansk.pl**, kontaktujących się z restauracją Riverside Dym i Ogień oraz dokonujących rezerwacji.
 
 Polityka opisuje również zasady stosowania plików cookie i podobnych technologii.
 
@@ -22,10 +22,6 @@ Kontakt w sprawach dotyczących danych osobowych:
 
 **e-mail:** kontakt@riversidegdansk.pl
 
-W sprawach dotyczących programu lojalnościowego można również kontaktować się pod adresem:
-
-**loyalty@riversidegdansk.pl**
-
 ## 2. Zakres stosowania Polityki
 
 Polityka ma zastosowanie w szczególności do danych przetwarzanych w związku z:
@@ -35,10 +31,7 @@ Polityka ma zastosowanie w szczególności do danych przetwarzanych w związku z
 - wysyłaniem formularza kontaktowego,
 - rezerwacją stolika,
 - zapytaniami dotyczącymi imprez, wydarzeń i rezerwacji grupowych,
-- korzystaniem z programu lojalnościowego dla klientów indywidualnych,
-- korzystaniem z programu lojalnościowego dla firm,
 - komunikacją marketingową,
-- korzystaniem z cyfrowych kart lojalnościowych,
 - korzystaniem z plików cookie oraz podobnych technologii,
 - analizą sposobu korzystania ze strony,
 - działaniami reklamowymi i remarketingowymi,
@@ -86,31 +79,7 @@ W przypadku zapytań dotyczących imprez prywatnych, firmowych lub rezerwacji gr
 - informacje dotyczące planowanego wydarzenia,
 - dane potrzebne do przygotowania oferty, umowy lub rozliczenia.
 
-### 3.4. Program lojalnościowy
-
-W związku z uczestnictwem w programie lojalnościowym możemy przetwarzać:
-
-- imię i nazwisko,
-- adres e-mail,
-- numer telefonu,
-- nazwę firmy – w przypadku programu dla firm,
-- identyfikator cyfrowej karty lojalnościowej,
-- datę przystąpienia do programu,
-- status karty,
-- liczbę przyznanych pieczątek,
-- informacje o uzyskanych nagrodach,
-- informacje o wykorzystanych nagrodach,
-- daty aktywności w programie,
-- informacje niezbędne do weryfikacji uprawnienia do przyznania pieczątek lub nagród,
-- informacje dotyczące udzielonych zgód marketingowych.
-
-Nie zapisujemy w systemie lojalnościowym pełnych danych dotyczących kart płatniczych.
-
-Program lojalnościowy może być obsługiwany przy wykorzystaniu systemu **Loopy Loyalty**, którego operatorem jest PassKit.
-
-Dane związane z programem mogą być również przetwarzane przy wykorzystaniu systemów automatyzacji i komunikacji, w szczególności **Brevo** oraz **Make**.
-
-### 3.5. Dane księgowe i rozliczeniowe
+### 3.4. Dane księgowe i rozliczeniowe
 
 Jeżeli wymagają tego przepisy prawa lub charakter transakcji, możemy przetwarzać:
 
@@ -122,7 +91,7 @@ Jeżeli wymagają tego przepisy prawa lub charakter transakcji, możemy przetwar
 - wartość transakcji,
 - dane znajdujące się na fakturach i innych dokumentach księgowych.
 
-### 3.6. Dane techniczne
+### 3.5. Dane techniczne
 
 Podczas korzystania ze strony internetowej mogą być automatycznie przetwarzane m.in.:
 
@@ -183,31 +152,13 @@ Podstawą jest odpowiednio:
 - art. 6 ust. 1 lit. c RODO,
 - art. 6 ust. 1 lit. f RODO.
 
-### 4.4. Program lojalnościowy
-
-Dane uczestników programu lojalnościowego przetwarzamy w celu:
-
-- rejestracji uczestnika,
-- wydania i prowadzenia cyfrowej karty lojalnościowej,
-- naliczania pieczątek,
-- ustalania uprawnień do nagród,
-- realizacji nagród,
-- prowadzenia historii uczestnictwa,
-- zapobiegania nadużyciom,
-- obsługi pytań i reklamacji dotyczących programu.
-
-Podstawą prawną jest przede wszystkim art. 6 ust. 1 lit. b RODO – wykonanie umowy wynikającej z przystąpienia do programu lojalnościowego.
-
-W zakresie zapobiegania nadużyciom i ochrony praw Administratora podstawą może być również art. 6 ust. 1 lit. f RODO – prawnie uzasadniony interes Administratora.
-
-### 4.5. Marketing bezpośredni
+### 4.4. Marketing bezpośredni
 
 Jeżeli użytkownik wyrazi odpowiednią zgodę, możemy wykorzystywać podane dane kontaktowe do przesyłania informacji dotyczących m.in.:
 
 - oferty restauracji,
 - wydarzeń,
 - promocji,
-- programu lojalnościowego,
 - nowych dań lub usług,
 - innych informacji marketingowych Riverside Dym i Ogień.
 
@@ -221,13 +172,13 @@ Użytkownik może w dowolnym momencie:
 
 Wycofanie zgody nie wpływa na zgodność z prawem działań podjętych przed jej wycofaniem.
 
-### 4.6. Księgowość i podatki
+### 4.5. Księgowość i podatki
 
 Dane znajdujące się w dokumentacji księgowej i podatkowej przetwarzamy w celu wykonania obowiązków wynikających z przepisów prawa.
 
 Podstawą jest art. 6 ust. 1 lit. c RODO.
 
-### 4.7. Dochodzenie i obrona roszczeń
+### 4.6. Dochodzenie i obrona roszczeń
 
 Dane mogą być przetwarzane w celu:
 
@@ -238,7 +189,7 @@ Dane mogą być przetwarzane w celu:
 
 Podstawą jest art. 6 ust. 1 lit. f RODO – prawnie uzasadniony interes Administratora polegający na ochronie jego praw.
 
-### 4.8. Bezpieczeństwo strony internetowej
+### 4.7. Bezpieczeństwo strony internetowej
 
 Dane techniczne mogą być przetwarzane w celu:
 
@@ -249,7 +200,7 @@ Dane techniczne mogą być przetwarzane w celu:
 
 Podstawą jest art. 6 ust. 1 lit. f RODO – prawnie uzasadniony interes Administratora polegający na zapewnieniu bezpieczeństwa i prawidłowego działania serwisu.
 
-### 4.9. Statystyka i analityka
+### 4.8. Statystyka i analityka
 
 Jeżeli użytkownik wyrazi zgodę na analityczne pliki cookie lub podobne technologie, dane mogą być wykorzystywane do:
 
@@ -260,7 +211,7 @@ Jeżeli użytkownik wyrazi zgodę na analityczne pliki cookie lub podobne techno
 
 Podstawą wykorzystania niekoniecznych plików cookie i podobnych technologii jest zgoda użytkownika.
 
-### 4.10. Reklama i remarketing
+### 4.9. Reklama i remarketing
 
 Jeżeli użytkownik wyrazi zgodę na marketingowe pliki cookie, dane mogą być wykorzystywane do:
 
@@ -282,7 +233,6 @@ Przykładowo:
 
 - bez danych kontaktowych możemy nie być w stanie odpowiedzieć na wiadomość;
 - bez wymaganych danych rezerwacyjnych możemy nie być w stanie przyjąć rezerwacji;
-- bez danych wymaganych podczas rejestracji nie będzie możliwe utworzenie karty lojalnościowej;
 - podanie danych wymaganych przepisami podatkowymi może być konieczne do wystawienia faktury.
 
 Podanie danych do celów marketingowych jest dobrowolne i nie jest warunkiem skorzystania z podstawowych usług restauracji.
@@ -298,7 +248,6 @@ Mogą to być w szczególności:
 - dostawcy poczty elektronicznej,
 - administratorzy i serwisanci systemów informatycznych,
 - dostawcy systemów rezerwacyjnych,
-- dostawcy systemów lojalnościowych,
 - dostawcy systemów marketingowych i mailingowych,
 - dostawcy usług automatyzacji,
 - dostawcy narzędzi analitycznych,
@@ -310,12 +259,6 @@ Mogą to być w szczególności:
 - organy publiczne, jeżeli obowiązek przekazania danych wynika z przepisów prawa.
 
 W zależności od wykorzystywanych funkcjonalności odbiorcami lub podmiotami przetwarzającymi dane mogą być w szczególności:
-
-### Loopy Loyalty / PassKit
-
-System wykorzystywany do obsługi cyfrowych kart programu lojalnościowego.
-
-PassKit przetwarza dane uczestników programu na zlecenie Administratora w zakresie niezbędnym do funkcjonowania programu.
 
 ### Brevo
 
@@ -368,7 +311,6 @@ Niektórzy dostawcy usług wykorzystywanych przez Administratora prowadzą dzia�
 
 Dotyczyć to może m.in.:
 
-- PassKit / Loopy Loyalty,
 - Google,
 - Meta Platforms,
 - Cloudflare,
@@ -398,23 +340,11 @@ Jeżeli korespondencja dotyczy umowy, rezerwacji, reklamacji lub potencjalnego r
 
 Dane dotyczące rezerwacji przechowujemy przez okres potrzebny do jej realizacji oraz przez okres niezbędny do obsługi ewentualnych reklamacji lub roszczeń.
 
-### 8.3. Program lojalnościowy
-
-Dane dotyczące programu lojalnościowego są przetwarzane przez okres uczestnictwa w programie.
-
-Po rezygnacji uczestnika albo dezaktywacji karty dane zostaną usunięte lub zanonimizowane, chyba że dalsze ich przechowywanie jest niezbędne:
-
-- do rozpatrzenia reklamacji,
-- do obrony lub dochodzenia roszczeń,
-- do wykonania obowiązków prawnych.
-
-Zasady ważności pieczątek i dezaktywacji kart określają odpowiednie regulaminy programu lojalnościowego.
-
-### 8.4. Dokumentacja księgowa
+### 8.3. Dokumentacja księgowa
 
 Dokumentację podatkową i księgową przechowujemy przez okres wymagany właściwymi przepisami.
 
-### 8.5. Dane marketingowe
+### 8.4. Dane marketingowe
 
 Dane wykorzystywane na podstawie zgody przetwarzamy do:
 
@@ -426,7 +356,7 @@ w zależności od tego, co nastąpi wcześniej.
 
 Możemy następnie zachować ograniczony zakres informacji niezbędny do wykazania udzielonej lub wycofanej zgody oraz respektowania sprzeciwu.
 
-### 8.6. Dane związane z plikami cookie
+### 8.5. Dane związane z plikami cookie
 
 Okres przechowywania zależy od rodzaju konkretnego pliku cookie lub podobnego identyfikatora.
 
@@ -625,32 +555,7 @@ Samo umieszczenie zwykłego linku do serwisu społecznościowego nie oznacza aut
 
 Jeżeli na stronie zostanie wykorzystana osadzona wtyczka, film, mapa, feed lub inny element zewnętrzny powodujący automatyczne połączenie z serwerami dostawcy, odpowiednie zasady dotyczące zgody i przetwarzania danych mają zastosowanie również do takiej technologii.
 
-## 21. Cyfrowa karta lojalnościowa
-
-Karta programu lojalnościowego może być przechowywana w kompatybilnym portfelu cyfrowym użytkownika.
-
-Jeżeli użytkownik zdecyduje się dodać kartę do zewnętrznej usługi, np. Apple Wallet lub Google Wallet, dalsze przetwarzanie danych związane z działaniem tej usługi może odbywać się zgodnie z zasadami jej operatora.
-
-Korzystanie z portfela cyfrowego nie jest równoznaczne z udzieleniem zgody na marketing Riverside Dym i Ogień.
-
-## 22. Program lojalnościowy a komunikacja marketingowa
-
-Przystąpienie do programu lojalnościowego nie oznacza automatycznie zgody na otrzymywanie marketingu.
-
-Komunikaty niezbędne do funkcjonowania programu, dotyczące np.:
-
-- utworzenia karty,
-- statusu uczestnictwa,
-- przyznania nagrody,
-- zmian dotyczących programu,
-- jego zakończenia,
-- bezpieczeństwa konta lub karty,
-
-mogą być przesyłane jako komunikacja związana z realizacją programu.
-
-Komunikacja reklamowa i promocyjna jest wysyłana zgodnie z właściwą podstawą prawną i wymaganymi zgodami.
-
-## 23. Bezpieczeństwo danych
+## 21. Bezpieczeństwo danych
 
 Administrator stosuje odpowiednie środki techniczne i organizacyjne mające chronić dane osobowe odpowiednio do charakteru, zakresu i ryzyka przetwarzania.
 
@@ -667,21 +572,21 @@ Administrator stosuje odpowiednie środki techniczne i organizacyjne mające chr
 
 Mimo stosowania odpowiednich zabezpieczeń żaden system informatyczny nie gwarantuje całkowitego wyeliminowania ryzyka.
 
-## 24. Naruszenia ochrony danych
+## 22. Naruszenia ochrony danych
 
 W przypadku naruszenia ochrony danych osobowych Administrator podejmuje działania wymagane przez RODO.
 
 Jeżeli naruszenie może powodować wysokie ryzyko naruszenia praw lub wolności osób fizycznych, osoby, których dane dotyczą, zostaną poinformowane o naruszeniu zgodnie z obowiązującymi przepisami.
 
-## 25. Dane osób małoletnich
+## 23. Dane osób małoletnich
 
-Strona oraz program lojalnościowy nie są kierowane specjalnie do dzieci.
+Strona nie jest kierowana specjalnie do dzieci.
 
 Administrator nie zamierza świadomie pozyskiwać od dzieci danych osobowych w celach marketingowych.
 
 Jeżeli Administrator uzyska informację, że dane zostały przekazane przez osobę, która nie mogła skutecznie dokonać określonej czynności prawnej lub udzielić wymaganej zgody, podejmie odpowiednie działania zgodnie z obowiązującymi przepisami.
 
-## 26. Zmiany Polityki prywatności
+## 24. Zmiany Polityki prywatności
 
 Polityka może być okresowo aktualizowana, w szczególności w przypadku:
 
@@ -693,7 +598,7 @@ Polityka może być okresowo aktualizowana, w szczególności w przypadku:
 
 W przypadku istotnych zmian możemy dodatkowo poinformować o nich użytkowników odpowiednim komunikatem.
 
-## 27. Kontakt
+## 25. Kontakt
 
 W sprawach dotyczących ochrony danych osobowych, realizacji praw wynikających z RODO oraz niniejszej Polityki można kontaktować się z Administratorem:
 
@@ -702,5 +607,3 @@ ul. Garbary 1
 80-827 Gdańsk
 
 e-mail: kontakt@riversidegdansk.pl
-
-W sprawach programu lojalnościowego: loyalty@riversidegdansk.pl

@@ -125,7 +125,7 @@
   background-clip: text;
   }
 
-  /* Artykuł jednostronicowy (np. loyalty.astro) — odstęp między sekcjami h2 */
+  /* Artykuł jednostronicowy (np. privacy.astro) — odstęp między sekcjami h2 */
   .article-content h2 {
     margin-top: 3rem;
   }

@@ -1,5 +1,5 @@
 ---
-import { SITE, SOCIAL, FOOTER_NAV, FOOTER_LEGAL, LOYALTY_CTA, MEDIA, withBase } from '../config/site';
+import { SITE, SOCIAL, FOOTER_NAV, FOOTER_LEGAL, MEDIA, withBase } from '../config/site';
 
 const year = new Date().getFullYear();
 
@@ -43,7 +43,7 @@ const socials = [
   <div class="container max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
     <div class="max-w-2xl mx-auto mb-14 text-center">
-      <a class="inline-block mb-14" href={withBase('/')} aria-label={SITE.fullName}>
+      <a class="inline-block" href={withBase('/')} aria-label={SITE.fullName}>
         <img
           src={withBase(MEDIA.logo.src)}
           alt={MEDIA.logo.alt}
@@ -53,13 +53,6 @@ const socials = [
           loading="lazy"
           decoding="async"
         />
-      </a>
-      <h3 class="text-xl text-glass-white tracking-tight mb-8">{LOYALTY_CTA.heading}</h3>
-      <a
-        href={withBase(LOYALTY_CTA.href)}
-        class="inline-block py-5 px-8 text-center leading-none font-medium text-glass-white hover:text-glass-black border border-glass-accent-amber hover:bg-glass-accent-glow hover:border-glass-accent-glow rounded-full transition-colors duration-150"
-      >
-        {LOYALTY_CTA.label}
       </a>
     </div>
 
